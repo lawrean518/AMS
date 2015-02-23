@@ -6,10 +6,11 @@ class DCSMS extends CI_Controller {
 		
 		#$this->load->model('DCSMS_Model');
 		$this->load->helper('url');
-		$this->load->view('DCSMSview_default');
+		$this->load->view('AMSwelcome');
 
 	}		
 
+	
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page
 	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page

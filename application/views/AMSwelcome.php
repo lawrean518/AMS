@@ -31,7 +31,7 @@
           <li><a href="#"></a></li>
           </ul></span>
             </div>
-            <br><button class="btn btn-lg btn-primary" type="submit" formaction = "">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="submit" formaction = "">SHOW ALL</button>
+            <br><button class="btn btn-lg btn-primary" type="submit" formaction = "/home">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="submit" formaction = "DCSMS/home">SHOW ALL</button>
           </form>
         </div>
         
