@@ -33,7 +33,7 @@
           </ul></span>
               
             </div>
-            <br><button class="btn btn-lg btn-primary" id="search" type="button">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="button">SHOW ALL</button>
+            <br><button class="btn btn-lg btn-primary" id="search" type="button">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" id="showall" type="button">SHOW ALL</button>
           </form>
         </div>
         
@@ -106,6 +106,9 @@
   $(document).ready(function(){
     $("#search").click(function(){
         $("#search").hide();
+    });
+    $("#showall").click(function(){
+        $("#search").show();
     });
   });
 </script>
