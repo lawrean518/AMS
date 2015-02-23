@@ -11,7 +11,8 @@ class DCSMS extends CI_Controller {
 	}		
 
 	public function home(){
-			$this->load->helper('url');
+		
+		$this->load->helper('url');
 		$this->load->view('AMShome');
 
 	}
