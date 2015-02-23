@@ -24,7 +24,7 @@
       <div class="row">
        
         <div class="col-lg-12 text-center v-center">
-          <br><br><br><br><br>
+          <br><br><br><br>
           <img src="img/dcs_logo.png" alt="DCS Logo">
           <h1>Department of Computer Science</h1>
           <p class="lead">Academic Monitoring System</p>         
@@ -50,8 +50,5 @@
   	<br><br><br><br><br>
 
 </div> <!-- /container full -->
-
-
-
 </body>
 </html>
