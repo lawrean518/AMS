@@ -10,6 +10,11 @@ class DCSMS extends CI_Controller {
 
 	}		
 
+	public function home(){
+			$this->load->helper('url');
+		$this->load->view('AMShome');
+
+	}
 	
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page
