@@ -33,7 +33,7 @@
    				</ul></span>
             	
             </div>
-            <br><button class="btn btn-md btn-primary" type="button">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="button">SHOW ALL</button>
+            <br><button class="btn btn-lg btn-primary" type="button">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="button">SHOW ALL</button>
           </form>
         </div>
         
