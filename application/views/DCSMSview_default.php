@@ -23,7 +23,7 @@
           <br>
           <form class="col-lg-12">
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
-            <input class="form-control input-lg" title="Don't worry. We hate spam, and will not share your email with anyone." placeholder="Search" type="text">
+            <input class="form-control input-lg" title="Search" placeholder="Search" type="text">
               <span class="input-group-btn">
               <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">Student Number<span class = "caret"></button>
    				<ul class="dropdown-menu" role="menu">
