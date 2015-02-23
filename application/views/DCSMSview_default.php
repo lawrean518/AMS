@@ -4,12 +4,20 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
-
+  <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 	<!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
 	<!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
 	<title>AMS</title>
+<!--
+  <script>
+  $(document).ready(function(){
+      $("button").click(function(){
+          $("").hide();
+      });
+  });
+  </script>-->
 </head>
-<body>
 <body background = "img/congruent_pentagon.png">
 <div class="container-full">
 
@@ -44,7 +52,6 @@
 </div> <!-- /container full -->
 
 
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
+
 </body>
 </html>
