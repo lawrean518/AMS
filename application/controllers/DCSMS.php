@@ -10,6 +10,11 @@ class DCSMS extends CI_Controller {
 
 	}		
 
+	//PLAN
+	//Pagkapindot ng buttons sa welcome page, load default page
+	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page
+	//Tables on that page, sortable, use jQuery for this
+	//On click of student numbers, show their individual profile
 
 
 
