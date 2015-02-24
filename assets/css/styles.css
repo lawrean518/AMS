@@ -31,4 +31,16 @@ h1 {
 .v-center {
   margin-top:7%;
 }
-  
+
+.upper-left {
+  margin-top: 2%;
+  margin-left: 30px;
+}
+
+.DCS-header{
+  font-size: 40px;
+}
+
+.AMS-header{
+  font-size: 30px;
+}

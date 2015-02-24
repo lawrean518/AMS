@@ -10,11 +10,10 @@
   <title>AMS</title>
 </head>
 <body background = "img/congruent_pentagon.png">
-<div class="container-full">
-
+<div class="col-lg-12 text-center v-center">
       <div class="row">
        
-        <div class="col-lg-12 text-center v-center">
+        
           <br><br><br><br><br>
           <img src="img/dcs_logo.png" alt="DCS Logo">
           <h1>Department of Computer Science</h1>
@@ -31,9 +30,9 @@
           <li><a href="#"></a></li>
           </ul></span>
             </div>
-            <br><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
+            <br><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button><p> </p> <button class = "btn btn-md btn-primary" type = "submit" formaction = "<?php echo site_url("DCSMS/prof");?>"> PROFILE </button>
           </form>
-        </div>
+        
         
       </div> <!-- /row -->
   

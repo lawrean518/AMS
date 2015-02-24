@@ -17,6 +17,10 @@ class DCSMS extends CI_Controller {
 
 	}
 	
+	public function prof(){
+		$this->load->helper('url');
+		$this->load->view('AMSindividualprofile');
+	}
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page
 	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page
