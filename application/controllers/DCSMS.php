@@ -6,12 +6,13 @@ class DCSMS extends CI_Controller {
 		
 		#$this->load->model('DCSMS_Model');
 		$this->load->helper('url');
-		$this->load->view('AMSwelcome');
+		//$this->load->view('AMSwelcome');
+		$this->load->view('welcome_message');
 
 	}		
 
 	public function home(){
-			$this->load->helper('url');
+		$this->load->helper('url');
 		$this->load->view('AMShome');
 
 	}
