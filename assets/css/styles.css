@@ -223,4 +223,12 @@ select {
 .button:hover {
   background: #006B00;
 }
+<<<<<<< HEAD
 */
+=======
+
+.jumbotron{
+  background-image: url('../img/diagmonds_@2X.png');
+}
+
+>>>>>>> b8fc165f0c61fcc90d3e44914b80425abedf0cfe

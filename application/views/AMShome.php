@@ -8,37 +8,61 @@
   <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
   <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
   <title>AMS</title>
+
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("li").click(function(){
+        var selText = $(this).text();
+        $("#DD").html(selText + "<span class = 'caret'></span>");
+    });
+
+    $("#exportDB").click(function(){
+        $("#exportDB").hide();
+        $.ajax({
+            url: "/application/views/exportDatabase.php",
+            success: function(){
+              alert("WHAT");
+            }
+        });
+    });
+  });
+</script>
+
+
 </head>
-<body background = "img/congruent_pentagon.png">
-<div class="container-full">
-
+<body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
+<div class="container-fluid">
       <div class="row">
-       
-        <div class="col-lg-12 text-center v-center">
-          <br><br><br><br><br>
-          <img src="img/dcs_logo.png" alt="DCS Logo">
-          <h1>Department of Computer Science</h1>
-          <p class="lead">Academic Monitoring System</p>         
+        <div class="col-lg-6">
           <br>
-          <form role = "form" class="col-lg-12">
-            <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
-            <input class="form-control input-lg" title="" placeholder="Search" type="text">
-              <span class="input-group-btn">
-              <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">Student Number<span class = "caret"></button>
-          <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Student Number</a></li>
-          <li><a href="#">Last Name</a></li>
-          <li><a href="#"></a></li>
-          </ul></span>
-            </div>
-            <br><button class="btn btn-lg btn-primary" type="submit" formaction = "DCSMS/home">SEARCH</button><p>        </p><button class="btn btn-lg btn-primary" type="submit" formaction = "DCSMS/home">SHOW ALL</button>
-          </form>
+          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
+          <p class="lead"> Academic Monitoring System</p>         
         </div>
-        
-      </div> <!-- /row -->
-  
-    <br><br><br><br><br>
+      </div> 
+      <div class="row">
+        <div class="col-lg-6">
+          <form role = "form" class="col-lg-9">
+            <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
+            <input class="form-control input-sm" title="" placeholder="<?php echo $searchString; ?>"  type="text">
+              <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
+              <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Student Number</a></li>
+              <li><a href="#">Last Name</a></li>
+              <li><a href="#"></a></li>
+              </ul>
+              <button class="btn btn-sm btn-danger" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
+            </div>
+           
+            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
+            <button class="btn btn-sm btn-primary" type="button" id = "exportDB">EXPORT DATABASE</button>
+            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+          </form>        
+        </div>
+      </div> 
+</div> 
 
-</div> <!-- /container full -->
 </body>
 </html>
