@@ -8,6 +8,18 @@
   <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
   <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
   <title>AMS</title>
+
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("li").click(function(){
+        var selText = $(this).text();
+        $("#DD").html(selText + "<span class = 'caret'></span>");
+    });
+});
+
+</script>
 </head>
 <body background = "img/congruent_pentagon.png">
 
@@ -20,16 +32,17 @@
           <h1>Department of Computer Science</h1>
           <p class="lead">Academic Monitoring System</p>         
           <br>
-          <form class="col-lg-12">
+          <form class="col-lg-12" method = "get">
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
-            <input class="form-control input-lg" title="Input" placeholder="Search" type="text">
-              <span class="input-group-btn">
-              <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
-          <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Student Number</a></li>
-          <li><a href="#">Last Name</a></li>
-          <li><a href="#"></a></li>
-          </ul></span>
+              <input class="form-control input-lg" title="Input" placeholder="Search" type="text" name = "INPUT">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-lg btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Student Number</a></li>
+                    <li><a href="#">Last Name</a></li>
+                    <li><a href="#"></a></li>
+                  </ul>
+                </span>
             </div>
             <br><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button><p>
             </p><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
@@ -39,8 +52,6 @@
   
     <br><br>
 
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 </div> <!-- /container full -->
 </body>
 </html>
