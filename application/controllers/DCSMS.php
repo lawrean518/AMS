@@ -12,13 +12,11 @@ class DCSMS extends CI_Controller {
 
 	public function home(){
 		$query = $this->input->get("INPUT");
-		echo $query;
 		$this->load->helper('url');
-		$this->load->view('AMShome');
+		$data['searchString'] = $query;
+		$this->load->view('AMShome', $data);
 
 	}
-
-	
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page
 	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page

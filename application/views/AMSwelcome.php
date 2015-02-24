@@ -22,6 +22,7 @@
 </script>
 </head>
 <body background = "img/congruent_pentagon.png">
+
 <div class="container-fluid">
 
       <div class="row">
