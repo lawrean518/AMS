@@ -5,7 +5,6 @@ class DCSMS extends CI_Controller {
 	public function index(){ //loaded by default if second segment of URI is empty
 		
 		#$this->load->model('DCSMS_Model');
-		$this->load->helper('url');
 		$this->load->view('AMSwelcome');
 
 	}		
@@ -22,6 +21,11 @@ class DCSMS extends CI_Controller {
 	public function prof(){
 		$this->load->helper('url');
 		$this->load->view('AMSindividualprofile');
+	}
+
+	public function exportdb(){
+		$this->load->helper('url');
+		$this->load->view('AMShome');
 	}
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page

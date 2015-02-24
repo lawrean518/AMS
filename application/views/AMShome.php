@@ -33,13 +33,8 @@
       </div> 
       <div class="row">
         <div class="col-lg-6">
-<<<<<<< HEAD
-          <form role = "form" class="col-lg-6">
-            <div class="input-group padding-input" style="width:330px;text-align:center;margin:0 auto;">
-=======
           <form role = "form" class="col-lg-9">
             <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
->>>>>>> 0c5fb9577abd5e72a53c2c944c0aa7b1ad6766b7
             <input class="form-control input-sm" title="" placeholder="Search" type="text">
               <span class="input-group-btn">
               <button type="button" class="btn btn-sm btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
@@ -49,16 +44,10 @@
               <li><a href="#"></a></li>
               </ul>
               <button class="btn btn-sm btn-danger" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
-            </div>
-<<<<<<< HEAD
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">EXPORT DB</button>
+            </div>           
             <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
-=======
-           
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">EXPORT DATABASE</button>
+            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/exportdb");?>">EXPORT DATABASE</button>
             <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
->>>>>>> 0c5fb9577abd5e72a53c2c944c0aa7b1ad6766b7
           </form>        
         </div>
       </div> 
