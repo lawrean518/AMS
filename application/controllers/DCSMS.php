@@ -11,11 +11,12 @@ class DCSMS extends CI_Controller {
 
 	public function home(){
 		$query = $this->input->get("INPUT");
-		echo $query;
 		$this->load->helper('url');
-		$this->load->view('AMShome');
+		$data['searchString'] = $query;
+		$this->load->view('AMShome', $data);
 
 	}
+<<<<<<< HEAD
 
 	
 	public function prof(){
@@ -27,6 +28,8 @@ class DCSMS extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('AMShome');
 	}
+=======
+>>>>>>> b8fc165f0c61fcc90d3e44914b80425abedf0cfe
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page
 	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page
