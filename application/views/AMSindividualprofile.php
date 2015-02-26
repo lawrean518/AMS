@@ -64,14 +64,14 @@
         <?php
           $query = $this->DCSMS_Model->getStudent($stuNum); //example query
           //query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear         
-          echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
+          echo "<br><div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
           $row = $query->first_row('array');  
   
           $currentYear = $row['SchoolYear']; //first entry dapat sa table
           $currentSem = $row['Sem']; //first entry dapat sa table
           $count = 0;
           if($currentSem == 1){
-            echo "<th  colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
+            echo "<th colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
 
           }
           else if($currentSem == 2){

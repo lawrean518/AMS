@@ -1,5 +1,5 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
+  margin: 4;
   padding: 0;
   border: 0;
   font-size: 100%;
@@ -57,6 +57,11 @@ img { border: 0; max-width: 100%; }
 /** page structure **/
 #wrapper {
   display: block;
+<<<<<<< HEAD
+  width: 1200px;
+  background: white;
+  margin-left: 40 auto;
+=======
   width: 1290px;
   background: #fff;
   margin: auto;
@@ -68,10 +73,10 @@ img { border: 0; max-width: 100%; }
   width: 1000px;
   background: #fff;
   margin: 0 auto;
+>>>>>>> 02add9da29ac87fd1b922761974b937bccd718f3
   padding: 20px 15px;
-  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+  -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
-
 
 #keywords {
   margin: 0 auto;
@@ -136,6 +141,34 @@ img { border: 0; max-width: 100%; }
   text-align: left;
 }
 
+table, th {
+    border: 5px outset #194719;
+    font-size: 20px;
+	text-align:center;
+	font-family:"American Classic";
+}
+
+th {
+    background-color: #194719;
+	font-size: 20px;
+    color: white;
+	font-family: "American Classic";
+	height: 40px;
+}
+
+input[type="submit"] {
+	background-color: #194719;
+	color: white;
+	height: 30px;
+	font-family: Times;
+	font-size:15px;
+}
+
+.button:hover {
+	background: #006B00;
+}
+
+
 textarea {
 	width: 500px;
 	height: 120px;
@@ -144,14 +177,6 @@ textarea {
 	font-family: Tahoma, sans-serif;
 	background-position: bottom right;
 	background-repeat: no-repeat;
-}
-
-.header img {
-  float: left;
-  width: 100px;
-  height: 100px;
-  margin-top: 15px;
-  margin-left: 10px;
 }
 
 .header h3 {
@@ -197,7 +222,8 @@ h6 {
   font-size:28px;
   font-weight: normal;
   margin-top: 20px;
-}
+
+
 
 @font-face {
     font-family: visitor;
@@ -258,4 +284,3 @@ h2{
     font-size: 24px;
     line-height: 1.7em;
 }
-
