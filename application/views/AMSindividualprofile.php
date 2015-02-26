@@ -45,7 +45,7 @@
         <?php
           $query = $this->DCSMS_Model->getStudent($stuNum); //example query
           //query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear         
-          echo "<div id = 'wrapper'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0'>";
+          echo "<div id = 'wrapper'><table class = 'table' id = 'keywords' cellspacing='0' cellpadding='0'>";
   
           $row = $query->first_row('array');  
   
@@ -53,7 +53,7 @@
           $currentSem = $row['Sem']; //first entry dapat sa table
           $count = 0;
           if($currentSem == 1){
-            echo "<th>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
+            echo "<th colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
           }
           else if($currentSem == 2){
             echo "<th>" .$currentSem. "nd Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 

@@ -50,15 +50,6 @@ strong, b { font-weight: bold; }
 table { border-collapse: collapse; border-spacing: 0; }
 img { border: 0; max-width: 100%; }
 
-h1 { 
-  font-weight: bold;
-  font-size: 3.6em;
-  line-height: 1.7em;
-  margin-bottom: 10px;
-  text-align: center;
-  color: white;
-}
-
 
 /** page structure **/
 #wrapper {
@@ -131,5 +122,68 @@ h1 {
 
 #keywords tbody tr td.lalign {
   text-align: left;
+}
+
+@font-face {
+    font-family: visitor;
+    src: url(visitor1.ttf);
+}
+
+@font-face {
+    font-family: game_over;
+    src: url(game_over.ttf);
+}
+
+@font-face {
+    font-family: optien;
+    src: url(Optien.ttf);
+}
+
+@font-face {
+    font-family: ormont_light;
+    src: url(Ormont_Light.ttf);
+}
+
+
+
+
+
+h1{
+    font-family: ormont_light;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    font-size: 28px;
+    line-height: 1.7em;
+    margin-bottom: 10px;
+}
+
+.lead1{
+    font-family: ormont_light;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    font-size: 40px;
+    line-height: 1.7em;
+    margin-bottom: 10px;
+}
+
+h2{
+    font-family: ormont_light;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    font-size: 28px;
+    line-height: 1.7em;
+    margin-top: 10px;
+}
+
+.lead{
+    font-family: ormont_light;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    font-size: 24px;
+    line-height: 1.7em;
 }
 
