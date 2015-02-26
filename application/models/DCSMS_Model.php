@@ -718,7 +718,7 @@
 
 
 		public function showSearchQuery($searchString, $searchBy){
-			if($searchBy == "stuNum"){
+			if($searchBy == "Student Number"){
 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
 											FROM studentinfo I , (SELECT D.StuNum, gwa
 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
