@@ -13,6 +13,7 @@ class DCSMS extends CI_Controller {
 
 	public function home(){
 
+		$this->load->model('DCSMS_Model');
 		$query = $this->input->get("INPUT");
 		$this->load->helper('url');
 		$buttonPushed = $this->input->post("submit");

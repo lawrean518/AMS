@@ -21,7 +21,7 @@
     $("#exportDB").click(function(){
         $("#exportDB").hide();
         $.ajax({
-            url: "AMS/application/views/exportDatabase.php",
+            url: "<?php echo base_url('application/controllers/exportDatabase.php'); ?>",
             success: function(){
               alert("WHAT");
             }
@@ -62,12 +62,6 @@
           </form>        
         </div>
       </div> 
-      <?php 
-        if($buttonPushed=="Show All")
-          echo "such button pushed is show all";
-        else
-          echo "yes huhuhu";
-      ?>
 </div> 
 
 </body>
