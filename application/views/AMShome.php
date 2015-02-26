@@ -48,9 +48,10 @@
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-10">
           <br>
-          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
+          <img style = "float:left" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo">
+          <h2> Department of Computer Science</h2>
           <p class="lead"> Academic Monitoring System</p>
         </div>
       </div> 
@@ -79,7 +80,7 @@
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
-                if($query->num_rows() == 0 || $searchString == " "){
+                if($query->num_rows() == 0 || $searchString == ""){
                   echo '
                   <br><br><br>  
                   <div id="wrapper">
@@ -119,7 +120,7 @@
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0 || $searchString == " "){
+                if($query->num_rows() == 0 || $searchString == ""){
                   echo '  
                   <div id="wrapper">
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">

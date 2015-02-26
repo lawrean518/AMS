@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 
-  <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
+  <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css"); ?>" />
   <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
   <title>AMS</title>
 
@@ -26,13 +26,13 @@
 <body background = "img/congruent_pentagon.png">
 
 <div class="container-fluid">
-      
+
       <div class="row">
         <div class="col-lg-12 text-center v-center">
-          <br><br><br><br>
-          <img src="img/dcs_logo.png" alt="DCS Logo">
-          <h1>Department of Computer Science</h1>
-          <p class="lead">Academic Monitoring System</p>         
+          <br><br>
+          <img src="img/upd_dcs_logo.png" alt="DCS Logo">
+          <h1>Department of<br>Computer Science</h1>
+          <p class="lead1">Academic Monitoring System</p>         
           <br>
           <form class="col-lg-12" method = "get">
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
@@ -46,14 +46,11 @@
                   </ul>
                 </span>
             </div>
-            <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><p>
+            <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><p><br>
             </p><button class="btn btn-lg btn-primary"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
           </form>
         </div>
       </div> <!-- /row -->
-  
-    <br><br>
-
 </div> <!-- /container full -->
 </body>
 </html>
