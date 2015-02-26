@@ -17,7 +17,7 @@
         var selText = $(this).text();
         $("#DD").html(selText + "<span class = 'caret'></span>");
     });
-
+/*
     $("#exportDB").click(function(){
         $("#exportDB").hide();
         $.ajax({
@@ -26,7 +26,7 @@
               alert("WHAT");
             }
         });
-    });
+    });*/
   });
 </script>
 
