@@ -39,8 +39,8 @@ class DCSMS extends CI_Controller {
 	}
 
 	public function individualProfile(){
-		$this->load->model('DCSMS_Model');
 		$this->load->helper('url');
+		$this->load->model('DCSMS_Model');
 		$this->load->view('AMSindividualprofile');
 
 		$remarks = $this->input->post('myRemark');

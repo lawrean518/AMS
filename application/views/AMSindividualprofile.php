@@ -1,4 +1,3 @@
-
 <html>
 <head>
   <meta charset="utf-8">
@@ -24,7 +23,6 @@
 </script>
 </head>
 <body background = "img/congruent_pentagon.png">
-
 <div class="container-fluid">
 
       <div class="row">
