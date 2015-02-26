@@ -36,7 +36,7 @@
         <td>110</td>
         <td>1.8%</td>
         <td>22.2</td>
-      </tr>
+      </tr> 
       <tr>
         <td class="lalign">desktop workspace photos</td>
         <td>2,200</td>

@@ -34,7 +34,7 @@
           <br>
           <form class="col-lg-12" method = "get">
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
-              <input class="form-control input-lg" title="Input" placeholder="Search" type="text" name = "INPUT">
+              <input class="form-control input-lg" placeholder="Search" type="text" name = "INPUT">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-lg btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
                   <ul class="dropdown-menu" role="menu">
