@@ -5,10 +5,10 @@ class DCSMS extends CI_Controller {
 	public function index(){ //loaded by default if second segment of URI is empty
 		
 		#$this->load->model('DCSMS_Model');
+
 		$this->load->helper('url');
 		//$this->load->view('AMSwelcome');
 		$this->load->view('AMSwelcome');
-
 	}		
 
 	public function home(){
@@ -16,11 +16,22 @@ class DCSMS extends CI_Controller {
 		$this->load->model('DCSMS_Model');
 		$query = $this->input->get("INPUT");
 		$this->load->helper('url');
-		$buttonPushed = $this->input->post("submit");
+		$buttonPushed = $this->input->get('submit');
 		$data['searchString'] = $query;
 		$data['buttonPushed'] = $buttonPushed;
 		$this->load->view('AMShome', $data);
 
+	}
+
+	
+	public function prof(){
+		$this->load->helper('url');
+		$this->load->view('AMSindividualprofile');
+	}
+
+	public function exportdb(){
+		$this->load->helper('url');
+		$this->load->view('AMShome');
 	}
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page

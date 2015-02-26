@@ -53,13 +53,20 @@
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
-            </div>
-           
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
-            <button class="btn btn-sm btn-primary" type="button" id = "exportDB">EXPORT DATABASE</button>
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
+            </div>           
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
+            <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
           </form>        
+          <?php 
+            if($buttonPushed=='Show All'){
+              echo "such button pushed is show all";
+            }
+            elseif($buttonPushed=='Search'){
+              echo "such button pushed is search";
+            }
+          ?>
         </div>
       </div> 
 </div> 
