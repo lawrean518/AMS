@@ -14,7 +14,7 @@
 <body>
  <div id="wrapper">
   
-  <table id="keywords" cellspacing="0" cellpadding="0">
+  <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
         <th class="hover"><span>Student Number</span></th>
@@ -51,14 +51,14 @@
         <td>6.7%</td>
         <td>12.0</td>
       </tr>
-      <tr>
+      <tr class = "without" id = "without">
         <td class="lalign">popular web series</td>
         <td>8,700</td>
         <td>350</td>
         <td>4%</td>
         <td>7.0</td>
       </tr>
-      <tr>
+      <tr class = "with" id = "with">
         <td class="lalign">2013 webapps</td>
         <td>9,900</td>
         <td>460</td>
@@ -89,14 +89,22 @@
 	  });
 	});
 
+  var rows = $('table.dq tr');
+  var WITH = rows.filter('.with');
+  var WITHOUT = rows.filter('.without');
+
   $('#w').click(function() {
     $(this).hide();
-    $('#wo').show();
+    $('#wo').show();    
+    WITHOUT.hide() 
+    WITH.show() 
   });
 
   $('#wo').click(function() {
     $(this).hide();
     $('#w').show();
+    WITH.hide()
+    WITHOUT.show()
   });
 </script>
 </body>
