@@ -9,18 +9,17 @@
   <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
   <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
   <title>AMS</title>
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.tablesorter.min.js"); ?>"></script>
-<<<<<<< HEAD
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("li").click(function(){
-        var selText = $(this).text();
-        $("#DD").html(selText + "<span class = 'caret'></span>");
-        $("#DD").val(selText);
-        $("#DROPDOWN").val(selText);
-    });
+  <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.tablesorter.min.js"); ?>"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("li").click(function(){
+          var selText = $(this).text();
+          $("#DD").html(selText + "<span class = 'caret'></span>");
+          $("#DD").val(selText);
+          $("#DROPDOWN").val(selText);
+      });
 /*
     $("#exportDB").click(function(){
         $("#exportDB").hide();
@@ -33,18 +32,14 @@
     });*/
   });
 </script>
-=======
-
-
-
->>>>>>> 21913685aea98c37ba7697be186a41d62800be96
 </head>
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6">
           <br>
-          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
+          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo">
+          <h2> Department of Computer Science</h2>
           <p class="lead"> Academic Monitoring System</p>
         </div>
       </div> 
@@ -58,7 +53,7 @@
               $stuName =  $row['stuname'];
               $stuNote = $row['stunote'];
               echo "<h4> View Grades </h4>";
-              echo "<h5>       " .$stuNum. "";
+              echo "<h5><br>       " .$stuNum. "";
               echo "<br>      " .$stuName. "</h5>";
 
               $query->free_result();
@@ -68,7 +63,7 @@
         <?php
           $query = $this->DCSMS_Model->getStudent($stuNum); //example query
           //query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear         
-          echo "<div id = 'wrapper'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0'>";
+          echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
   
           $row = $query->first_row('array');  
   
@@ -76,13 +71,13 @@
           $currentSem = $row['Sem']; //first entry dapat sa table
           $count = 0;
           if($currentSem == 1){
-            echo "<th>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
+            echo "<th  colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
           }
           else if($currentSem == 2){
-            echo "<th>" .$currentSem. "nd Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
+            echo "<th colspan = '8'>" .$currentSem. "nd Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
           }
           else if($currentSem == 3){ 
-            echo "<th> Midterm Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
+            echo "<th colspan = '8'> Midterm Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
           }
 
           echo "  <tr>
@@ -109,15 +104,15 @@
                 $currentYear = $row['SchoolYear']; //replace with the new AY
                 $currentSem = $row['Sem']; //replace with the new Sem
                 echo "<br><br>";
-                echo "<div id = 'wrapper'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0'>";
+                echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
                 if($currentSem == 1){
-                  echo "<th>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
+                  echo "<th  colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
                 }
                 else if($currentSem == 2){
-                  echo "<th>" .$currentSem. "nd Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
+                  echo "<th  colspan = '8'>" .$currentSem. "nd Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
                 }
                 else if($currentSem == 3){ 
-                  echo "<th> Midterm Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
+                  echo "<th  colspan = '8'> Midterm Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
                 }
                 echo "<tr>
                       <th>Subject</th>
@@ -140,8 +135,9 @@
             }
           }
           echo "</table>";  
+          echo "</div>";
           echo "<br><br>";
-         echo "<div id = 'wrapper'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0'>";
+         echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";;
           echo "<th>" .'Delinquencies'. "</th>";
 
           $query->free_result();
@@ -155,7 +151,7 @@
               echo "<tr><td>" .$row['DQDetails'] . "</td></tr>";
             }
           }
-          echo "</table>";
+          echo "</table></div>";
 
           echo form_open('DCSMS/showIndividualProfile_/' .$stuNum. '');
           echo "<br><br>";
@@ -166,13 +162,8 @@
                     'class' => 'button');
           echo form_submit($data);
           echo form_close();
-
-
-
-          
         ?>
-      </div> 
+       
 </div> 
-      
 </body>
 </html>

@@ -40,6 +40,9 @@ input, textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
   outline: none; 
 }
 
@@ -63,12 +66,22 @@ h1 {
 /** page structure **/
 #wrapper {
   display: block;
+  position: relative;
   width: 1250px;
   background: #fff;
   margin: 0 auto;
   padding: 20px 15px;
   -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
 }
+
+#wrap {
+  width: 1000px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 20px 15px;
+  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+}
+
 
 #keywords {
   margin: 0 auto;
@@ -131,5 +144,147 @@ h1 {
 
 #keywords tbody tr td.lalign {
   text-align: left;
+}
+
+
+body {
+    background-color: snow;
+    position: relative;
+    margin: 20px;
+    padding: 0;
+    min-width: 700px;
+}
+
+table, th {
+    border: 5px outset #194719;
+    font-size: 20px;
+	text-align:center;
+	font-family:"American Classic";
+}
+
+th {
+    background-color: #194719;
+	font-size: 20px;
+    color: white;
+	font-family: "American Classic";
+	height: 40px;
+}
+
+input[type="submit"] {
+	background-color: #194719;
+	color: white;
+	height: 30px;
+	font-family: Times;
+	font-size:15px;
+}
+
+input[type=text]{
+	background-color: #194719;
+	color: white;
+	height: 30px;
+	font-family: Times;
+  	font-size:15px;
+
+}
+
+select {
+	background-color: #194719;
+	color: white;
+	height: 30px;
+	font-family: Times;
+	font-size:15px;
+}
+
+textarea {
+	width: 500px;
+	height: 120px;
+	border: 3px solid #194719;
+	padding: 3px;
+	font-family: Tahoma, sans-serif;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+.button:hover {
+	background: #006B00;
+}
+
+.header {
+	background-color: #194719;
+	height: 130px;
+    position: relative;
+}
+
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.header h1 {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-family: "Open Sans";
+  font-size:30px;
+  margin-top: 20px;
+}
+
+.header h2 {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-family: "Open Sans";
+  font-size:30px;
+  margin-top: -25px;
+}
+
+.header h3 {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  color: white;
+  font-family: "C";
+  font-size:20px;
+  font-weight: normal;
+  margin-top: -10px;
+}
+
+
+h4 {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  color: #003300;
+  font-family: "Open Sans";
+  font-size:40px;
+  font-weight: bold;
+  margin-top: -5px;
+
+}
+
+h5{
+  position: relative;
+  left: 10px;
+  color: #003300;
+  font-family: Tahoma;
+  font-size:30px;
+  font-weight: normal;
+  margin-top: -20px;
+}
+
+h6 {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  color: #003300;
+  font-family: "Open Sans";
+  font-size:28px;
+  font-weight: normal;
+  margin-top: 20px;
 }
 
