@@ -30,11 +30,10 @@ class DCSMS extends CI_Controller {
 		
 		$query = $this->input->get("INPUT");
 
-		$by = $this->input->get("DD");
 		$buttonPushed = $this->input->get('submit');
-		$data['searchString'] = $query;
+		$data['searchString'] = "";
 		$data['buttonPushed'] = "Show All";
-		$data['searchBy'] = $by;
+		$data['searchBy'] = "Student Number";
 		$this->load->view('AMShome', $data);
 
 	}

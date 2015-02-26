@@ -48,6 +48,7 @@
         <div class="col-lg-6">
           <form role = "form" class="col-lg-9">
             <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
+
             <input class="form-control input-sm" placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
               <button type= "button" class="btn btn-sm btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
@@ -66,19 +67,20 @@
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
-                  echo '  
+                  echo '
+                  <br><br><br>  
                   <div id="wrapper">
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
-                       <td> No results found. </td>
+                       No results found.
                       </tr>
                     </thead>
                     </table>
                     </div>';
                 }
                 else{
-                  echo ' <div id="wrapper"> <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo ' <br><br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -103,8 +105,6 @@
   //different views para dun sa sorting and shizz
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
-                echo $searchString;
-                echo $searchBy;
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
                 if($query->num_rows() == 0){
                   echo '  
@@ -112,7 +112,7 @@
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
-                       <td> No results found. </td>
+                       No results found. 
                       </tr>
                     </thead>
                     </table>
@@ -177,7 +177,7 @@
       }
     });
   });
-var rows = $('table.dq tr');
+  var rows = $('table.dq tr');
   var WITH = rows.filter('.with');
   var WITHOUT = rows.filter('.without');
 
@@ -195,8 +195,5 @@ var rows = $('table.dq tr');
     WITHOUT.show()
   });
 </script>      
-
-
-
 </body>
 </html>
