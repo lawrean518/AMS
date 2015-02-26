@@ -9,9 +9,6 @@
   <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.tablesorter.min.js"); ?>"></script>
-  
-  
- 
 </head>
 
 <body>
@@ -26,7 +23,9 @@
         <th class="sorter-false"><span>AH</span></th>
         <th class="sorter-false"><span>MST</span></th>
         <th class="sorter-false"><span>SSP</span></th>
-        <th class="sorter-false"><span>Delinquency</span></th>
+        <th class="sorter-false"><span>Delinquency
+            <button type="button" class="btn btn-sm btn-success" id="w">w/</button>
+            <button type="button" class="btn btn-sm btn-success" id="wo">w/o</button></span></th>
         <th class="sorter-false"><span>Remarks</span></th>
       </tr>
     </thead>
@@ -89,9 +88,16 @@
 	    }
 	  });
 	});
+
+  $('#w').click(function() {
+    $(this).hide();
+    $('#wo').show();
+  });
+
+  $('#wo').click(function() {
+    $(this).hide();
+    $('#w').show();
+  });
 </script>
-
-
-
 </body>
 </html>
