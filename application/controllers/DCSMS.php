@@ -56,10 +56,11 @@ class DCSMS extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$data['StuNum'] = $this->uri->segment(3);
-		$this->load->view('AMSindividualProfile');
+		$this->load->view('AMSindividualProfile', $data);
 	}
 
 	public function showIndividualProfile_(){
+		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$remarks = $this->input->post('myRemark');
 		$stuNum = $this->uri->segment(3);
