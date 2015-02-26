@@ -68,9 +68,13 @@ class DCSMS extends CI_Controller {
 		$this->showIndividualProfile();
 	}
 
-	public function exportdb(){
+	public function exportDB(){
 		$this->load->helper('url');
-		$this->load->view('AMShome');
+		$this->load->model('DCSMS_Model');
+		$this->DCSMS_Model->exportDBtoCSV();
+		$this->search();
+		
+//		$this->home();
 	}
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page

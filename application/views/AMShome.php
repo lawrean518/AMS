@@ -20,16 +20,26 @@
         $("#DD").val(selText);
         $("#DROPDOWN").val(selText);
     });
-/*
+
     $("#exportDB").click(function(){
-        $("#exportDB").hide();
-        $.ajax({
-            url: "<?php echo base_url('application/controllers/exportDatabase.php'); ?>",
-            success: function(){
-              alert("WHAT");
-            }
+//        $("#exportDB").hide();
+      //  $("#exportDBhere").append("SUCH HTML<?php
+        //                        $theFile = fopen("db.csv", "w") or die("Unable to open file!");
+          //                     ?>");
+          $.get("exportDatabase.php",function(data){
+                $("#exportDBhere").append(data);
         });
-    });*/
+      //  $("#exportDBhere").load("exportDatabase.php");  $.ajax({
+           
+        $.ajax({
+            type:'POST',
+            url:'DCSMS/exportdb'
+        /*    data:{'search':input},
+            success:function(data){
+                $('#resultdiv').html(data);
+            }*/
+        });
+    });
   });
 </script>
 
@@ -60,9 +70,12 @@
               <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
             </div>           
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
-            <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
+            <button class="btn btn-sm btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">EXPORT DATABASE</button>
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
-          </form>        
+          </form>
+          <div id="exportDBhere">
+          </div>
+
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
