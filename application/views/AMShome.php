@@ -63,7 +63,6 @@
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
-
                 if($query->num_rows() == 0){
                   echo '  
                   <div id="wrapper">
@@ -77,7 +76,7 @@
                     </div>';
                 }
                 else{
-                  echo ' <table id="keywords" cellspacing="0" cellpadding="0">
+                  echo ' <div id="wrapper"> <table id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -95,124 +94,32 @@
                     <tbody>';
                   foreach ($query->result_array() AS $row){
                     printRow($row);
-                  } 
-        }
-    }
-
-
-  }
-
-  else if($tag == "Search"){
-      
-    $hidden = array('searchString' => $searchString, 'searchBy' => $searchBy,);
-    echo form_open('DCSMS/searchQueryView');
-    echo form_hidden($hidden);
-    /*
-    if(wala laman ung table){
-  
-    }
-  
-    else{(ung nasa baba)}   
-    */
-    echo "<table border = '1' style = 'Width: 90%'>
-        <tr>
-        <th>Student Number  <input type = 'submit' name = 'ascSN' value ='^'> <input type = 'submit' name = 'descSN' value ='v'></th> 
-        <th>Name <input type = 'submit' value ='^' name='ascLN'><input type = 'submit' value ='v' name='descLN'></th>
-        <th>Most Recent GWA <input type = 'submit' name = 'descGWA' value ='v'></th>
-        <th>AH</th>
-        <th>SSP</th>
-        <th>MST</th>";
-
-    if($DQTag == "withDQ"){
-        $hidden2 = array('withDQTag' => 'TRUE', 'withoutDQTag' => 'FALSE');
-        echo form_hidden($hidden2);
-        echo "
-          <th>Delinquency <input type = 'submit' value ='w/o' name = 'withoutDQ'></form></th>
-          <th>Remarks</th>
-          </tr>";
-
-        $query = $this->DCSMS_Model->showSearchQuery_sortByAscGWAWithDQ($searchString, $searchBy);
-        if($query->num_rows() == 0 || $searchString == ""){
-
-          echo "<table border = '1' style = 'width: 90%'>
-                <td> No results found. </td>
-                </table>";
-        }
-        else{
-          foreach ($query->result_array() AS $row){
-            printRow($row);
-          }   
-        }
-        
-    }
-
-    else if($DQTag == "withoutDQ"){
-        $hidden2 = array('withDQTag' => 'FALSE', 'withoutDQTag' => 'TRUE');
-        echo form_hidden($hidden2);
-        echo "
-          <th>Delinquency <input type = 'submit' value ='w/' name = 'withDQ'></form></th>
-          <th>Remarks</th>
-          </tr>";
-
-
-        $query = $this->DCSMS_Model->showSearchQuery_sortByAscGWAWithoutDQ($searchString, $searchBy);
-        
-        if($query->num_rows() == 0 || $searchString == ""){
-
-          echo "<table border = '1' style = 'width: 90%'>
-                <td> No results found. </td>
-                </table>";
-        }
-        else{
-          foreach ($query->result_array() AS $row){
-            printRow($row);
-          }   
-        }
-    }
-
-    else{
-      $hidden2 = array('withDQTag' => 'FALSE', 'withoutDQTag' => 'FALSE');
-      echo form_hidden($hidden2);
-      echo "
-        <th>Delinquency <input type = 'submit' value ='w/' name = 'withDQ'><input type = 'submit' value ='w/o' name = 'withoutDQ'></form></th>
-        <th>Remarks</th>
-        </tr>";
-
-      $query = $this->DCSMS_Model->showSearchQuery_sortByAscGWA($searchString, $searchBy);
-        
-      if($query->num_rows() == 0 || $searchString == ""){
-
-          echo "<table border = '1' style = 'width: 90%'>
-                <td> No results found. </td>
-                </table>";
-      }
-      else{
-        foreach ($query->result_array() AS $row){
-          printRow($row);
-        }   
-      }
-    }   
-  }
-
-  echo form_close();
-  
+                  }  
+                  echo "</tbody></table></div>";
+               }   
+            }
   //different views para dun sa sorting and shizz
-
-    function printRow($row){
-        echo "<tr>";
-          echo "<td> <a href='http://localhost/DCSMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a></td>";
-        echo "<td>" . $row['stuname'] . "</td>";
-        echo "<td>" . round($row['gwa'], 4) . "</td>";
-        echo "<td>" . $row['AH']. "</td>";
-        echo "<td>" . $row['SSP'] . "</td>";
-        echo "<td>" . $row['MST'] . "</td>";
-        echo "<td>" . $row['DQ'] . "</td>";
-        echo "<td>" . substr($row['stunote'], 0, 10) . "</td>"; //kelangan first 10 characters lang 
-        echo "</tr>";
-  }
- /* elseif($buttonPushed=='Search'){
+//<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
+            else if($buttonPushed=='Search'){
               echo "such button pushed is search";
-            }*/
+            }
+            function printRow($row){
+                if($row['DQ'] == "with DQ"){
+                  echo "<tr class = 'with'>";
+                }
+                else{
+                  echo "<tr class = 'without'>";
+                }
+                echo "<td >" . $row['stunum'] . "</td>";
+                echo "<td >" . $row['stuname'] . "</td>";
+                echo "<td>" . round($row['gwa'], 4) . "</td>";
+                echo "<td>" . $row['AH']. "</td>";
+                echo "<td>" . $row['SSP'] . "</td>";
+                echo "<td>" . $row['MST'] . "</td>";
+                echo "<td>" . $row['DQ'] . "</td>";
+                echo "<td>" . substr($row['stunote'], 0, 10) . "</td>"; //kelangan first 10 characters lang 
+                echo "</tr>";
+            }
           ?>
         </div>
       </div> 
@@ -230,15 +137,22 @@
       }
     });
   });
+var rows = $('table.dq tr');
+  var WITH = rows.filter('.with');
+  var WITHOUT = rows.filter('.without');
 
   $('#w').click(function() {
     $(this).hide();
-    $('#wo').show();
+    $('#wo').show();    
+    WITHOUT.hide()
+    WITH.show()
   });
 
   $('#wo').click(function() {
     $(this).hide();
     $('#w').show();
+    WITH.hide()
+    WITHOUT.show()
   });
 </script>      
 
