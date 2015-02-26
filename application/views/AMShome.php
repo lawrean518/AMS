@@ -106,7 +106,7 @@
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0){
+                if($query->num_rows() == 0 || $searchString != " "){
                   echo '  
                   <div id="wrapper">
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
@@ -119,7 +119,7 @@
                     </div>';
                 }
                 else{
-                  echo ' <div id="wrapper"> <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo '<div id="wrapper"> <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -150,7 +150,7 @@
                 else{
                   echo "<tr class = 'without'>";
                 }
-                echo "<td >" . $row['stunum'] . "</td>";
+               echo "<td> <a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a></td>";
                 echo "<td >" . $row['stuname'] . "</td>";
                 echo "<td>" . round($row['gwa'], 4) . "</td>";
                 echo "<td>" . $row['AH']. "</td>";
