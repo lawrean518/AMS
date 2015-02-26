@@ -35,12 +35,13 @@
 </head>
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-6">
+       <div class="row">
+        <div class="col-lg-10">
           <br>
-          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo">
-          <h2> Department of Computer Science</h2>
-          <p class="lead"> Academic Monitoring System</p>
+          <div class = "logo"><img style = "float:left" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo"></div>
+          <div class = "vertical">
+          <h2>Department of Computer Science</h2>
+          <p class="lead">Academic Monitoring System</p></div>
         </div>
       </div> 
       <div class="row">
