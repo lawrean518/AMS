@@ -116,38 +116,38 @@
                 echo "</tr>";
             }
           }
-          echo "</table>";
+          echo "</table>";  
           echo "<br><br>";
-          echo "<table border = '1' style = 'Width: 90%'>";
-          echo "<th colspan = '8'>" .'Delinquencies'. "</th>";
+         echo "<div id = 'wrapper'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0'>";
+          echo "<th>" .'Delinquencies'. "</th>";
 
-  $query->free_result();
-  $query = $this->DCSMS_Model->getDQs($stuNum);
-  if($query->num_rows() == 0){
-    //echo "<p> None. </p>";
-    echo "<tr><td> None. </td></tr>";
-  }
-  else{
-    foreach($query->result_array() AS $row){
-      echo "<tr><td>" .$row['DQDetails'] . "</td></tr>";
-    }
-  }
-  echo "</table>";
+          $query->free_result();
+          $query = $this->DCSMS_Model->getDQs($stuNum);
+          if($query->num_rows() == 0){
+            //echo "<p> None. </p>";
+            echo "<tr><td> None. </td></tr>";
+          }
+          else{
+            foreach($query->result_array() AS $row){
+              echo "<tr><td>" .$row['DQDetails'] . "</td></tr>";
+            }
+          }
+          echo "</table>";
 
-  echo form_open('DCSMS/showIndividualProfile_/' .$stuNum. '');
-  echo "<br><br>";
-  echo "<textarea name='myRemark'>" .$stuNote. "</textarea>";
-  echo "<br>";
-  $data = array(  'name' => 'newRemark',  
-            'value' => 'update',
-            'class' => 'button');
-  echo form_submit($data);
-  echo form_close();
+          echo form_open('DCSMS/showIndividualProfile_/' .$stuNum. '');
+          echo "<br><br>";
+          echo "<textarea name='myRemark'>" .$stuNote. "</textarea>";
+          echo "<br>";
+          $data = array(  'name' => 'newRemark',  
+                    'value' => 'update',
+                    'class' => 'button');
+          echo form_submit($data);
+          echo form_close();
 
 
 
-  
-?>
+          
+        ?>
       </div> 
 </div> 
       
