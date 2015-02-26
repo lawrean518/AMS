@@ -57,10 +57,9 @@ img { border: 0; max-width: 100%; }
 /** page structure **/
 #wrapper {
   display: block;
-  position: relative;
-  width: 1250px;
+  width: 1290px;
   background: #fff;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px 15px;
   -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
 }
@@ -72,7 +71,6 @@ img { border: 0; max-width: 100%; }
   padding: 20px 15px;
   -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
 }
-
 
 #keywords {
   margin: 0 auto;
@@ -137,13 +135,33 @@ img { border: 0; max-width: 100%; }
   text-align: left;
 }
 
-select {
+table, th {
+    border: 5px outset #194719;
+    font-size: 20px;
+	text-align:center;
+	font-family:"American Classic";
+}
+
+th {
+    background-color: #194719;
+	font-size: 20px;
+    color: white;
+	font-family: "American Classic";
+	height: 40px;
+}
+
+input[type="submit"] {
 	background-color: #194719;
 	color: white;
 	height: 30px;
 	font-family: Times;
 	font-size:15px;
 }
+
+.button:hover {
+	background: #006B00;
+}
+
 
 textarea {
 	width: 500px;
@@ -153,24 +171,6 @@ textarea {
 	font-family: Tahoma, sans-serif;
 	background-position: bottom right;
 	background-repeat: no-repeat;
-}
-
-.button:hover {
-	background: #006B00;
-}
-
-.header {
-	background-color: #194719;
-	height: 130px;
-    position: relative;
-}
-
-.header img {
-  float: left;
-  width: 100px;
-  height: 100px;
-  margin-top: 15px;
-  margin-left: 10px;
 }
 
 .header h3 {
@@ -217,6 +217,8 @@ h6 {
   font-weight: normal;
   margin-top: 20px;
 
+
+
 @font-face {
     font-family: visitor;
     src: url(visitor1.ttf);
@@ -236,9 +238,6 @@ h6 {
     font-family: ormont_light;
     src: url(Ormont_Light.ttf);
 }
-
-
-
 
 
 h1{
@@ -279,4 +278,3 @@ h2{
     font-size: 24px;
     line-height: 1.7em;
 }
-

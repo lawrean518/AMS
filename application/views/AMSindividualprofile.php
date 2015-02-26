@@ -63,23 +63,15 @@
         <?php
           $query = $this->DCSMS_Model->getStudent($stuNum); //example query
           //query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear         
-<<<<<<< HEAD
-          echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
-=======
-          echo "<div id = 'wrapper'><table class = 'table' id = 'keywords' cellspacing='0' cellpadding='0'>";
->>>>>>> 94c0b65a13e80dcbdf291bc96e9a74fbd13f5d08
-  
+          echo "<br><div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
           $row = $query->first_row('array');  
   
           $currentYear = $row['SchoolYear']; //first entry dapat sa table
           $currentSem = $row['Sem']; //first entry dapat sa table
           $count = 0;
           if($currentSem == 1){
-<<<<<<< HEAD
-            echo "<th  colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
-=======
             echo "<th colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
->>>>>>> 94c0b65a13e80dcbdf291bc96e9a74fbd13f5d08
+
           }
           else if($currentSem == 2){
             echo "<th colspan = '8'>" .$currentSem. "nd Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>"; 
