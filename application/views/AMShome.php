@@ -46,27 +46,29 @@
         <div class="col-lg-6">
           <form role = "form" class="col-lg-9">
             <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
-            <input class="form-control input-sm" placeholder="<?php echo $searchString; ?>"  type="text" name = "INPUT">
-              <span class="input-group-btn">
-              <button type="button" class="btn btn-sm btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
+            <span class="input-group-btn">
+            <input class="form-control input-md" placeholder="<?php echo $searchString; ?>"  type="text" name = "INPUT">
+              <button type="button" class="btn btn-md btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
               <ul class="dropdown-menu" role="menu">
               <li><a href="#">Student Number</a></li>
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
-            </div>           
-            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
-            <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
-            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+              <button class="btn btn-md btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
+            </div>
+            <button class="btn btn-md btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
+            <button class="btn btn-md btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
+            <button class="btn btn-md btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+            <br>
           </form>        
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
-                  echo '  
+                  echo '
+                  <br><br><br>  
                   <div id="wrapper">
-                  <table id="keywords" cellspacing="0" cellpadding="0">
+                  <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
                        <td> No results found. </td>
@@ -76,7 +78,7 @@
                     </div>';
                 }
                 else{
-                  echo ' <div id="wrapper"> <table id="keywords" cellspacing="0" cellpadding="0">
+                  echo ' <br><br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -137,7 +139,7 @@
       }
     });
   });
-var rows = $('table.dq tr');
+  var rows = $('table.dq tr');
   var WITH = rows.filter('.with');
   var WITHOUT = rows.filter('.without');
 
@@ -155,8 +157,5 @@ var rows = $('table.dq tr');
     WITHOUT.show()
   });
 </script>      
-
-
-
 </body>
 </html>
