@@ -20,26 +20,6 @@
         $("#DD").val(selText);
         $("#DROPDOWN").val(selText);
     });
-
-    $("#exportDB").click(function(){
-//        $("#exportDB").hide();
-      //  $("#exportDBhere").append("SUCH HTML<?php
-        //                        $theFile = fopen("db.csv", "w") or die("Unable to open file!");
-          //                     ?>");
-          $.get("exportDatabase.php",function(data){
-                $("#exportDBhere").append(data);
-        });
-      //  $("#exportDBhere").load("exportDatabase.php");  $.ajax({
-           
-        $.ajax({
-            type:'POST',
-            url:'DCSMS/exportdb'
-        /*    data:{'search':input},
-            success:function(data){
-                $('#resultdiv').html(data);
-            }*/
-        });
-    });
   });
 </script>
 
@@ -48,46 +28,41 @@
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-6">
           <br>
-          <div class = "logo"><img style = "float:left" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo"></div>
-          <div class = "vertical">
-          <h2>Department of Computer Science</h2>
-          <p class="lead">Academic Monitoring System</p></div>
+          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
+          <p class="lead"> Academic Monitoring System</p>
         </div>
       </div> 
       <div class="row">
-        <div class="col-lg-9">
-          <br>
+        <div class="col-lg-6">
           <form role = "form" class="col-lg-9">
-            <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
-            <input class="form-control input-default" placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
+            <div class="input-group" overflow:"hidden" style="width:330px;text-align:center;margin:4 auto;">
+
+            <input class="form-control input-sm" style = "margin-right: 17px"placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
-              <button type= "button" class="btn btn-default btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
+              <button type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-sm btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
               <ul class="dropdown-menu" role="menu">
               <li><a href="#">Student Number</a></li>
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-default btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
-            </div><br>           
-            <button class="btn btn-default btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
-            <button class="btn btn-default btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">EXPORT DATABASE</button>
-            <button class="btn btn-default btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>" >Search</button></span>
+            </div> 
+            <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
+            <button class="btn btn-sm btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">Export Database</button>
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">Update Database</button>
+            </div>
           </form>
-          <div id="exportDBhere">
-          </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class = "row">   
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
-                if($query->num_rows() == 0){
+                if($query->num_rows() == 0 || $searchString == " "){
                   echo '
+                  <br><br><br>  
                   <div id="wrapper">
+                  <br><br><br><br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
@@ -98,7 +73,7 @@
                     </div>';
                 }
                 else{
-                  echo '<div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo ' <br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -124,9 +99,10 @@
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0 || $searchString == ""){
-                  echo '
-                  <div id="wrapper">
+                if($query->num_rows() == 0 || $searchString == " "){
+                  echo '  
+                  <div id="wrapper" style:"margin-left: 50px">
+                  <br><br><br><br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
@@ -137,7 +113,8 @@
                     </div>';
                 }
                 else{
-                  echo '<div id="wrapper"> <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo '<br><br><br><br>
+                  <div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -179,7 +156,8 @@
                 echo "</tr>";
             }
           ?>
-      </div>
+        </div>
+      </div> 
 </div> 
 
 <script type="text/javascript">
