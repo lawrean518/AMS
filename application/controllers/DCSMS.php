@@ -53,7 +53,7 @@ class DCSMS extends CI_Controller {
 	public function showIndividualProfile(){
 		//do stuff for updating the db with the new remarks
 		$this->load->model('DCSMS_Model');
-		$data['StuNum'] = $this->uri->segment(3);
+		$data['StuNum'] = "201200000";//$this->uri->segment(3);
 		$this->load->view('AMSindividualProfile');
 	}
 
