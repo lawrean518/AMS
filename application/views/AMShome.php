@@ -28,14 +28,14 @@
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <br>
           <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
           <p class="lead"> Academic Monitoring System</p>
         </div>
       </div> 
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <form role = "form" class="col-lg-9">
             <div class="input-group" overflow:"hidden" style="width:330px;text-align:center;margin:4 auto;">
 
