@@ -50,25 +50,30 @@ blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
 strong, b { font-weight: bold; } 
 
-table { border-collapse: collapse; border-spacing: 0}
+table { border-collapse: collapse; border-spacing: 0; }
 img { border: 0; max-width: 100%; }
 
 
 /** page structure **/
 #wrapper {
   display: block;
-  width: 1250px;
+<<<<<<< HEAD
+  width: 1200px;
+  background: white;
+  margin-left: 40 auto;
+=======
+  width: 1290px;
   background: #fff;
-  margin: 0 auto;
-  margin-right: 0;
-  margin-left: 0;
-  -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
+  margin: auto;
+  padding: 20px 15px;
+  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
 }
 
 #wrap {
   width: 1000px;
   background: #fff;
   margin: 0 auto;
+>>>>>>> 02add9da29ac87fd1b922761974b937bccd718f3
   padding: 20px 15px;
   -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
@@ -202,9 +207,9 @@ h5{
   position: relative;
   left: 10px;
   color: #003300;
-  font-family: Tahoma;
+  font-family: print_clearly;
   font-size:30px;
-  font-weight: normal;
+  font-weight: bold;
   margin-top: -20px;
 }
 
@@ -219,6 +224,14 @@ h6 {
   margin-top: 20px;
 
 }
+<<<<<<< HEAD
+=======
+
+@font-face {
+    font-family: print_clearly;
+    src: url(print_clearly_tt.ttf);
+}
+>>>>>>> 3d80a91723f57a7f624fe5e775315e6423576622
 
 @font-face {
     font-family: visitor;
