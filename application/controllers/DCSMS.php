@@ -55,11 +55,12 @@ class DCSMS extends CI_Controller {
 		
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
-		$data['StuNum'] = "201200000";//$this->uri->segment(3);
-		$this->load->view('AMSindividualProfile');
+		$data['StuNum'] = $this->uri->segment(3);
+		$this->load->view('AMSindividualProfile', $data);
 	}
 
 	public function showIndividualProfile_(){
+		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$remarks = $this->input->post('myRemark');
 		$stuNum = $this->uri->segment(3);
@@ -70,9 +71,8 @@ class DCSMS extends CI_Controller {
 	public function exportDB(){
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
-		echo "yeah this happened";
 		$this->DCSMS_Model->exportDBtoCSV();
-		$this->index();
+		$this->search();
 		
 //		$this->home();
 	}

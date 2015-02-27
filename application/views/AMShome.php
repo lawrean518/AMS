@@ -79,7 +79,7 @@
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
-                if($query->num_rows() == 0){
+                if($query->num_rows() == 0 || $searchString == " "){
                   echo '
                   <br><br><br>  
                   <div id="wrapper">
@@ -119,7 +119,7 @@
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0 || $searchString != " "){
+                if($query->num_rows() == 0 || $searchString == " "){
                   echo '  
                   <div id="wrapper">
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
