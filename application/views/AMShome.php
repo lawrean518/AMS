@@ -70,7 +70,7 @@
               <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
             </div>           
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
-            <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
+            <button class="btn btn-sm btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">EXPORT DATABASE</button>
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
           </form>
           <div id="exportDBhere">

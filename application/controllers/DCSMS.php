@@ -67,12 +67,13 @@ class DCSMS extends CI_Controller {
 		$this->showIndividualProfile();
 	}
 
-	public function exportdb(){
+	public function exportDB(){
 		$this->load->helper('url');
-		//$this->load->view('AMShome');
 		$this->load->model('DCSMS_Model');
 		echo "yeah this happened";
 		$this->DCSMS_Model->exportDBtoCSV();
+		$this->index();
+		
 //		$this->home();
 	}
 	//PLAN
