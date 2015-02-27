@@ -38,9 +38,31 @@ class DCSMS extends CI_Controller {
 
 	}
 
-	public function prof(){
+	public function individualProfile(){
+		$this->load->model('DCSMS_Model');
 		$this->load->helper('url');
 		$this->load->view('AMSindividualprofile');
+
+		$remarks = $this->input->post('myRemark');
+		$stuNum = $this->uri->segment(3);
+		$this->DCSMS_Model->updateRemarks($stuNum, $remarks);
+		$this->showIndividualProfile();
+
+	}
+
+	public function showIndividualProfile(){
+		//do stuff for updating the db with the new remarks
+		$this->load->model('DCSMS_Model');
+		$data['StuNum'] = $this->uri->segment(3);
+		$this->load->view('AMSindividualProfile');
+	}
+
+	public function showIndividualProfile_(){
+		$this->load->model('DCSMS_Model');
+		$remarks = $this->input->post('myRemark');
+		$stuNum = $this->uri->segment(3);
+		$this->DCSMS_Model->updateRemarks($stuNum, $remarks);
+		$this->showIndividualProfile();
 	}
 
 	public function exportdb(){
