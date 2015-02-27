@@ -51,7 +51,7 @@
         <div class="col-lg-6">
           <br>
           <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
-          <p class="lead"> Academic Monitoring System</p>         
+          <p class="lead"> Academic Monitoring System</p>
         </div>
       </div> 
       <div class="row">
