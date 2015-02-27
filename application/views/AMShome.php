@@ -28,10 +28,9 @@
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-6">
           <br>
-          <img style = "float:left" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo">
-          <h2> Department of Computer Science</h2>
+          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
           <p class="lead"> Academic Monitoring System</p>
         </div>
       </div> 
@@ -40,17 +39,17 @@
           <form role = "form" class="col-lg-9">
             <div class="input-group" overflow:"hidden" style="width:330px;text-align:center;margin:4 auto;">
 
-            <input class="form-control input-sm" placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
+            <input class="form-control input-sm" style = "margin-right: 17px"placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
-              <button type= "button" class="btn btn-sm btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
+              <button type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-sm btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
               <ul class="dropdown-menu" role="menu">
               <li><a href="#">Student Number</a></li>
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">Search</button></span>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>" >Search</button></span>
             </div> 
-            <div style="margin-top: 3px; margin-bottom: 3px">
+            <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
             <button class="btn btn-sm btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">Export Database</button>
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">Update Database</button>
@@ -59,11 +58,11 @@
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
-                if($query->num_rows() == 0 || $searchString == ""){
+                if($query->num_rows() == 0 || $searchString == " "){
                   echo '
                   <br><br><br>  
                   <div id="wrapper">
-                  <br>
+                  <br><br><br><br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
@@ -74,7 +73,7 @@
                     </div>';
                 }
                 else{
-                  echo ' <br><br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo ' <br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -100,9 +99,10 @@
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0 || $searchString == ""){
+                if($query->num_rows() == 0 || $searchString == " "){
                   echo '  
-                  <div id="wrapper">
+                  <div id="wrapper" style:"margin-left: 50px">
+                  <br><br><br><br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
@@ -113,7 +113,8 @@
                     </div>';
                 }
                 else{
-                  echo '<div id="wrapper"> <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo '<br><br><br><br>
+                  <div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>

@@ -54,11 +54,11 @@ img { border: 0; max-width: 100%; }
 /** page structure **/
 #wrapper {
   display: block;
-  width: 1250px;
-  background: #fff;
-  margin: 0 auto;
+  width: 1200px;
+  background: white;
+  margin-left: 40 auto;
   padding: 20px 15px;
-  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+  -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
 
 #keywords {
