@@ -20,26 +20,6 @@
         $("#DD").val(selText);
         $("#DROPDOWN").val(selText);
     });
-
-    $("#exportDB").click(function(){
-//        $("#exportDB").hide();
-      //  $("#exportDBhere").append("SUCH HTML<?php
-        //                        $theFile = fopen("db.csv", "w") or die("Unable to open file!");
-          //                     ?>");
-          $.get("exportDatabase.php",function(data){
-                $("#exportDBhere").append(data);
-        });
-      //  $("#exportDBhere").load("exportDatabase.php");  $.ajax({
-           
-        $.ajax({
-            type:'POST',
-            url:'DCSMS/exportdb'
-        /*    data:{'search':input},
-            success:function(data){
-                $('#resultdiv').html(data);
-            }*/
-        });
-    });
   });
 </script>
 
@@ -57,7 +37,7 @@
       <div class="row">
         <div class="col-lg-6">
           <form role = "form" class="col-lg-9">
-            <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
+            <div class="input-group" overflow:"hidden" style="width:330px;text-align:center;margin:4 auto;">
 
             <input class="form-control input-sm" placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
@@ -67,15 +47,14 @@
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
-            </div>           
-            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
-            <button class="btn btn-sm btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">EXPORT DATABASE</button>
-            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">Search</button></span>
+            </div> 
+            <div style="margin-top: 3px; margin-bottom: 3px">
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
+            <button class="btn btn-sm btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">Export Database</button>
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">Update Database</button>
+            </div>
           </form>
-          <div id="exportDBhere">
-          </div>
-
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
@@ -83,6 +62,7 @@
                   echo '
                   <br><br><br>  
                   <div id="wrapper">
+                  <br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
