@@ -12,17 +12,13 @@ class DCSMS extends CI_Controller {
 	}		
 
 	public function home(){
-
-		$this->load->model('DCSMS_Model');
 		$query = $this->input->get("INPUT");
 		$this->load->helper('url');
 		$buttonPushed = $this->input->get('submit');
 		$data['searchString'] = $query;
 		$data['buttonPushed'] = $buttonPushed;
 		$this->load->view('AMShome', $data);
-
 	}
-
 	
 	public function prof(){
 		$this->load->helper('url');
@@ -38,9 +34,5 @@ class DCSMS extends CI_Controller {
 	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page
 	//Tables on that page, sortable, use jQuery for this
 	//On click of student numbers, show their individual profile
-
-
-
 }
 
-?>
