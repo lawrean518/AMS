@@ -7,16 +7,18 @@ class DCSMS extends CI_Controller {
 		#$this->load->model('DCSMS_Model');
 
 		$this->load->helper('url');
-		//$this->load->view('AMSwelcome');
-		$this->load->view('welcome_message'); 
+		$this->load->view('AMSwelcome');
+		//$this->load->view('welcome_message'); 
 
 	}		
 
 	public function home(){
 
 		$query = $this->input->get("INPUT");
-		$this->load->helper('url');
+//		$button = $this->input->post("submit");
+//		$this->load->helper('url');
 		$data['searchString'] = $query;
+//		$data['buttonPushed'] = $button;
 		$this->load->view('AMShome', $data);
 
 	}

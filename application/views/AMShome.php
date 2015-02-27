@@ -36,18 +36,24 @@
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
             </div>           
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
-<<<<<<< HEAD
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/exportdb");?>">EXPORT DATABASE</button>
-=======
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
             <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
->>>>>>> b8fc165f0c61fcc90d3e44914b80425abedf0cfe
-            <button class="btn btn-sm btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
           </form>        
         </div>
       </div> 
+/*
+      <?php
+        if($buttonPushed=="ShowAll")
+          echo "ShowALLLLLL";
+        elseif ($buttonPushed=="Search") {
+          echo "SEARCHHHHHH";
+        }
+        elseif($buttonPushed=="updateDB")
+          echo "updteee";
+      ?>*/
 </div> 
 
 </body>

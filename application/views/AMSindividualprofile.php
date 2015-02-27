@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 
   <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
@@ -21,6 +20,7 @@
       </div> 
   
     <br><br><br><br><br>
+  <meta name="viewport" content="width=device
 
 </div> <!-- /container full -->
 </body>

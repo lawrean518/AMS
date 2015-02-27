@@ -44,8 +44,8 @@
                   </ul>
                 </span>
             </div>
-            <br><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button><p>
-            </p><button class="btn btn-lg btn-primary" type="submit" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
+            <br><button class="btn btn-lg btn-primary" type="submit" name="submit" value="Search" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button><p>
+            </p><button class="btn btn-lg btn-primary" type="submit" name="submit" value="Show All" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
           </form>
         </div>
       </div> <!-- /row -->
