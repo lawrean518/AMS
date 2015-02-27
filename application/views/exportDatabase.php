@@ -1,3 +1,3 @@
 <?php
-    echo "The id is ";
+    echo "Totoo ba? ";
 ?>

@@ -17,16 +17,15 @@
         var selText = $(this).text();
         $("#DD").html(selText + "<span class = 'caret'></span>");
     });
-/*
+
     $("#exportDB").click(function(){
-       // $("#exportDB").hide();
-        $.ajax({
-            url: "<?php echo base_url('application/controllers/exportDatabase.php'); ?>",
-            success: function(){
-              alert("WHAT");
-            }
-        });
-    });*/
+        $("#exportDB").hide();
+        $("#exportDBhere").append("SUCH HTML<?php
+                                $theFile = fopen("db.csv", "w") or die("Unable to open file!");
+                               ?>");
+        
+        //$("#exportDBhere").load("exportDatabase.php");
+    });
   });
 </script>
 
@@ -70,6 +69,7 @@
         </div>
       </div> 
 </div> 
-
+<div id="exportDBhere">
+</div>
 </body>
 </html>
