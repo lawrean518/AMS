@@ -22,12 +22,23 @@
     });
 
     $("#exportDB").click(function(){
-        $("#exportDB").hide();
-        $("#exportDBhere").append("SUCH HTML<?php
-                                $theFile = fopen("db.csv", "w") or die("Unable to open file!");
-                               ?>");
-        
-        //$("#exportDBhere").load("exportDatabase.php");
+//        $("#exportDB").hide();
+      //  $("#exportDBhere").append("SUCH HTML<?php
+        //                        $theFile = fopen("db.csv", "w") or die("Unable to open file!");
+          //                     ?>");
+          $.get("exportDatabase.php",function(data){
+                $("#exportDBhere").append(data);
+        });
+      //  $("#exportDBhere").load("exportDatabase.php");  $.ajax({
+           
+        $.ajax({
+            type:'POST',
+            url:'DCSMS/exportdb'
+        /*    data:{'search':input},
+            success:function(data){
+                $('#resultdiv').html(data);
+            }*/
+        });
     });
   });
 </script>
@@ -61,7 +72,10 @@
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
             <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
-          </form>        
+          </form>
+          <div id="exportDBhere">
+          </div>
+
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
@@ -163,8 +177,6 @@
         </div>
       </div> 
 </div> 
-<div id="exportDBhere">
-</div>
 
 <script type="text/javascript">
   $(function(){
