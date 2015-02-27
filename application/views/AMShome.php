@@ -47,7 +47,7 @@
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>" >Search</button></span>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>" >SEARCH</button></span>
             </div> 
             <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
@@ -61,20 +61,19 @@
                 if($query->num_rows() == 0 || $searchString == " "){
                   echo '
                   <br><br><br>  
-                  <div id="wrapper">
                   <br><br><br><br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
-                      <tr>
+                      <tr style = "margin-left:15px">
                        No results found.
                       </tr>
                     </thead>
                     </table>
-                    </div>';
+                    ';
                 }
                 else{
-                  echo ' <br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
-                    <thead>
+                  echo ' <br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
                     <th class="hover"><span>Name</span></th>
@@ -101,21 +100,19 @@
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
                 if($query->num_rows() == 0 || $searchString == " "){
                   echo '  
-                  <div id="wrapper" style:"margin-left: 50px">
-                  <br><br><br><br>
+                   <br><br><br><br>
                   <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
-                      <tr>
+                      <tr style = "margin-left:15px">
                        No results found. 
                       </tr>
                     </thead>
                     </table>
-                    </div>';
+                  ';
                 }
                 else{
-                  echo '<br><br><br><br>
-                  <div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
-                    <thead>
+                  echo ' <br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
                     <th class="hover"><span>Name</span></th>
