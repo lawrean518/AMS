@@ -1,7 +1,7 @@
 <?php
 class DCSMS extends CI_Controller {
 
-
+//LIPAT UNG DB QUERIES FROM VIEW TO CONTROLLER!
 	public function index(){ //loaded by default if second segment of URI is empty
 		
 		#$this->load->model('DCSMS_Model');
@@ -11,18 +11,33 @@ class DCSMS extends CI_Controller {
 		$this->load->view('AMSwelcome');
 	}		
 
-	public function home(){
+	public function search(){
+		$this->load->helper('url');
+		$this->load->model('DCSMS_Model');
 
+		$query = $this->input->get("INPUT");
+		$by = $this->input->get("DROPDOWN");
+		$buttonPushed = $this->input->get('submit');
+		$data['searchString'] = $query;
+		$data['buttonPushed'] = "Search";
+		$data['searchBy'] = $by;
+		$this->load->view('AMShome', $data);
+	}
+
+	public function showAll(){
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		
 		$query = $this->input->get("INPUT");
+
 		$buttonPushed = $this->input->get('submit');
-		$data['searchString'] = $query;
-		$data['buttonPushed'] = $buttonPushed;
+		$data['searchString'] = "";
+		$data['buttonPushed'] = "Show All";
+		$data['searchBy'] = "Student Number";
 		$this->load->view('AMShome', $data);
+
 	}
-	
+
 	public function prof(){
 		$this->load->helper('url');
 		$this->load->view('AMSindividualprofile');

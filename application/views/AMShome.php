@@ -17,6 +17,8 @@
     $("li").click(function(){
         var selText = $(this).text();
         $("#DD").html(selText + "<span class = 'caret'></span>");
+        $("#DD").val(selText);
+        $("#DROPDOWN").val(selText);
     });
 
     $("#exportDB").click(function(){
@@ -45,17 +47,18 @@
         <div class="col-lg-6">
           <form role = "form" class="col-lg-9">
             <div class="input-group" style="width:330px;text-align:center;margin:-3 auto;">
-            <input class="form-control input-sm" placeholder="<?php echo $searchString; ?>"  type="text" name = "INPUT">
+
+            <input class="form-control input-sm" placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
-              <button type="button" class="btn btn-sm btn-success dropdown-toggle" id = "DD" data-toggle="dropdown">Student Number<span class = "caret"></span></button>
+              <button type= "button" class="btn btn-sm btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
               <ul class="dropdown-menu" role="menu">
               <li><a href="#">Student Number</a></li>
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/home");?>">SEARCH</button></span>
+              <button class="btn btn-sm btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
             </div>           
-            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/home");?>">SHOW ALL</button>
+            <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
             <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
           </form>        
@@ -63,19 +66,20 @@
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
-                  echo '  
+                  echo '
+                  <br><br><br>  
                   <div id="wrapper">
-                  <table id="keywords" cellspacing="0" cellpadding="0">
+                  <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
                     <thead>
                       <tr>
-                       <td> No results found. </td>
+                       No results found.
                       </tr>
                     </thead>
                     </table>
                     </div>';
                 }
                 else{
-                  echo ' <div id="wrapper"> <table id="keywords" cellspacing="0" cellpadding="0">
+                  echo ' <br><br><br><br><br><div id="wrapper"> <table class="dq" id="keywords" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -99,9 +103,45 @@
             }
   //different views para dun sa sorting and shizz
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
-            else if($buttonPushed=='Search'){
-              echo "such button pushed is search";
+            else if($buttonPushed == 'Search'){
+                $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
+                if($query->num_rows() == 0){
+                  echo '  
+                  <div id="wrapper">
+                  <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                       No results found. 
+                      </tr>
+                    </thead>
+                    </table>
+                    </div>';
+                }
+                else{
+                  echo ' <div id="wrapper"> <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                    <th class="hover"><span>Student Number</span></th>
+                    <th class="hover"><span>Name</span></th>
+                    <th class="hover"><span>Most Recent GWA</span></th>
+                    <th class="sorter-false"><span>AH</span></th>
+                    <th class="sorter-false"><span>MST</span></th>
+                    <th class="sorter-false"><span>SSP</span></th>
+                    <th class="sorter-false"><span>Delinquency
+                    <button type="button" class="btn btn-sm btn-success" id="w">w/</button>
+                    <button type="button" class="btn btn-sm btn-success" id="wo">w/o</button></span></th>
+                    <th class="sorter-false"><span>Remarks</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>';
+                  foreach ($query->result_array() AS $row){
+                    printRow($row);
+                  }  
+                  echo "</tbody></table></div>";
+               }   
             }
+
+
             function printRow($row){
                 if($row['DQ'] == "with DQ"){
                   echo "<tr class = 'with'>";
@@ -138,7 +178,7 @@
       }
     });
   });
-var rows = $('table.dq tr');
+  var rows = $('table.dq tr');
   var WITH = rows.filter('.with');
   var WITHOUT = rows.filter('.without');
 
@@ -156,8 +196,5 @@ var rows = $('table.dq tr');
     WITHOUT.show()
   });
 </script>      
-
-
-
 </body>
 </html>
