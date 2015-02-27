@@ -19,7 +19,7 @@
     });
 
     $("#exportDB").click(function(){
-        $("#exportDB").hide();
+       // $("#exportDB").hide();
         $.ajax({
             url: "<?php echo base_url('application/controllers/exportDatabase.php'); ?>",
             success: function(){
