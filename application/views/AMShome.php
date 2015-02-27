@@ -11,7 +11,24 @@
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/DCSMSJS.js"); ?>">
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("li").click(function(){
+        var selText = $(this).text();
+        $("#DD").html(selText + "<span class = 'caret'></span>");
+    });
+
+    $("#exportDB").click(function(){
+        $("#exportDB").hide();
+        $.ajax({
+            url: "AMS/application/views/exportDatabase.php",
+            success: function(){
+              alert("WHAT");
+            }
+        });
+    });
+  });
+</script>
 
 
 </head>
@@ -42,18 +59,17 @@
             <button class="btn btn-sm btn-primary" type="button" id = "exportDB" onclick="exportdb()">EXPORT DATABASE</button>
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">UPDATE DATABASE</button>
           </form>        
+          <?php 
+            if($buttonPushed=='Show All'){
+              echo "such button pushed is show all";
+            }
+            elseif($buttonPushed=='Search'){
+              echo "such button pushed is search";
+            }
+          ?>
         </div>
       </div> 
-/*
-      <?php
-        if($buttonPushed=="ShowAll")
-          echo "ShowALLLLLL";
-        elseif ($buttonPushed=="Search") {
-          echo "SEARCHHHHHH";
-        }
-        elseif($buttonPushed=="updateDB")
-          echo "updteee";
-      ?>*/
+      
 </div> 
 
 </body>
