@@ -73,7 +73,6 @@ img { border: 0; max-width: 100%; }
   -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
 
-
 #keywords {
   margin: 0 auto;
   font-size: 1.2em;
@@ -137,6 +136,34 @@ img { border: 0; max-width: 100%; }
   text-align: left;
 }
 
+table, th {
+    border: 5px outset #194719;
+    font-size: 20px;
+	text-align:center;
+	font-family:"American Classic";
+}
+
+th {
+    background-color: #194719;
+	font-size: 20px;
+    color: white;
+	font-family: "American Classic";
+	height: 40px;
+}
+
+input[type="submit"] {
+	background-color: #194719;
+	color: white;
+	height: 30px;
+	font-family: Times;
+	font-size:15px;
+}
+
+.button:hover {
+	background: #006B00;
+}
+
+
 textarea {
 	width: 500px;
 	height: 120px;
@@ -145,14 +172,6 @@ textarea {
 	font-family: Tahoma, sans-serif;
 	background-position: bottom right;
 	background-repeat: no-repeat;
-}
-
-.header img {
-  float: left;
-  width: 100px;
-  height: 100px;
-  margin-top: 15px;
-  margin-left: 10px;
 }
 
 .header h3 {
@@ -198,7 +217,8 @@ h6 {
   font-size:28px;
   font-weight: normal;
   margin-top: 20px;
-}
+
+
 
 @font-face {
     font-family: visitor;
@@ -259,4 +279,3 @@ h2{
     font-size: 24px;
     line-height: 1.7em;
 }
-
