@@ -30,7 +30,11 @@ class DCSMS extends CI_Controller {
 
 	public function exportdb(){
 		$this->load->helper('url');
-		$this->load->view('AMShome');
+		//$this->load->view('AMShome');
+		$this->load->model('DCSMS_Model');
+
+		$this->DCSMS_Model->exportDBtoCSV();
+		$this->home();
 	}
 	//PLAN
 	//Pagkapindot ng buttons sa welcome page, load default page
