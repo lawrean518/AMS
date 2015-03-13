@@ -57,25 +57,22 @@ img { border: 0; max-width: 100%; }
 /** page structure **/
 #wrapper {
   display: block;
-<<<<<<< HEAD
-  width: 1200px;
-  background: white;
-  margin-left: 40 auto;
-=======
   width: 1290px;
   background: #fff;
   margin: auto;
   padding: 20px 15px;
-  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+  -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
 
-#wrap {
-  width: 1000px;
+#noresults {
+  display: block;
+  width: 1290px;
+  height: 50px;
   background: #fff;
-  margin: 0 auto;
->>>>>>> 02add9da29ac87fd1b922761974b937bccd718f3
-  padding: 20px 15px;
   -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
+  text-align: center;
+  font-size: 20px;
+  font-family: "American Classic";
 }
 
 #keywords {
@@ -142,18 +139,24 @@ img { border: 0; max-width: 100%; }
 }
 
 table, th {
-    border: 5px outset #194719;
-    font-size: 20px;
+  border: 5px outset #194719;
+  font-size: 20px;
 	text-align:center;
 	font-family:"American Classic";
 }
 
 th {
-    background-color: #194719;
+  background-color: #194719;
 	font-size: 20px;
-    color: white;
+  color: white;
 	font-family: "American Classic";
 	height: 40px;
+}
+
+.noResults{
+  text-align: center;
+  font-size: 20px;
+  font-family: "American Classic";
 }
 
 input[type="submit"] {
@@ -226,66 +229,67 @@ h6 {
 }
 
 @font-face {
-    font-family: print_clearly;
-    src: url(print_clearly_tt.ttf);
+  font-family: print_clearly;
+  src: url(print_clearly_tt.ttf);
 }
 
 @font-face {
-    font-family: visitor;
-    src: url(visitor1.ttf);
+  font-family: visitor;
+  src: url(visitor1.ttf);
 }
 
 @font-face {
-    font-family: game_over;
-    src: url(game_over.ttf);
+  font-family: game_over;
+  src: url(game_over.ttf);
 }
 
 @font-face {
-    font-family: optien;
-    src: url(Optien.ttf);
+  font-family: optien;
+  src: url(Optien.ttf);
 }
 
 @font-face {
-    font-family: ormont_light;
-    src: url(Ormont_Light.ttf);
+  font-family: ormont_light;
+  src: url(Ormont_Light.ttf);
 }
 
 
 h1{
-    font-family: ormont_light;
-    font-weight: bold;
-    text-align: center;
-    color: black;
-    font-size: 28px;
-    line-height: 1.7em;
-    margin-bottom: 10px;
+  font-family: ormont_light;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  font-size: 28px;
+  line-height: 1.7em;
+  margin-bottom: 10px;
 }
 
 .lead1{
-    font-family: ormont_light;
-    font-weight: bold;
-    text-align: center;
-    color: black;
-    font-size: 40px;
-    line-height: 1.7em;
-    margin-bottom: 10px;
+  font-family: ormont_light;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  font-size: 40px;
+  line-height: 1.7em;
+  margin-bottom: 10px;
 }
 
 h2{
-    font-family: ormont_light;
-    font-weight: bold;
-    text-align: left;
-    color: black;
-    font-size: 28px;
-    line-height: 1.7em;
-    margin-top: 10px;
+  font-family: ormont_light;
+  font-weight: bold;
+  text-align: left;
+  color: black;
+  font-size: 28px;
+  line-height: 1.7em;
+  margin-top: 10px;
 }
 
 .lead{
-    font-family: ormont_light;
-    font-weight: bold;
-    text-align: left;
-    color: black;
-    font-size: 24px;
-    line-height: 1.7em;
+  font-family: ormont_light;
+  font-weight: bold;
+  text-align: left;
+  color: black;
+  font-size: 24px;
+  line-height: 1.7em;
 }
+

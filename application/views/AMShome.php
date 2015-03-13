@@ -55,24 +55,23 @@
             <button class="btn btn-sm btn-primary" type="submit" name= "submit" value="updateDB" formaction = "<?php echo site_url("DCSMS/home");?>">Update Database</button>
             </div>
           </form>
+        </div>
+      </div>
+      <div class = "row"><br>
           <?php 
             if($buttonPushed =='Show All'){
                 $query = $this->DCSMS_Model->showAllStudents();
-                if($query->num_rows() == 0 || $searchString == " "){
+                if($query->num_rows() == 0){
                   echo '
                   <br><br><br>  
                   <br><br><br><br>
-                  <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
-                    <thead>
-                      <tr style = "margin-left:15px">
-                       No results found.
-                      </tr>
-                    </thead>
-                    </table>
-                    ';
+                  <div id="noresults" style:"margin-left: 40px" >
+                      No results found.       
+                  </div>';
                 }
                 else{
-                  echo ' <br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo '<div class = "row">
+                  <div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                   <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -91,27 +90,24 @@
                   foreach ($query->result_array() AS $row){
                     printRow($row);
                   }  
-                  echo "</tbody></table></div>";
+                  echo "</tbody></table></div></div>";
                }   
             }
   //different views para dun sa sorting and shizz
 //<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
             else if($buttonPushed == 'Search'){
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0 || $searchString == " "){
+                if($query->num_rows() == 0 || $searchString == ""){
                   echo '  
-                   <br><br><br><br>
-                  <table class = "dq" id = "keywords" cellspacing="0" cellpadding="0">
-                    <thead>
-                      <tr style = "margin-left:15px">
-                       No results found. 
-                      </tr>
-                    </thead>
-                    </table>
-                  ';
+                <br><br><br><br>
+                <div id="noresults" style:"margin-left: 40px" >
+  
+                      No results found.
+     
+                </div>';
                 }
                 else{
-                  echo ' <br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo '<br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                   <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
