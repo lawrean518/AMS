@@ -1,21 +1,16 @@
 <?php
 class DCSMS extends CI_Controller {
 
-//LIPAT UNG DB QUERIES FROM VIEW TO CONTROLLER!
 	public function index(){ //loaded by default if second segment of URI is empty
-		
-		#$this->load->model('DCSMS_Model');
-
 		$this->load->helper('url');
-		//$this->load->view('AMSwelcome');
 		$this->load->view('AMSwelcome');
 	}		
 
-	public function search(){
+	public function search(){ //passing parameters for search button loading view homepage
 		$this->load->helper('url');
-		$this->load->model('DCSMS_Model');
+		$this->load->model('DCSMS_Model'); //load model
 
-		$query = $this->input->get("INPUT");
+		$query = $this->input->get("INPUT"); 
 		$by = $this->input->get("DROPDOWN");
 		$buttonPushed = $this->input->get('submit');
 		$data['searchString'] = $query;
@@ -24,7 +19,7 @@ class DCSMS extends CI_Controller {
 		$this->load->view('AMShome', $data);
 	}
 
-	public function showAll(){
+	public function showAll(){ //passing parameters for show all button loading view homepage
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		
@@ -35,10 +30,9 @@ class DCSMS extends CI_Controller {
 		$data['buttonPushed'] = "Show All";
 		$data['searchBy'] = "Student Number";
 		$this->load->view('AMShome', $data);
-
 	}
 
-	public function individualProfile(){
+	public function individualProfile(){ //passing parameter for individual profile loading view individual profile
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$this->load->view('AMSindividualprofile');
@@ -47,19 +41,16 @@ class DCSMS extends CI_Controller {
 		$stuNum = $this->uri->segment(3);
 		$this->DCSMS_Model->updateRemarks($stuNum, $remarks);
 		$this->showIndividualProfile();
-
 	}
 
 	public function showIndividualProfile(){
-		//do stuff for updating the db with the new remarks
-		
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$data['StuNum'] = $this->uri->segment(3);
 		$this->load->view('AMSindividualProfile', $data);
 	}
 
-	public function showIndividualProfile_(){
+	public function showIndividualProfile_(){ //showindividual profile
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$remarks = $this->input->post('myRemark');
@@ -68,12 +59,11 @@ class DCSMS extends CI_Controller {
 		$this->showIndividualProfile();
 	}
 
-	public function exportDB(){
+	public function exportDB(){ //export to database
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$this->DCSMS_Model->exportDBtoCSV();
 		$this->search();
-		
 //		$this->home();
 	}
 	//PLAN
