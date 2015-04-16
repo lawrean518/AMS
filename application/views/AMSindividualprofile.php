@@ -24,16 +24,12 @@
 </head>
 
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
+<div class="jumbotron">
+  <img height = "80px" style = "float:left; padding-right:15px; padding-left:15px;" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo">
+  <h2> Department of Computer Science</h2>
+  <p class="lead"> Academic Monitoring System</p>
+</div>
 <div class="container-fluid">
-       <div class="row">
-        <div class="col-lg-10">
-          <br>
-          <div class = "logo"><img style = "float:left" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo"></div>
-          <div class = "vertical">
-          <h2>Department of Computer Science</h2>
-          <p class="lead">Academic Monitoring System</p></div>
-        </div>
-      </div> 
       <div class="row">
           <br>
           <?php 
