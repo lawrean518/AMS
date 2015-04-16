@@ -57,23 +57,50 @@
   $(document).ready(function() {
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
 
-      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
+      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
 
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
+        var grades = [];
+        var classes = [];
+        var units = [];
+
         o = $('object');
-        $('#txt_login', o[0].contentDocument).val('oddemetria'); //eto yung textbox for login username
-        $('#pwd_password', o[0].contentDocument).val('November23'); //eto yung textbox for login password
-//^ano tong o[0] na to
-        $('input', o[0].contentDocument).each(function(input, value){ //eto yung function na kapag nakarating sya sa button na log in, magkiclick siya
-          if(input == 2){
-            $(value).click();
-          }
+        p = $('object');
+
+        $('tr', o[0].contentDocument).each(function(index, value){
+          $(this).find('td', p[0].contentDocument).each(function(index, value){
+            if(index == 5){
+              //alert($(this).html());
+              grades.push($(this).html());
+              alert(grades);
+            }
+          });
         });
-        
+
+        $('tr', o[0].contentDocument).each(function(index, value){
+          $(this).find('td', p[0].contentDocument).each(function(index, value){
+            if(index == 2){
+              //alert($(this).html());
+              classes.push($(this).html());
+              alert(classes);
+            }
+          });
+        });
+
+        $('tr', o[0].contentDocument).each(function(index, value){
+          $(this).find('td', p[0].contentDocument).each(function(index, value){
+            if(index == 4){
+              //alert($(this).html());
+              units.push($(this).html());
+              alert(units);
+            }
+          });
+        });
+
       }, 1000);
     });
   });
-</script>
 
+</script>
 </body>
 </html>
