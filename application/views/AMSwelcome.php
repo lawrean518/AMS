@@ -52,28 +52,31 @@
 </div> <!-- /container full -->
 
 
-<div id="siteloader" style = "border: 2px solid red"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
+<div id="siteloader" style = "border: 2px solid red" ></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
 <script type="text/javascript">
   $(document).ready(function() {
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
 
-      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/"/>'); //eto yung makikita sa div na webpage
+      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades"/>'); //eto yung makikita sa div na webpage
 
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
         o = $('object');
-        $('#txt_login', o[0].contentDocument).val('lalalallaa'); //eto yung textbox for login username
-        $('#pwd_password', o[0].contentDocument).val('pass'); //eto yung textbox for login password
+        $('#txt_login', o[0].contentDocument).val();
+        $('#pwd_password', o[0].contentDocument).val();
 
         $('input', o[0].contentDocument).each(function(input, value){ //eto yung function na kapag nakarating sya sa button na log in, magkiclick siya
           if(input == 2){
             $(value).click();
           }
         });
-        alert("Done logging in."); //pang debug lang to magpoprompt kung nakapag log in na
-      }, 1000);
+        
+        alert('last na');
+
+      },1000);
+      
     });
   });
-</script>
 
+</script>
 </body>
 </html>
