@@ -57,19 +57,19 @@
   $(document).ready(function() {
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
 
-      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/"/>'); //eto yung makikita sa div na webpage
+      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
 
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
         o = $('object');
-        $('#txt_login', o[0].contentDocument).val('lalalallaa'); //eto yung textbox for login username
-        $('#pwd_password', o[0].contentDocument).val('pass'); //eto yung textbox for login password
-
+        $('#txt_login', o[0].contentDocument).val('oddemetria'); //eto yung textbox for login username
+        $('#pwd_password', o[0].contentDocument).val('November23'); //eto yung textbox for login password
+//^ano tong o[0] na to
         $('input', o[0].contentDocument).each(function(input, value){ //eto yung function na kapag nakarating sya sa button na log in, magkiclick siya
           if(input == 2){
             $(value).click();
           }
         });
-        alert("Done logging in."); //pang debug lang to magpoprompt kung nakapag log in na
+        
       }, 1000);
     });
   });

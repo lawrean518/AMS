@@ -24,15 +24,13 @@
 
 
 </head> <!--design of the webpage-->
-<body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
-<div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <br>
-          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
-          <p class="lead"> Academic Monitoring System</p>
-        </div>
-      </div> 
+<body background="<?php echo base_url("img/congruent_pentagon.png"); ?>">
+ <div class="jumbotron">
+  <img style = "float:left; padding-right: 15px; padding-left: 15px;" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo">
+  <h2> Department of Computer Science</h2>
+  <p class="lead"> Academic Monitoring System</p>
+</div>
+ <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
           <form role = "form" class="col-lg-9">
@@ -62,15 +60,14 @@
                 $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
                   echo '
-                  <br><br><br>  
-                  <br><br><br><br>
-                  <div id="noresults" style:"margin-left: 40px" >
+                  <div class = "row">
+                  <div class = "noResults">
                       No results found.       
-                  </div>';
+                  </div></div>';
                 }
                 else{
                   echo '<div class = "row">
-                  <div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  <div id="wrapper" style:"margin-left: 40px"><table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                   <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -96,16 +93,14 @@
             else if($buttonPushed == 'Search'){ //what will happen if Search button is pressed
                 $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy); //gets the value of search textbox and the dropdown menu
                 if($query->num_rows() == 0 || $searchString == ""){ //if empty string output "No results found."
-                echo '  
-                <br><br><br><br>
-                <div id="noresults" style:"margin-left: 40px" >
-  
-                      No results found.
-     
-                </div>';
+                echo '<div class = "row">  
+                  <div class = "noResults">
+                      No results found.      
+                  </div></div>';
                 }
                 else{ //if with value, create table and print the coresponding query
-                  echo '<br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  echo '<div class = "row">
+                  <div id="wrapper" style:"margin-left: 40px"><table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                   <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -124,7 +119,7 @@
                   foreach ($query->result_array() AS $row){
                     printRow($row);
                   }  
-                  echo "</tbody></table></div>";
+                  echo "</tbody></table></div></div>";
                }   
             }
 
