@@ -52,7 +52,7 @@
 </div> <!-- /container full -->
 
 
-<div id="siteloader" style = "border: 2px solid red" ></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
+<div id="siteloader" style = "border: 2px solid red"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
 <script type="text/javascript">
   $(document).ready(function() {
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
@@ -64,16 +64,16 @@
         $('#txt_login', o[0].contentDocument).val('oddemetria'); //eto yung textbox for login username
         $('#pwd_password', o[0].contentDocument).val('November23'); //eto yung textbox for login password
 //^ano tong o[0] na to
-
         $('input', o[0].contentDocument).each(function(input, value){ //eto yung function na kapag nakarating sya sa button na log in, magkiclick siya
           if(input == 2){
             $(value).click();
           }
         });
+        
+      }, 1000);
     });
   });
-});
-
 </script>
+
 </body>
 </html>
