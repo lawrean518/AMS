@@ -20,6 +20,18 @@
         $("#DROPDOWN").val(selText);
     });
   });
+  $('#EXPORT').click(function(){
+    $.ajax({
+      method: 'get',
+      url: 'test.php',
+      data: {
+        'ajax': true
+      },
+      success: function(data) {
+        alert("Hello! I am an alert box!!");
+      }
+    });
+  });
 </script>
 
 
@@ -48,7 +60,7 @@
             </div> 
             <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
             <button class="btn btn-md btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
-            <button class="btn btn-md btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">Export Database</button>
+            <button class="btn btn-md btn-primary" type="submit" id = "exportDB" value="ExportDB" id="EXPORT">Export Database</button>
             </div>
           </form>
         </div>
