@@ -6,33 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
   <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css"); ?>" />
-  <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
-  <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
+
   <title>AMS</title>
   <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.tablesorter.min.js"); ?>"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $("li").click(function(){
+      $("li").click(function(){ //for the dropdown (selecting text)
           var selText = $(this).text();
           $("#DD").html(selText + "<span class = 'caret'></span>");
           $("#DD").val(selText);
           $("#DROPDOWN").val(selText);
       });
-/*
-    $("#exportDB").click(function(){
-        $("#exportDB").hide();
-        $.ajax({
-            url: "<?php echo base_url('application/controllers/exportDatabase.php'); ?>",
-            success: function(){
-              alert("WHAT");
-            }
-        });
-    });*/
   });
-</script>
+  </script>
 </head>
+
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="container-fluid">
        <div class="row">
@@ -49,7 +39,7 @@
           <?php 
               $this->load->helper('form');
               $stuNum = $StuNum;
-              $query = $this->DCSMS_Model->getStuNameAndNote($stuNum);
+              $query = $this->DCSMS_Model->getStuNameAndNote($stuNum); //gets the information of the student number clicked
               $row = $query->first_row('array');
               $stuName =  $row['stuname'];
               $stuNote = $row['stunote'];
@@ -67,8 +57,8 @@
           echo "<br><div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
           $row = $query->first_row('array');  
   
-          $currentYear = $row['SchoolYear']; //first entry dapat sa table
-          $currentSem = $row['Sem']; //first entry dapat sa table
+          $currentYear = $row['SchoolYear']; //first entry in table
+          $currentSem = $row['Sem']; //first entry in table
           $count = 0;
           if($currentSem == 1){
             echo "<th colspan = '8'>" .$currentSem. "st Semester, AY '" .substr($currentYear, 0, 2). "-'" .substr($currentYear, 2, 4) . "</th>";
@@ -88,7 +78,7 @@
             </tr>";
 
           foreach($query->result_array() AS $row){ //while table still has rows unread
-            if($currentYear == $row['SchoolYear'] && $currentSem == $row['Sem']){ //if currentYear and Sem ay ung   current entry sa table
+            if($currentYear == $row['SchoolYear'] && $currentSem == $row['Sem']){ //if currentYear and Sem ay yung current entry sa table
                 echo "<tr>";
                 echo "<td>" . $row['StuSubject'] . "</td>"; //echo ung subject
                 echo "<td>" . $row['Units'] . ".0". "</td>"; //echo ung units
@@ -144,7 +134,7 @@
           $query->free_result();
           $query = $this->DCSMS_Model->getDQs($stuNum);
           if($query->num_rows() == 0){
-            //echo "<p> None. </p>";
+            //if no DQ echo none
             echo "<tr><td> None. </td></tr>";
           }
           else{

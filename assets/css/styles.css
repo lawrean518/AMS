@@ -14,7 +14,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   box-sizing: border-box;
 }
 
-html { overflow-y: scroll; }
+html { 
+  overflow-y: scroll; 
+}
 
 body { 
   background: #eee url('bg.png'); /* http://subtlepatterns.com/weave/ */
@@ -64,16 +66,15 @@ img { border: 0; max-width: 100%; }
   -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
 
-#noresults {
+.noResults {
   display: block;
   width: 1290px;
-  height: 50px;
   background: #fff;
+  margin: auto;
+  padding: 20px 15px;
   -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
-  text-align: center;
-  font-size: 20px;
-  font-family: "American Classic";
 }
+
 
 #keywords {
   margin: 0 auto;
@@ -151,12 +152,6 @@ th {
   color: white;
 	font-family: "American Classic";
 	height: 40px;
-}
-
-.noResults{
-  text-align: center;
-  font-size: 20px;
-  font-family: "American Classic";
 }
 
 input[type="submit"] {
@@ -277,6 +272,7 @@ h1{
   margin-bottom: 10px;
 }
 
+
 h2{
   font-family: ormont_light;
   font-weight: bold;
@@ -296,3 +292,11 @@ h2{
   line-height: 1.7em;
 }
 
+.jumbotron{
+    min-width: 780px;
+    background: white;
+}
+
+.row{
+  padding-top: 10px;
+}

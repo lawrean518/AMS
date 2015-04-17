@@ -6,27 +6,24 @@
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 
   <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css"); ?>" />
-  <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
   <title>AMS</title>
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-    $("li").click(function(){
+    $("li").click(function(){ //for the dropdown (selecting text)
         var selText = $(this).text();
         $("#DD").html(selText + "<span class = 'caret'></span>");
         $("#DD").val(selText);
         $("#DROPDOWN").val(selText);
     });
 });
-
 </script>
 </head>
 <body background = "img/congruent_pentagon.png">
 
 <div class="container-fluid">
-
       <div class="row">
         <div class="col-lg-12 text-center v-center">
           <br><br>
@@ -47,10 +44,36 @@
                 </span>
             </div>
             <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><p>
-            </p><button class="btn btn-lg btn-primary"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
+            </p><button class="btn btn-lg btn-primary" id="try"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
+            </p><button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">TRY UPDATE</button>
           </form>
         </div>
       </div> <!-- /row -->
 </div> <!-- /container full -->
+
+
+<div id="siteloader" style = "border: 2px solid red"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
+
+      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
+
+      setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
+        o = $('object');
+        $('#txt_login', o[0].contentDocument).val('oddemetria'); //eto yung textbox for login username
+        $('#pwd_password', o[0].contentDocument).val('November23'); //eto yung textbox for login password
+//^ano tong o[0] na to
+        $('input', o[0].contentDocument).each(function(input, value){ //eto yung function na kapag nakarating sya sa button na log in, magkiclick siya
+          if(input == 2){
+            $(value).click();
+          }
+        });
+        
+      }, 1000);
+    });
+  });
+</script>
+
 </body>
 </html>

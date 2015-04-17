@@ -6,14 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
   <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css"); ?>" />
-  <!--<link rel="stylesheet" href="< // ?php echo base_url("assets/css/styles.css"); ?>" />-->
-  <!--link rel="shortcut icon" href="img/dcs_logo.ico"-->
+
   <title>AMS</title>
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.tablesorter.min.js"); ?>"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
+  $(document).ready(function(){ //for the dropdown (selecting text)
     $("li").click(function(){
         var selText = $(this).text();
         $("#DD").html(selText + "<span class = 'caret'></span>");
@@ -24,16 +23,14 @@
 </script>
 
 
-</head>
-<body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
-<div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <br>
-          <img style = "float:left" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo"><h2> Department of Computer Science</h2>
-          <p class="lead"> Academic Monitoring System</p>
-        </div>
-      </div> 
+</head> <!--design of the webpage-->
+<body background="<?php echo base_url("img/congruent_pentagon.png"); ?>">
+ <div class="jumbotron">
+  <img style = "float:left; padding-right: 15px; padding-left: 15px;" src="<?php echo base_url("img/dcs_logo.png"); ?>" alt="DCS Logo">
+  <h2> Department of Computer Science</h2>
+  <p class="lead"> Academic Monitoring System</p>
+</div>
+ <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
           <form role = "form" class="col-lg-9">
@@ -63,15 +60,14 @@
                 $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
                   echo '
-                  <br><br><br>  
-                  <br><br><br><br>
-                  <div id="noresults" style:"margin-left: 40px" >
+                  <div class = "row">
+                  <div class = "noResults">
                       No results found.       
-                  </div>';
+                  </div></div>';
                 }
                 else{
                   echo '<div class = "row">
-                  <div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                  <div id="wrapper" style:"margin-left: 40px"><table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                   <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -93,21 +89,18 @@
                   echo "</tbody></table></div></div>";
                }   
             }
-  //different views para dun sa sorting and shizz
-//<a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a>
-            else if($buttonPushed == 'Search'){
-                $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
-                if($query->num_rows() == 0 || $searchString == ""){
-                  echo '  
-                <br><br><br><br>
-                <div id="noresults" style:"margin-left: 40px" >
-  
-                      No results found.
-     
-                </div>';
+
+            else if($buttonPushed == 'Search'){ //what will happen if Search button is pressed
+                $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy); //gets the value of search textbox and the dropdown menu
+                if($query->num_rows() == 0 || $searchString == ""){ //if empty string output "No results found."
+                echo '<div class = "row">  
+                  <div class = "noResults">
+                      No results found.      
+                  </div></div>';
                 }
-                else{
-                  echo '<br><br><br><br><div id="wrapper" style:"margin-left: 40px" > <table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
+                else{ //if with value, create table and print the coresponding query
+                  echo '<div class = "row">
+                  <div id="wrapper" style:"margin-left: 40px"><table class = "dq" id="keywords" cellspacing="0" cellpadding="0">
                   <thead>
                     <tr>
                     <th class="hover"><span>Student Number</span></th>
@@ -126,26 +119,26 @@
                   foreach ($query->result_array() AS $row){
                     printRow($row);
                   }  
-                  echo "</tbody></table></div>";
+                  echo "</tbody></table></div></div>";
                }   
             }
 
 
-            function printRow($row){
+            function printRow($row){ //separates the class of with DQ to without DQ then prints the corresponding students
                 if($row['DQ'] == "with DQ"){
                   echo "<tr class = 'with'>";
                 }
                 else{
                   echo "<tr class = 'without'>";
                 }
-               echo "<td> <a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a></td>";
+                echo "<td> <a href='http://localhost/AMS/index.php/DCSMS/showIndividualProfile/" . $row['stunum'] . "' target = '_blank'>" . $row['stunum'] . " </a></td>";
                 echo "<td >" . $row['stuname'] . "</td>";
                 echo "<td>" . round($row['gwa'], 4) . "</td>";
                 echo "<td>" . $row['AH']. "</td>";
                 echo "<td>" . $row['SSP'] . "</td>";
                 echo "<td>" . $row['MST'] . "</td>";
                 echo "<td>" . $row['DQ'] . "</td>";
-                echo "<td>" . substr($row['stunote'], 0, 10) . "</td>"; //kelangan first 10 characters lang 
+                echo "<td>" . substr($row['stunote'], 0, 10) . "</td>"; //outputs the first ten characters
                 echo "</tr>";
             }
           ?>
@@ -153,30 +146,31 @@
       </div> 
 </div> 
 
-<script type="text/javascript">
+<script type="text/javascript"> //javascript coommands
   $(function(){
     $("table").tablesorter({
       headers: {
-        3: { sorter: false },    
-        4: { sorter: false },
-        5: { sorter: false },
-        6: { sorter: false },
-        7: { sorter: false }
+        3: { sorter: false }, //sets the fourth column to be "unsortable"    
+        4: { sorter: false }, //sets the fifth column to be "unsortable"
+        5: { sorter: false }, //sets the sixth column to be "unsortable"
+        6: { sorter: false }, //sets the seventh column to be "unsortable"
+        7: { sorter: false } //sets the eighth column to be "unsortable"
       }
     });
   });
+
   var rows = $('table.dq tr');
   var WITH = rows.filter('.with');
   var WITHOUT = rows.filter('.without');
 
-  $('#w').click(function() {
+  $('#w').click(function() { //function that shows the with or without dq students
     $(this).hide();
     $('#wo').show();    
     WITHOUT.hide()
     WITH.show()
   });
 
-  $('#wo').click(function() {
+  $('#wo').click(function() { //if the "w/"button is clicked, the "w/o" button disappears and vice versa
     $(this).hide();
     $('#w').show();
     WITH.hide()
