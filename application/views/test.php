@@ -1,8 +1,3 @@
 <?php
-if ($_GET['ajax']) {
-  echo $_GET['myString'];
-} else {
+	$myfile = fopen("testfile.txt", "w")
 ?>
-<button type="button" id="clickMe">CLICK ME TO RUN PHP</button>
-<pre id="data"></pre>
-<?php } ?>

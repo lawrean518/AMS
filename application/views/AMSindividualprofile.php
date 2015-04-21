@@ -35,23 +35,23 @@
           <?php 
               $this->load->helper('form');
               $stuNum = $StuNum;
-              $query = $this->DCSMS_Model->getStuNameAndNote($stuNum); //gets the information of the student number clicked
-              $row = $query->first_row('array');
+              //$query = $this->DCSMS_Model->getStuNameAndNote($stuNum); //gets the information of the student number clicked
+              $row = $query1->first_row('array');
               $stuName =  $row['stuname'];
               $stuNote = $row['stunote'];
               echo "<h4> View Grades </h4>";
               echo "<h5><br>       " .$stuNum. "";
               echo "<br>      " .$stuName. "</h5>";
 
-              $query->free_result();
+              //$query->free_result();
           ?>
       </div>
       <div class = "row">
         <?php
-          $query = $this->DCSMS_Model->getStudent($stuNum); //example query
+          //$query = $this->DCSMS_Model->getStudent($stuNum);
           //query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear         
           echo "<br><div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";
-          $row = $query->first_row('array');  
+          $row = $query2->first_row('array');  
   
           $currentYear = $row['SchoolYear']; //first entry in table
           $currentSem = $row['Sem']; //first entry in table
@@ -73,7 +73,7 @@
             <th>Grade</th>
             </tr>";
 
-          foreach($query->result_array() AS $row){ //while table still has rows unread
+          foreach($query2->result_array() AS $row){ //while table still has rows unread
             if($currentYear == $row['SchoolYear'] && $currentSem == $row['Sem']){ //if currentYear and Sem ay yung current entry sa table
                 echo "<tr>";
                 echo "<td>" . $row['StuSubject'] . "</td>"; //echo ung subject
@@ -127,14 +127,14 @@
          echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";;
           echo "<th>" .'Delinquencies'. "</th>";
 
-          $query->free_result();
-          $query = $this->DCSMS_Model->getDQs($stuNum);
-          if($query->num_rows() == 0){
+          //$query->free_result();
+          //$query = $this->DCSMS_Model->getDQs($stuNum);
+          if($query3->num_rows() == 0){
             //if no DQ echo none
             echo "<tr><td> None. </td></tr>";
           }
           else{
-            foreach($query->result_array() AS $row){
+            foreach($query3->result_array() AS $row){
               echo "<tr><td>" .$row['DQDetails'] . "</td></tr>";
             }
           }

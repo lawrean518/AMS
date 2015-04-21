@@ -20,18 +20,7 @@
         $("#DROPDOWN").val(selText);
     });
   });
-  $('#EXPORT').click(function(){
-    $.ajax({
-      method: 'get',
-      url: 'test.php',
-      data: {
-        'ajax': true
-      },
-      success: function(data) {
-        alert("Hello! I am an alert box!!");
-      }
-    });
-  });
+}
 </script>
 
 
@@ -60,7 +49,7 @@
             </div> 
             <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
             <button class="btn btn-md btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
-            <button class="btn btn-md btn-primary" type="submit" id = "exportDB" value="ExportDB" id="EXPORT">Export Database</button>
+            <button class="btn btn-md btn-primary" type="submit" id = "exportDB" value="ExportDB" formaction ="<?php echo site_url("DCSMS/exportDB");?>">Export Database</button>
             </div>
           </form>
         </div>
@@ -68,7 +57,6 @@
       <div class = "row"><br>
           <?php 
             if($buttonPushed =='Show All'){
-                $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
                   echo '
                   <div class = "row">
@@ -101,7 +89,6 @@
                } 
             }
             else if($buttonPushed == 'Search'){ //what will happen if Search button is pressed
-                $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy); //gets the value of search textbox and the dropdown menu
                 if($query->num_rows() == 0 || $searchString == ""){ //if empty string output "No results found."
                 echo '<div class = "row">  
                   <div class = "noResults">
@@ -131,6 +118,13 @@
                   }  
                   echo "</tbody></table></div></div>";
                }   
+            }
+            else if($buttonPushed == 'ExportDB'){ //what will happen if Search button is pressed
+             
+                echo '<div class = "row">  
+                  <div class = "noResults">
+                      Database exported.      
+                  </div></div>';
             }
 
 

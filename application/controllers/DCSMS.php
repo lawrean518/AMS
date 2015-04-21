@@ -5,27 +5,30 @@ class DCSMS extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('AMSwelcome');
 	}		
+	
 
 	public function search(){ //passing parameters for search button loading view homepage
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model'); //load model
 
-		$query = $this->input->get("INPUT"); 
-		$by = $this->input->get("DROPDOWN");
-		$buttonPushed = $this->input->get('submit');
+		$searchString = $this->input->get("INPUT"); 
+		$searchBy = $this->input->get("DROPDOWN");
+	
+		//$buttonPushed = $this->input->get('submit');	
+
+		$data['query'] = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy);
 		$data['searchString'] = $query;
 		$data['buttonPushed'] = "Search";
-		$data['searchBy'] = $by;
+		$data['searchBy'] = $searchBy;
 		$this->load->view('AMShome', $data);
 	}
 
 	public function showAll(){ //passing parameters for show all button loading view homepage
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
-		
-		$query = $this->input->get("INPUT");
-
-		$buttonPushed = $this->input->get('submit');
+		//$query = $this->input->get("INPUT");
+		//$buttonPushed = $this->input->get('submit');
+		$data['query'] = $this->DCSMS_Model->showAllStudents();
 		$data['searchString'] = "";
 		$data['buttonPushed'] = "Show All";
 		$data['searchBy'] = "Student Number";
@@ -37,7 +40,7 @@ class DCSMS extends CI_Controller {
 		$this->load->model('DCSMS_Model');
 		$this->load->view('AMSindividualprofile');
 
-		$remarks = $this->input->post('myRemark');
+		$remarks = $this->input->post('myRemark');	
 		$stuNum = $this->uri->segment(3);
 		$this->DCSMS_Model->updateRemarks($stuNum, $remarks);
 		$this->showIndividualProfile();
@@ -47,6 +50,10 @@ class DCSMS extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$data['StuNum'] = $this->uri->segment(3);
+
+		$data['query1'] = $this->DCSMS_Model->getStuNameAndNote($data['StuNum']);
+		$data['query2'] = $this->DCSMS_Model->getStudent($data['StuNum']);
+		$data['query3'] = $this->DCSMS_Model->getDQs($data['StuNum']);
 		$this->load->view('AMSindividualProfile', $data);
 	}
 
@@ -63,7 +70,14 @@ class DCSMS extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
 		$this->DCSMS_Model->exportDBtoCSV();
-		$this->search();
+		$this->load->helper('url');
+		$this->load->model('DCSMS_Model');
+		//$query = $this->input->get("INPUT");
+		//$buttonPushed = $this->input->get('submit');
+		$data['searchString'] = "";
+		$data['buttonPushed'] = "ExportDB";
+		$data['searchBy'] = "Student Number";
+		$this->load->view('AMShome', $data);
 //		$this->home();
 	}
 	//PLAN
