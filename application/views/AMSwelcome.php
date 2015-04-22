@@ -51,56 +51,5 @@
       </div> <!-- /row -->
 </div> <!-- /container full -->
 
-
-<div id="siteloader" style = "border: 2px solid red"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
-
-      $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
-
-      setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
-        var grades = [];
-        var classes = [];
-        var units = [];
-
-        o = $('object');
-        p = $('object');
-
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('td', p[0].contentDocument).each(function(index, value){
-            if(index == 5){
-              //alert($(this).html());
-              grades.push($(this).html());
-              alert(grades);
-            }
-          });
-        });
-
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('td', p[0].contentDocument).each(function(index, value){
-            if(index == 2){
-              //alert($(this).html());
-              classes.push($(this).html());
-              alert(classes);
-            }
-          });
-        });
-
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('td', p[0].contentDocument).each(function(index, value){
-            if(index == 4){
-              //alert($(this).html());
-              units.push($(this).html());
-              alert(units);
-            }
-          });
-        });
-
-      }, 1000);
-    });
-  });
-
-</script>
 </body>
 </html>
