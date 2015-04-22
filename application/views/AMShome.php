@@ -56,7 +56,7 @@
               <li><a href="#">Last Name</a></li>
               <li><a href="#"></a></li>
               </ul>
-              <button class="btn btn-md btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>" >SEARCH</button></span>
+              <button class="btn btn-md btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
             </div> 
             <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
             <button class="btn btn-md btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
