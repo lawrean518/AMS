@@ -124,7 +124,7 @@
           echo "</table>";  
           echo "</div>";
           echo "<br><br>";
-         echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";;
+          echo "<div id = 'wrap'><table class = 'dq' id = 'keywords' cellspacing='0' cellpadding='0' border = '1' style = 'Width: 100%'>";;
           echo "<th>" .'Delinquencies'. "</th>";
 
           $query->free_result();
@@ -145,7 +145,7 @@
           echo "<textarea name='myRemark'>" .$stuNote. "</textarea>";
           echo "<br>";
           $data = array(  'name' => 'newRemark',  
-                    'value' => 'update',
+                    'value' => 'save',
                     'class' => 'button');
           echo form_submit($data);
           echo form_close();
