@@ -37,6 +37,7 @@
 
 </head> <!--design of the webpage-->
 <body background="<?php echo base_url("img/congruent_pentagon.png"); ?>">
+<!--<?php echo $searchBy; ?>-->
  <div class="jumbotron">
   <img height = "80px" style = "float:left; padding-right:15px; padding-left:15px;" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo">
   <h2> Department of Computer Science</h2>
@@ -52,9 +53,8 @@
               <span class="input-group-btn">
               <button type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-md btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
               <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Student Number</a></li>
-              <li><a href="#">Last Name</a></li>
-              <li><a href="#"></a></li>
+              <li><a>Student Number</a></li>
+              <li><a>Last Name</a></li>
               </ul>
               <button class="btn btn-md btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
             </div> 

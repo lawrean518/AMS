@@ -35,11 +35,10 @@
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
               <input class="form-control input-lg" placeholder="Search" type="text" name = "INPUT">
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-lg btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
+                  <button type="button" class="btn btn-lg btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Student Number</a></li>
                     <li><a href="#">Last Name</a></li>
-                    <li><a href="#"></a></li>
                   </ul>
                 </span>
             </div>
