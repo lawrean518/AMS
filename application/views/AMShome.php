@@ -17,7 +17,6 @@
         var selText = $(this).text();
         $("#DD").html(selText + "<span class = 'caret'></span>");
         $("#DD").val(selText);
-        $("#DROPDOWN").val(selText);
     });
   });
   $('#EXPORT').click(function(){
@@ -51,7 +50,7 @@
 
             <input class="form-control input-md" style = "margin-right: 17px"placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
-              <button type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-md btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
+              <button type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-md btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button>
               <ul class="dropdown-menu" role="menu">
               <li><a>Student Number</a></li>
               <li><a>Last Name</a></li>
@@ -60,7 +59,7 @@
             </div> 
             <div style="padding: 1px; margin-bottom: 3px; margin-top: 3px">
             <button class="btn btn-md btn-primary" type="submit" name= "submit" value="Show All" formaction = "<?php echo site_url("DCSMS/showAll");?>">Show All</button>
-            <button class="btn btn-md btn-primary" type="submit" id = "exportDB" value="ExportDB" id="EXPORT">Export Database</button>
+            <button class="btn btn-md btn-primary" type="submit" id = "exportDB" value="Export DB" id="EXPORT" formaction = "<?php echo site_url("DCSMS/exportDB");?>">Export Database</button>
             </div>
           </form>
         </div>
@@ -68,7 +67,6 @@
       <div class = "row"><br>
           <?php 
             if($buttonPushed =='Show All'){
-                $query = $this->DCSMS_Model->showAllStudents();
                 if($query->num_rows() == 0){
                   echo '
                   <div class = "row">
@@ -101,7 +99,6 @@
                } 
             }
             else if($buttonPushed == 'Search'){ //what will happen if Search button is pressed
-                $query = $this->DCSMS_Model->showSearchQuery($searchString, $searchBy); //gets the value of search textbox and the dropdown menu
                 if($query->num_rows() == 0 || $searchString == ""){ //if empty string output "No results found."
                 echo '<div class = "row">  
                   <div class = "noResults">
@@ -132,7 +129,12 @@
                   echo "</tbody></table></div></div>";
                }   
             }
-
+            else if($buttonPushed == 'Export DB'){ //what will happen if Search button is pressed
+              echo '<div class = "row">  
+                <div class = "noResults">
+                    Database exported to CSV file named "db.csv".      
+                </div></div>';
+            }
 
             function printRow($row){ //separates the class of with DQ to without DQ then prints the corresponding students
                 if($row['DQ'] == "with DQ"){
