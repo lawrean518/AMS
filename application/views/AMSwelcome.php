@@ -57,13 +57,13 @@
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
 
       $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
+      var grades = [];
+      var subjects = [];
+      var units = [];
+      var sems = [];
 
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
-        var grades = [];
-        var classes = [];
-        var units = [];
-        var sems = [];
-
+       
         o = $('object');
         p = $('object');
 
@@ -72,27 +72,27 @@
             if(index == 0){
               //alert($(this).html());
               sems.push($(this).html());
-              alert(sems);
+              //alert(sems);
             }
           });
         });
-
+      
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 5){
               //alert($(this).html());
               grades.push($(this).html());
-              alert(grades);
+              //alert(grades);
             }
           });
         });
-
+        
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 2){
               //alert($(this).html());
-              classes.push($(this).html());
-              alert(classes);
+              subjects.push($(this).html());
+              //alert(classes);
             }
           });
         });
@@ -102,11 +102,14 @@
             if(index == 4){
               //alert($(this).html());
               units.push($(this).html());
-              alert(units);
+              //alert(units);
             }
           });
-        });
-
+        });  
+        alert(sems);
+        alert(grades);
+        alert(subjects);
+        alert(units);
       }, 3000);
     });
   });
