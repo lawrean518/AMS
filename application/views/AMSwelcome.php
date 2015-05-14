@@ -62,9 +62,20 @@
         var grades = [];
         var classes = [];
         var units = [];
+        var sems = [];
 
         o = $('object');
         p = $('object');
+
+        $('tr', o[0].contentDocument).each(function(index, value){
+          $(this).find('th', p[0].contentDocument).each(function(index, value){
+            if(index == 0){
+              //alert($(this).html());
+              sems.push($(this).html());
+              alert(sems);
+            }
+          });
+        });
 
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
