@@ -35,7 +35,7 @@
               <input class="form-control input-lg" placeholder="Search" type="text" name = "INPUT">
                 <span class="input-group-btn">
                  <span class="input-group-btn">
-                  <button onclick = "searchByFunction()" type="button" class="btn btn-lg btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
+                  <button onclick = "searchByFunction()" type="button" class="btn btn-lg btn-success dropdown-toggle="collapse" " name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
                   <ul class="dropdown-menu" role="menu">
                     <li><a onclick = "searchByFunction()" href="#">Student Number</a></li>
                     <li><a onclick = "searchByFunction()" href="#">Last Name</a></li>
@@ -63,49 +63,66 @@
         var classes = [];
         var units = [];
         var sems = [];
+        var studname;
+        var studnum;
 
         o = $('object');
         p = $('object');
 
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('th', p[0].contentDocument).each(function(index, value){
+        $('.invisible', o[0].contentDocument).each(function(index, value){
+          $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 0){
               //alert($(this).html());
-              sems.push($(this).html());
-              alert(sems);
+              studname = ($(this).html());
+              alert(studname);
             }
-          });
-        });
-
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('td', p[0].contentDocument).each(function(index, value){
-            if(index == 5){
-              //alert($(this).html());
-              grades.push($(this).html());
-              alert(grades);
-            }
-          });
-        });
-
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 2){
               //alert($(this).html());
-              classes.push($(this).html());
-              alert(classes);
+              studnum = ($(this).html());
+              alert(studnum);
             }
           });
         });
 
-        $('tr', o[0].contentDocument).each(function(index, value){
-          $(this).find('td', p[0].contentDocument).each(function(index, value){
-            if(index == 4){
-              //alert($(this).html());
-              units.push($(this).html());
-              alert(units);
-            }
-          });
-        });
+        // $('tr', o[0].contentDocument).each(function(index, value){
+        //   $(this).find('th', p[0].contentDocument).each(function(index, value){
+        //     if(index == 0){
+        //       //alert($(this).html());
+        //       sems.push($(this).html());
+        //       alert(sems);
+        //     }
+        //   });
+        // });
+
+        // $('tr', o[0].contentDocument).each(function(index, value){
+        //   $(this).find('td', p[0].contentDocument).each(function(index, value){
+        //     if(index == 5){
+        //       //alert($(this).html());
+        //       grades.push($(this).html());
+        //       alert(grades);
+        //     }
+        //   });
+        // });
+
+        // $('tr', o[0].contentDocument).each(function(index, value){
+        //   $(this).find('td', p[0].contentDocument).each(function(index, value){
+        //     if(index == 2){
+        //       //alert($(this).html());
+        //       classes.push($(this).html());
+        //       alert(classes);
+        //     }
+        //   });
+        // });
+
+        // $('tr', o[0].contentDocument).each(function(index, value){
+        //   $(this).find('td', p[0].contentDocument).each(function(index, value){
+        //     if(index == 4){
+        //       //alert($(this).html());
+        //       units.push($(this).html());
+        //       alert(units);
+        //     }
+        //   });
+        // });
 
       }, 3000);
     });
