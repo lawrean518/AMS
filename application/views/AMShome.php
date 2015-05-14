@@ -12,25 +12,14 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.tablesorter.min.js"); ?>"></script>
 <script type="text/javascript">
-  $(document).ready(function(){ //for the dropdown (selecting text)
+  function searchByFunction(){
     $("li").click(function(){
-        var selText = $(this).text();
-        $("#DD").html(selText + "<span class = 'caret'></span>");
-        $("#DD").val(selText);
+      var selText = $(this).text();
+      $("#DD").html(selText + "<span class = 'caret'></span>");
+      $("#DD").val(selText);
+      $("#DROPDOWN").val(selText);
     });
-  });
-  $('#EXPORT').click(function(){
-    $.ajax({
-      method: 'get',
-      url: 'test.php',
-      data: {
-        'ajax': true
-      },
-      success: function(data) {
-        alert("Hello! I am an alert box!!");
-      }
-    });
-  });
+  }
 </script>
 
 
@@ -50,10 +39,10 @@
 
             <input class="form-control input-md" style = "margin-right: 17px"placeholder="Search" value = "<?php echo $searchString; ?>" type="text" name = "INPUT">
               <span class="input-group-btn">
-              <button type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-md btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button>
+              <button onclick = "searchByFunction()" type= "button" style = "margin-right: 3px; margin-left: 3px" class="btn btn-md btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown"><?php echo $searchBy; ?><span class = "caret"></span></button><input type = "hidden" id = "DROPDOWN" name = "DROPDOWN" value = "<?php echo $searchBy; ?>">
               <ul class="dropdown-menu" role="menu">
-              <li><a>Student Number</a></li>
-              <li><a>Last Name</a></li>
+              <li><a onclick = "searchByFunction()" href="#">Student Number</a></li>
+              <li><a onclick = "searchByFunction()" href="#">Last Name</a></li>
               </ul>
               <button class="btn btn-md btn-danger" type="submit" name= "submit" value="Search" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button></span>
             </div> 
