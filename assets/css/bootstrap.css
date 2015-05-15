@@ -3460,7 +3460,7 @@ tbody.collapse.in {
 }
 
 .dropdown-menu li {
-    display: inline;
+    display: inline-table;
     position: relative;
 }
 
