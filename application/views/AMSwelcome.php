@@ -58,12 +58,12 @@
 
       $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
 
-      setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
-        var grades = [];
-        var classes = [];
-        var units = [];
-        var sems = [];
+      var grades = [];
+      var classes = [];
+      var units = [];
+      var sems = [];
 
+      setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
         o = $('object');
         p = $('object');
 
@@ -108,6 +108,24 @@
         });
 
       }, 3000);
+  /*
+    var jsons = JSON.stringify(grades);
+
+    $.ajax({
+        type: 'POST',
+        data: {json: jsons},
+        dataType: 'html',
+        url: 'php.php',
+          success: function (meeeh) {
+                console.log("SUCH LIFE");
+                alert(meeeh);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr.status);
+          alert(thrownError);
+      }
+
+        });*/
     });
   });
 
