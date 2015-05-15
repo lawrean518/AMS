@@ -11,13 +11,13 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.min.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("li").click(function(){ //for the dropdown (selecting text)
-        var selText = $(this).text();
-        $("#DD").html(selText + "<span class = 'caret'></span>");
-        $("#DD").val(selText);
+   function searchByFunction(){
+    $("li").click(function(){
+      var selText = $(this).text();
+      $("#DD").html(selText + "<span class = 'caret'></span>");
+      $("#DD").val(selText);
     });
-});
+  }
 </script>
 </head>
 <body background = "img/congruent_pentagon.png">
@@ -35,12 +35,11 @@
               <input class="form-control input-lg" placeholder="Search" type="text" name = "INPUT">
                 <span class="input-group-btn">
                  <span class="input-group-btn">
-                  <button type="button" class="btn btn-lg btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
+                  <button onclick = "searchByFunction()" type="button" class="btn btn-lg btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Student Number</a></li>
-                    <li><a href="#">Last Name</a></li>
-                    <li><a href="#"></a></li>
-                  </ul>
+                    <li><a onclick = "searchByFunction()" href="#">Student Number</a></li>
+                    <li><a onclick = "searchByFunction()" href="#">Last Name</a></li>
+                    </ul>
                 </span>
             </div>
             <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><p>
@@ -63,9 +62,20 @@
         var grades = [];
         var classes = [];
         var units = [];
+        var sems = [];
 
         o = $('object');
         p = $('object');
+
+        $('tr', o[0].contentDocument).each(function(index, value){
+          $(this).find('th', p[0].contentDocument).each(function(index, value){
+            if(index == 0){
+              //alert($(this).html());
+              sems.push($(this).html());
+              alert(sems);
+            }
+          });
+        });
 
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
