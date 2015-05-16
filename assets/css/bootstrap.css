@@ -2719,11 +2719,62 @@ select[multiple].form-group-sm .form-control {
   line-height: 1.3333333;
   border-radius: 6px;
 }
+
+
+
+.input-xlg {
+  width: 1000px;
+  height: 55px;
+  padding: 10px 16px;
+  font-size: 25px;
+  line-height: 1.3333333;
+  border-radius: 8px;
+}
+select.input-xlg {
+  height: 55px;
+  width: 1000px;
+  line-height: 46px;
+}
+textarea.input-xlg,
+select[multiple].input-xlg {
+  height: auto;
+  width: 1000px;
+}
+.form-group-xlg .form-control {
+  height: 55px;
+  padding: 10px 16px;
+  font-size: 25px;
+  line-height: 1.3333333;
+  border-radius: 8px;
+  width: 1000px;
+}
+select.form-group-xlg .form-control {
+  height: 55px;
+  line-height: 46px;
+}
+textarea.form-group-xlg .form-control,
+select[multiple].form-group-xlg .form-control {
+  height: auto;
+  width: 1000px;
+}
+.form-group-xlg .form-control-static {
+  height: 55px;
+  padding: 10px 16px;
+  font-size: 25px;
+  line-height: 1.3333333;
+  border-radius: 8px;
+  width: 1000px;
+}
+
+
+
+
 select.input-lg {
   height: 46px;
   line-height: 46px;
 }
 textarea.input-lg,
+
 select[multiple].input-lg {
   height: auto;
 }
@@ -3322,6 +3373,20 @@ fieldset[disabled] .btn-link:focus {
   color: #777;
   text-decoration: none;
 }
+
+
+
+.btn-xlg,
+.btn-group-xlg > .btn {
+  padding: 10px 16px;
+  font-size: 25px;
+  line-height: 1.3333333;
+  border-radius: 8px;
+}
+
+
+
+
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 10px 16px;
@@ -3455,12 +3520,12 @@ tbody.collapse.in {
   color: #262626;
   text-decoration: none;
   background-color: #f5f5f5;
-  display: inline;
+  display: block;
   position: relative;
 }
 
 .dropdown-menu li {
-    display: inline-table;
+    display: inline;
     position: relative;
 }
 
@@ -3810,6 +3875,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 12px;
   border-radius: 3px;
 }
+
+
+
+
 .input-group-addon.input-lg {
   padding: 10px 16px;
   font-size: 18px;
@@ -6579,3 +6648,7 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+pre {
+    display:inline;
+}
