@@ -56,7 +56,54 @@
 		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
 			return $stunum;
 		}
-
+		public function addStudentInfo($stunum, $stuname, $AH, $MST, $SSP){
+			$data = array(
+			   'StuNum' => $stunum,
+			   'StuName' => "$stuname" ,
+			   'AH' => $AH,
+			   'MST' => $MST,
+			   'SSP' => $SSP,
+			   'StuNote' => "",
+			);
+			$this->db->insert('studentinfo', $data);
+			/*	$this->db->query("INSERT INTO `studentinfo`
+							(StuNum, StuName)
+							VALUES ($stunum, \"$stuname\");");
+		/*	//$this->db->query("INSERT INTO studentgrades
+			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
+		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
+			return $stunum;
+		}public function addStudentGrade($stunum, $stusubject, $units, $grades, $schoolyear, $sem){
+			$data2 = array(
+				'StuNum' => $stunum,
+				'StuSubject' => "$stusubject",
+				'Units' => $units,
+				'Grade' => $grades,
+				'SchoolYear' => $schoolyear,
+				'Sem' => $sem,);
+			$this->db->insert('studentgrades', $data2);
+		/*	$this->db->query("INSERT INTO `studentinfo`
+							(StuNum, StuName)
+							VALUES ($stunum, \"$stuname\");");
+		/*	//$this->db->query("INSERT INTO studentgrades
+			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
+		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
+			return $stunum;
+		}public function addStudentGWA($stunum, $schoolyear, $sem, $gwa){
+			$data3 = array(
+				'StuNum' => $stunum,
+				'GWA'=> $gwa,
+				'SchoolYear' => $schoolyear,
+				'Sem' => $sem,);
+			$this->db->insert('studentgwa', $data3);
+		/*	$this->db->query("INSERT INTO `studentinfo`
+							(StuNum, StuName)
+							VALUES ($stunum, \"$stuname\");");
+		/*	//$this->db->query("INSERT INTO studentgrades
+			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
+		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
+			return $stunum;
+		}
 	    public function getDQs($stunum){
 			
 			return $query = $this->db->query("SELECT DISTINCT DQDetails
