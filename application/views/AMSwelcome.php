@@ -123,31 +123,39 @@
           });
         });  
         
-        alert(sems);
+      /*  alert(sems);
         alert(grades);
         alert(subjects);
         alert(units);
         alert(studnum);
         alert(studname);
+*/
+        //var jsons = JSON.stringify(grades);
+        var person = JSON.parse("[" + '{\"firstName\":\"John\", \"lastName\":\"Doe\", \"age\":46}, {\"firstName\":\"Olivia\", \"lastName\":\"Demetria\", \"age\":46}' +"]");
+        var textToParse = "{" + '\"info\" : [{ \"name\" : \"Olivia\", \"stunum\" : \"2012-61188\" }, { \"name\" : \"Olivia2\", \"stunum\" : \"2012-61189\" }], \"grades\" : {\"' + name + '\" : [ { \"SemNumber\" : 1, \"SchoolYear\" : 1213, \"GWA\": 3, \"GradesForSem\" : [ { \"grade\": 1, \"subject\": \"ES 10\", \"units\": 3 } ] } ] }' + "}";
+        var textToParse2 = "[" + '{\"name\" : \"Olivia\", \"stunum\" : 201261188, \"grades\" : [ {\"SemNumber\" : 1, \"SchoolYear\" : 1213, \"GWA\": 3, \"GradesForSem\" : [ { \"grade\": 1, \"subject\": \"ES 10\", \"units\": 3} ] } ] }, {\"name\" : \"Tetey\", \"stunum\" : 201238409, \"grades\" : [ {\"SemNumber\" : 1, \"SchoolYear\" : 1213, \"GWA\": 3, \"GradesForSem\" : [ { \"grade\": 3, \"subject\": \"Bio 1\", \"units\": 3} ] } ] }' + "]";
+        var text = JSON.parse(textToParse2);      
+        
+        
+        //var jsons2 = JSON.parse(text);
+        //var jsons = JSON.stringify(jsons2);
+        var jsons = JSON.stringify(text);
+        $.ajax({
+            type: 'POST',
+            data: {json: jsons},
+            dataType: 'html',
+            url: "<?php echo site_url("DCSMS/script");?>",
+              success: function (meeeh) {
+                    console.log("SUCH LIFE");
+                    alert(meeeh);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+              alert(xhr.status);
+              alert(thrownError);
+          }
+        });
       }, 3000);
-  /*
-    var jsons = JSON.stringify(grades);
-
-    $.ajax({
-        type: 'POST',
-        data: {json: jsons},
-        dataType: 'html',
-        url: 'php.php',
-          success: function (meeeh) {
-                console.log("SUCH LIFE");
-                alert(meeeh);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-          alert(xhr.status);
-          alert(thrownError);
-      }
-
-        });*/
+ 
     });
   });
 

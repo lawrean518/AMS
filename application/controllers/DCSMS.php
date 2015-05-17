@@ -33,7 +33,22 @@ class DCSMS extends CI_Controller {
         $data['query'] = $query;        
 		$this->load->view('AMShome', $data);
 	}
-
+	public function script(){
+		$data = (array) json_decode($_POST['json'], true);
+		$i =0;
+		$j = 0;
+		$k =  0;
+	  // here i would like use foreach
+		$this->load->model('DCSMS_Model');
+		for($i =0; $i <= count($data)-1; $i++){
+			for($j=0; $j <= count($data[$i]['grades'])-1; $j++){
+				for($k=0; $k <= count($data[$i]['grades'][$j]['GradesForSem'])-1; $k++){
+					echo $this->DCSMS_Model->addStudent($data[$i]['stunum'], $data[$i]['name'], $data[$i]['grades'][$j]['GradesForSem'][$k]['subject'], $data[$i]['grades'][$j]['GradesForSem'][$k]['units'], $data[$i]['grades'][$j]['GradesForSem'][$k]['grade'], $data[$i]['grades'][$j]['SchoolYear'], $data[$i]['grades'][$j]['SemNumber'], $data[$i]['grades'][$j]['GWA']);
+				}
+			}
+		}
+	
+	} 	
 	public function individualProfile(){ //passing parameter for individual profile loading view individual profile
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');

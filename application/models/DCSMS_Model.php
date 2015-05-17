@@ -23,6 +23,40 @@
 			$this->db->cache_delete_all();
 		}
 
+		/*public function addStudent($stunum, $stuname, $stusubject, $units, $grades, $schoolyear, $sem, $gwa){
+			return $this->db->query("INSERT INTO studentgrades
+							(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
+							VALUES ($stunum, $stusubject, $units, grades, $schoolyear, $sem");
+		}*/
+		public function addStudent($stunum, $stuname, $stusubject, $units, $grades, $schoolyear, $sem, $gwa){
+			$data = array(
+			   'StuNum' => $stunum,
+			   'StuName' => "$stuname" ,
+			);
+			$data2 = array(
+				'StuNum' => $stunum,
+				'StuSubject' => "$stusubject",
+				'Units' => $units,
+				'Grade' => $grades,
+				'SchoolYear' => $schoolyear,
+				'Sem' => $sem,);
+			$data3 = array(
+				'StuNum' => $stunum,
+				'GWA'=> $gwa,
+				'SchoolYear' => $schoolyear,
+				'Sem' => $sem,);
+			$this->db->insert('studentinfo', $data);
+			$this->db->insert('studentgrades', $data2);
+			$this->db->insert('studentgwa', $data3);
+		/*	$this->db->query("INSERT INTO `studentinfo`
+							(StuNum, StuName)
+							VALUES ($stunum, \"$stuname\");");
+		/*	//$this->db->query("INSERT INTO studentgrades
+			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
+		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
+			return $stunum;
+		}
+
 	    public function getDQs($stunum){
 			
 			return $query = $this->db->query("SELECT DISTINCT DQDetails
