@@ -29,10 +29,10 @@
           <img src="img/upd_dcs_logo.png" alt="DCS Logo">
           <h1>Department of<br>Computer Science</h1>
           <p class="lead1">Academic Monitoring System</p>         
-          <br>
+          <br><br><br>
           <form class="col-lg-12" method = "get">
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
-              <input class="form-control input-lg" placeholder="Search" type="text" name = "INPUT">
+              <input class="form-control input-lg" style="width:100%" placeholder="Search" type="text" name = "INPUT">
                 <span class="input-group-btn">
                  <span class="input-group-btn">
                   <button onclick = "searchByFunction()" type="button" class="btn btn-lg btn-success dropdown-toggle="collapse" " name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
@@ -42,9 +42,9 @@
                     </ul>
                 </span>
             </div>
-            <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><p>
-            </p><button class="btn btn-lg btn-primary" id="try"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
-            </p><button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">TRY UPDATE</button>
+            <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><pre></pre>
+            <button class="btn btn-lg btn-primary" id="try"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button><pre></pre>
+            <button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">TRY UPDATE</button>
           </form>
         </div>
       </div> <!-- /row -->
@@ -65,24 +65,37 @@
         var sems = [];
         var studname;
         var studnum;
+        var count = [];
 
         o = $('object');
         p = $('object');
 
-        $('.invisible', o[0].contentDocument).each(function(index, value){
+        $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
-            if(index == 0){
-              //alert($(this).html());
-              studname = ($(this).html());
-              alert(studname);
-            }
             if(index == 2){
               //alert($(this).html());
-              studnum = ($(this).html());
-              alert(studnum);
+              count.push($(this).html());
+             
             }
           });
         });
+
+         alert(count);
+
+        // $('.invisible', o[0].contentDocument).each(function(index, value){
+        //   $(this).find('td', p[0].contentDocument).each(function(index, value){
+        //     if(index == 0){
+        //       //alert($(this).html());
+        //       studname = ($(this).html());
+        //       alert(studname);
+        //     }
+        //     if(index == 2){
+        //       //alert($(this).html());
+        //       studnum = ($(this).html());
+        //       alert(studnum);
+        //     }
+        //   });
+        // });
 
         // $('tr', o[0].contentDocument).each(function(index, value){
         //   $(this).find('th', p[0].contentDocument).each(function(index, value){
@@ -124,7 +137,7 @@
         //   });
         // });
 
-      }, 3000);
+      }, 5000);
     });
   });
 
