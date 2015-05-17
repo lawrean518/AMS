@@ -29,22 +29,22 @@
           <img src="img/upd_dcs_logo.png" alt="DCS Logo">
           <h1>Department of<br>Computer Science</h1>
           <p class="lead1">Academic Monitoring System</p>         
-          <br>
+          <br><br><br>
           <form class="col-lg-12" method = "get">
             <div class="input-group" style="width:400px;text-align:center;margin:0 auto;">
-              <input class="form-control input-lg" placeholder="Search" type="text" name = "INPUT">
+              <input class="form-control input-lg" style="width:100%" placeholder="Search" type="text" name = "INPUT">
                 <span class="input-group-btn">
                  <span class="input-group-btn">
-                  <button onclick = "searchByFunction()" type="button" class="btn btn-lg btn-success dropdown-toggle" name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
+                  <button onclick = "searchByFunction()" type="button" class="btn btn-lg btn-success dropdown-toggle="collapse" " name = "DD" id = "DD" data-toggle="dropdown" value = "Student Number">Student Number<span class = "caret"></span></button><input type = "hidden" name = "DROPDOWN" id = "DROPDOWN" value = "Student Number">
                   <ul class="dropdown-menu" role="menu">
                     <li><a onclick = "searchByFunction()" href="#">Student Number</a></li>
                     <li><a onclick = "searchByFunction()" href="#">Last Name</a></li>
                     </ul>
                 </span>
             </div>
-            <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><p>
-            </p><button class="btn btn-lg btn-primary" id="try"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button>
-            </p><button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">TRY UPDATE</button>
+            <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><pre></pre>
+            <button class="btn btn-lg btn-primary" id="try"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button><pre></pre>
+            <button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">TRY UPDATE</button>
           </form>
         </div>
       </div> <!-- /row -->
@@ -58,8 +58,11 @@
 
       $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
       
+
       var jsonText = "[" ;
 
+
+  
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
        
         var grades = [];
@@ -87,7 +90,9 @@
               studname = ($(this).html());
             }
             if(index == 2){
-              studnum = ($(this).html());
+              temp = $(this).html();
+              temp = temp.replace("-", "");
+              studnum = (temp);
             }
           });
         });
@@ -95,7 +100,12 @@
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('th', p[0].contentDocument).each(function(index, value){
             if(index == 0){
-              sems.push($(this).html());
+              temp = $(this).html();
+              if(temp.search("Summer") != -1 || temp.search("Semester") != -1){
+                if(temp.search("Tag") == -1){
+                  sems.push($(this).html());
+                }
+              }
             }
           });
         });
@@ -103,7 +113,10 @@
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 5){
-              grades.push($(this).html());
+              temp = $(this).html().trim();
+              if(temp.charAt(0) != ""){
+                grades.push(temp);
+              }
             }
           });
         });
@@ -144,14 +157,20 @@
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 4){
-              units.push($(this).html());
+              temp = $(this).html();
+              temp = temp.replace("("
+
+                , "");
+              temp = temp.replace(")", "");
+              units.push(temp);
             }
           });
         });  
-        
+
         alert(sems);
         alert(grades);
         alert(subjects);
+        alert(gwas);
         alert(units);
         alert(studnum);
         alert(studname);
@@ -208,41 +227,34 @@
             if(k >= grades.length){
               break;
             }
-            jsonText = jsonText + " ] }"
+            jsonText = jsonText + " ] }";
           }
-          jsonText = jsonText + " ] }"
+          jsonText = jsonText + " ] }";
         }
-      }
+  
 
+      }, 3000);
+  
       jsonText = jsonText + "]";
-      /*
         //var jsons = JSON.stringify(grades);
-        var person = JSON.parse("[" + '{\"firstName\":\"John\", \"lastName\":\"Doe\", \"age\":46}, {\"firstName\":\"Olivia\", \"lastName\":\"Demetria\", \"age\":46}' +"]");
-        var textToParse = "{" + '\"info\" : [{ \"name\" : \"Olivia\", \"stunum\" : \"2012-61188\" }, { \"name\" : \"Olivia2\", \"stunum\" : \"2012-61189\" }], \"grades\" : {\"' + name + '\" : [ { \"SemNumber\" : 1, \"SchoolYear\" : 1213, \"GWA\": 3, \"GradesForSem\" : [ { \"grade\": 1, \"subject\": \"ES 10\", \"units\": 3 } ] } ] }' + "}";
-        var textToParse2 = "[" + '{\"name\" : \"Olivia\", \"stunum\" : 201261188, \"grades\" : [ {\"SemNumber\" : 1, \"SchoolYear\" : 1213, \"GWA\": 3, \"GradesForSem\" : [ { \"grade\": 1, \"subject\": \"ES 10\", \"units\": 3} ] } ] }, {\"name\" : \"Tetey\", \"stunum\" : 201238409, \"grades\" : [ {\"SemNumber\" : 1, \"SchoolYear\" : 1213, \"GWA\": 3, \"GradesForSem\" : [ { \"grade\": 3, \"subject\": \"Bio 1\", \"units\": 3} ] } ] }' + "]";
-        var text = JSON.parse(textToParse2);      
-        
-        
-        //var jsons2 = JSON.parse(text);
-        //var jsons = JSON.stringify(jsons2);
-        var jsons = JSON.stringify(text);
-        $.ajax({
-            type: 'POST',
-            data: {json: jsons},
-            dataType: 'html',
-            url: "<?php echo site_url("DCSMS/script");?>",
-              success: function (meeeh) {
-                    console.log("SUCH LIFE");
-                    alert(meeeh);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-              alert(xhr.status);
-              alert(thrownError);
-          }
-        });*/ 
-    }, 3000);
+      var text = JSON.parse(jsonText);      
+      var jsons = JSON.stringify(text);
+      $.ajax({
+          type: 'POST',
+          data: {json: jsons},
+          dataType: 'html',
+          url: "<?php echo site_url("DCSMS/script");?>",
+            success: function (meeeh) {
+                  console.log("SUCH LIFE");
+                  alert(meeeh);
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+      });
+    });
   });
-
 </script>
 </body>
 </html>
