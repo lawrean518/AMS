@@ -57,24 +57,30 @@
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
 
       $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
-      var grades = [];
-      var subjects = [];
-      var units = [];
-      var sems = [];
-      var gwas = [];
-      var studname;
-      var studnum;
+      
 
-      var temp;
-      var index1;
-      var index2;
-
-      var jsonText;
+      var jsonText = "[" ;
 
 
   
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
        
+        var grades = [];
+        var subjects = [];  
+        var gecount = [];
+        var units = [];
+        var sems = [];
+        var gwas = [];
+        var studname;
+        var studnum;
+
+
+        var temp;
+        var index;
+        var index1;
+        var index2;
+        var a = 0;
+
         o = $('object');
         p = $('object');
 
@@ -118,20 +124,31 @@
         $('tr', o[0].contentDocument).each(function(index, value){
           $(this).find('td', p[0].contentDocument).each(function(index, value){
             if(index == 2){
-              temp = $(this).html();
-              if(temp.search("strong") == -1){
-                index1 = temp.indexOf(" ");
-                index2 = temp.indexOf(" ", index1+1);
-                temp = temp.substring(0, index2);
-                if(temp.charAt(0) != ""){
-                  subjects.push(temp);
+              temp = $(this).html().trim();
+              if(isNaN(temp)){
+                if(temp.search("strong") == -1){
+                  index1 = temp.indexOf(" ");
+                  index2 = temp.indexOf(" ", index1+1);
+                  temp = temp.substring(0, index2);
+                  if(temp.charAt(0) != ""){
+                    subjects.push(temp);
+                  }
+                }
+                else{
+                  index1 = temp.indexOf(">");
+                  index2 = temp.indexOf("<", index1);
+                  temp = temp.substring(index1+1, index2);
+                  subjects.push("End of Sem");
+                  gwas.push(temp);
                 }
               }
               else{
-                index1 = temp.indexOf(">");
-                index2 = temp.indexOf("<", index1);
-                temp = temp.substring(index1+1, index2);
-                gwas.push(temp);
+                if(temp.charAt(0) != ""){
+                  if(a < 3){
+                    a++;
+                    gecount.push(temp);
+                  }
+                }
               }
             }
           });
@@ -157,11 +174,70 @@
         alert(units);
         alert(studnum);
         alert(studname);
+        alert(gecount);
         
+        appendToJSONString();
+        console.log(jsonText);
+        function appendToJSONString(){
+          var i;
+          var j = 0;
+          var k = 0;
 
+          var semNumber;
+          var schoolYear;
+
+          var index3;
+          var index4;
+
+          var firstLoop1 = false;
+
+          //insert comma before {
+          jsonText = jsonText + " {\"name\": \"" + studname + "\", \"stunum\": \"" + studnum + "\", \"AH\": \"" + gecount[0] + "\", \"SSP\": \"" + gecount[1] + "\", \"MST\": \"" + gecount[2] + "\", \"grades\": [";
+
+          for (i = 0; i < sems.length; i++){
+            index3 = sems[i].search(" ");
+            index4 = sems[i].search("AY") + 3; //start index nung SY
+            semNumber = sems[i].substring(0, index3);
+            if(semNumber.search("First") != -1){
+              semNumber = '1';
+            }
+            else if(semNumber.search("Second") != -1){
+              semNumber = '2';
+            }
+            else if(semNumber.search("Summer") != -1){
+              semNumber = '3';
+            }
+
+            schoolYear = sems[i].substring(index4+2, index4+4) + "" + sems[i].substring(index4+7, index4+9);
+            if(!firstLoop1){
+              jsonText = jsonText + "{ ";
+              firstLoop1 = true;
+            }  
+            else{
+              jsonText = jsonText + ", { ";
+            }
+            jsonText = jsonText + "\"semNumber\": \"" + semNumber + "\", \"schoolYear\": \"" + schoolYear + "\", \"GWA\": \"" + gwas[i] + "\",  \"GradesForSem\": [ ";
+            var firstLoop2 = false;
+            while(subjects[j].search("End of Sem") == -1){
+              jsonText = jsonText + "{ \"subject:\": \"" + subjects[j] + "\", \"grade\": \"" + grades[k] + "\", \"units\": \"" + units[k] + "\" }";
+              j++;
+              k++;
+            }
+            j++;
+            if(k >= grades.length){
+              break;
+            }
+            jsonText = jsonText + " ] }"
+          }
+          jsonText = jsonText + " ] }"
+        }
   
 
       }, 3000);
+  
+      jsonText = jsonText + ""
+
+    
     });
   });
 
