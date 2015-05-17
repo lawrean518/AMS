@@ -229,11 +229,14 @@ h6 {
   margin-top: 20px;
 
 }
+<<<<<<< HEAD
+=======
 
 @font-face {
   font-family: print_clearly;
   src: url(print_clearly_tt.ttf);
 }
+>>>>>>> 3d80a91723f57a7f624fe5e775315e6423576622
 
 @font-face {
   font-family: visitor;
