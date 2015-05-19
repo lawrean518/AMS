@@ -53,11 +53,14 @@
 
 <div id="siteloader" style = "border: 2px solid red"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
 <script type="text/javascript">
+
+
   $(document).ready(function() {
     $('#update').click(function(){ //when Update try is clicked eto mangyayari dapat
 
       $("#siteloader").html('<object id="crs-object" data="https://crs.upd.edu.ph/viewgrades/" style = "width: 791px"/>'); //eto yung makikita sa div na webpage
 
+<<<<<<< HEAD
       setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
         var grades = [];
         var classes = [];
@@ -106,41 +109,333 @@
         //     }
         //   });
         // });
+=======
+     
 
-        // $('tr', o[0].contentDocument).each(function(index, value){
-        //   $(this).find('td', p[0].contentDocument).each(function(index, value){
-        //     if(index == 5){
-        //       //alert($(this).html());
-        //       grades.push($(this).html());
-        //       alert(grades);
-        //     }
-        //   });
-        // });
+      // var jsonText = "[" ;
 
-        // $('tr', o[0].contentDocument).each(function(index, value){
-        //   $(this).find('td', p[0].contentDocument).each(function(index, value){
-        //     if(index == 2){
-        //       //alert($(this).html());
-        //       classes.push($(this).html());
-        //       alert(classes);
-        //     }
-        //   });
-        // });
+
+  
+      // setTimeout(function(){ //nagseset time out para mag run yung ibang function para syang sleep thread
+       
+      //   var grades = [];
+      //   var subjects = [];  
+      //   var gecount = [];
+      //   var units = [];
+      //   var sems = [];
+      //   var gwas = [];
+      //   var studname;
+      //   var studnum;
+
+
+      //   var temp;
+      //   var index;
+      //   var index1;
+      //   var index2;
+      //   var a = 0;
+
+      //   o = $('object');
+      //   p = $('object');
+       
+      //   $('#txt_studentno', o[0].contentDocument).val('201261188');
+      //   $('input', o[0].contentDocument).each(function(index, value){
+      //     if(index == 2){
+      //       $(value).click(); 
+      //     }
+      //   });
+
+      //   alert("hi");
+
+      //   $('#txt_studentno', o[0].contentDocument).val('201238419');
+      //   $('input', o[0].contentDocument).each(function(index, value){
+      //     if(index == 2){
+      //       $(value).click(); 
+      //     }
+      //   });
+
+      //   $('#txt_studentno', o[0].contentDocument).val('201265955');
+      //   $('input', o[0].contentDocument).each(function(index, value){
+      //     if(index == 2){
+      //       $(value).click(); 
+      //     }
+      //   });
+        
+
+      //   $('.invisible', o[0].contentDocument).each(function(index, value){
+      //     $(this).find('td', p[0].contentDocument).each(function(index, value){
+      //       if(index == 0){
+      //         studname = ($(this).html());
+      //       }
+      //       if(index == 2){
+      //         temp = $(this).html();
+      //         temp = temp.replace("-", "");
+      //         studnum = temp;
+      //       }
+      //     });
+      //   });
+
+      //   $('tr', o[0].contentDocument).each(function(index, value){
+      //     $(this).find('th', p[0].contentDocument).each(function(index, value){
+      //       if(index == 0){
+      //         temp = $(this).html();
+      //         if(temp.search("Summer") != -1 || temp.search("Semester") != -1){
+      //           if(temp.search("Tag") == -1){
+      //             sems.push($(this).html());
+      //           }
+      //         }
+      //       }
+      //     });
+      //   });
+      
+      //   $('tr', o[0].contentDocument).each(function(index, value){
+      //     $(this).find('td', p[0].contentDocument).each(function(index, value){
+      //       if(index == 5){
+      //         temp = $(this).html().trim();
+      //         if(temp.charAt(0) != ""){
+      //           grades.push(temp);
+      //         }
+      //       }
+      //     });
+      //   });
+        
+      //   $('tr', o[0].contentDocument).each(function(index, value){
+      //     $(this).find('td', p[0].contentDocument).each(function(index, value){
+      //       if(index == 2){
+      //         temp = $(this).html().trim();
+      //         if(isNaN(temp)){
+      //           if(temp.search("strong") == -1){
+      //             index1 = temp.indexOf(" ");
+      //             index2 = temp.indexOf(" ", index1+1);
+      //             temp = temp.substring(0, index2);
+      //             if(temp.charAt(0) != ""){
+      //               subjects.push(temp);
+      //             }
+      //           }
+      //           else{
+      //             index1 = temp.indexOf(">");
+      //             index2 = temp.indexOf("<", index1);
+      //             temp = temp.substring(index1+1, index2);
+      //             subjects.push("End of Sem");
+      //             gwas.push(temp);
+      //           }
+      //         }
+      //         else{
+      //           if(temp.charAt(0) != ""){
+      //             if(a < 3){
+      //               a++;
+      //               gecount.push(temp);
+      //             }
+      //           }
+      //         }
+      //       }
+      //     });
+      //   });
+>>>>>>> 2ee58846a4e07bcf5b01416870a2b51125ce6642
 
         // $('tr', o[0].contentDocument).each(function(index, value){
         //   $(this).find('td', p[0].contentDocument).each(function(index, value){
         //     if(index == 4){
-        //       //alert($(this).html());
-        //       units.push($(this).html());
-        //       alert(units);
+        //       temp = $(this).html();
+        //       temp = temp.replace("("
+
+        //         , "");
+        //       temp = temp.replace(")", "");
+        //       units.push(temp);
         //     }
         //   });
+        // });  
+
+        // alert(sems);
+        // alert(grades);
+        // alert(subjects);
+        // alert(gwas);
+        // alert(units);
+        // alert(studnum);
+        // alert(studname);
+        // alert(gecount);
+       
+        // appendToJSONString();
+        
+        // function appendToJSONString(){
+        //   var i;
+        //   var j = 0;
+        //   var k = 0;
+
+        //   var semNumber;
+        //   var schoolYear;
+
+        //   var index3;
+        //   var index4;
+
+        //   var firstLoop1 = false;
+
+        //   //insert comma before {
+        //   jsonText = jsonText + " {\"name\": \"" + studname + "\", \"stunum\": " + parseInt(studnum) + ", \"AH\": " + parseInt(gecount[0]) + ", \"SSP\": " + parseInt(gecount[1]) + ", \"MST\": " + parseInt(gecount[2]) + ", \"grades\": [";
+
+        //   for (i = 0; i < sems.length; i++){
+        //     index3 = sems[i].search(" ");
+        //     index4 = sems[i].search("AY") + 3; //start index nung SY
+        //     semNumber = sems[i].substring(0, index3);
+        //     if(semNumber.search("First") != -1){
+        //       semNumber = 1;
+        //     }
+        //     else if(semNumber.search("Second") != -1){
+        //       semNumber = 2;
+        //     }
+        //     else if(semNumber.search("Summer") != -1){
+        //       semNumber = 3;
+        //     }
+        //     if(semNumber == 3){  
+        //       var after = parseInt(sems[i].substring(index3+3, index3+5));
+        //       var before =  after - 1;
+            
+        //       schoolYear = "" + before + "" + after;
+        //       parseInt(schoolYear);
+        //     }
+        //     else{
+        //       schoolYear = sems[i].substring(index4+2, index4+4) + "" + sems[i].substring(index4+7, index4+9);  
+        //     }
+        //     if(!firstLoop1){
+        //       jsonText = jsonText + "{ ";
+        //       firstLoop1 = true;
+        //     }  
+        //     else{
+        //       jsonText = jsonText + ", { ";
+        //     }
+        //     jsonText = jsonText + "\"semNumber\": " + semNumber + ", \"schoolYear\": " + schoolYear + ", \"GWA\": " + gwas[i] + ",  \"GradesForSem\": [ ";
+        //     var firstLoop2 = false;
+        //     while(subjects[j].search("End of Sem") == -1){
+        //       if(!firstLoop2){  
+        //         jsonText = jsonText + "{ ";
+        //         firstLoop2 = true;
+        //       }
+        //       else{
+        //         jsonText = jsonText + ", {";
+        //       }
+              
+        //       jsonText = jsonText + " \"subject\": \"" + subjects[j] + "\", \"grade\": " + parseFloat(grades[k]) + ", \"units\": " + parseInt(units[k]) + " }";
+        //       j++;
+        //       k++;
+        //     }
+
+        //     j++;
+        //     if(k >= grades.length){
+        //       break;
+        //     }
+        //     jsonText = jsonText + " ] }";
+        //   }
+        //   jsonText = jsonText + " ] } ] }";
+        // }
+        // console.log("hii");
+        // jsonText = jsonText + " ]";
+        // console.log("eh ito");
+        // //var jsons = JSON.stringify(grades);
+        // console.log(jsonText);
+        // var urlz = "<?php echo site_url("DCSMS/script");?>";
+        // console.log(urlz);
+        // var text = JSON.parse(jsonText);      
+        // var jsons = JSON.stringify(text);
+
+        // $.ajax({
+        //     type: 'POST',
+        //     data: {json: jsons},
+        //     dataType: 'html',
+        //     url: urlz,
+        //       success: function (meeeh) {
+        //             console.log("SUCH LIFE");
+        //             alert(meeeh);
+        //         },
+        //       error: function (xhr, ajaxOptions, thrownError) {
+        //      // alert(xhr.status);
+        //     //  alert(thrownError);
+        //   }
         // });
 
+<<<<<<< HEAD
       }, 5000);
+=======
+        // console.log("JSON");
+      // }, 4000);
+
+      // var checks = function () {
+          
+      //       $('#txt_studentno', o[0].contentDocument).val('201238409');
+      //       $('input', o[0].contentDocument).each(function(index, value){
+      //         if(index == 2){
+      //           $(value).click(); 
+      //         }
+      //       });
+      //       //clearInterval(timer);
+          
+
+
+      //       // $('#txt_studentno', o[0].contentDocument).val('201261188');
+      //       // $('input', o[0].contentDocument).each(function(index, value){
+      //       //   if(index == 2){
+      //       //     $(value).click(); 
+      //       //   }
+      //       // });
+      //       // clearInterval(timer);
+      //   };
+      //   timer = setInterval(checker, 3000);
+
+      // setTimeout(function(){
+      //   $('#txt_studentno', o[0].contentDocument).val('201265955');
+      //   $('input', o[0].contentDocument).each(function(index, value){
+      //     if(index == 2){
+      //       $(value).click(); 
+      //     }
+      //   });
+
+      // }, 4000);
+
+function readTextFile(file){
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+} 
+
+
+readTextFile("file:///C:/xampp/htdocs/AMS/assets/students/students.txt");
+
+      // x = 0;
+      // var checker = function(){
+
+      //   var studarr = ['201261188', '201265955', '201238409']
+
+      //   o = $('object');
+      //   p = $('object');
+
+      //   $('#txt_studentno', o[0].contentDocument).val(studarr[x]);
+      //   $('input', o[0].contentDocument).each(function(index, value){
+      //     if(index == 2){
+      //       $(value).click(); 
+      //     }
+      //   });
+
+      //   x = x+1;
+
+      //   if(x==3){
+      //     clearInterval(timer);
+      //   }
+
+      // };
+      // timer = setInterval(checker, 4000);
+
+>>>>>>> 2ee58846a4e07bcf5b01416870a2b51125ce6642
     });
   });
-
 </script>
 </body>
 </html>
