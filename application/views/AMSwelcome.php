@@ -85,8 +85,6 @@
       x = 0;
       // alert(theStudents);
       // alert(theLength);
-      alert("GUMANA");
-
       // HUWAG TANGGALIN SA PAGKAKACOMMENT! var studarr = ['201261188', '201265955', '201238409'];
 
       var jsonText = "[" ; 
@@ -104,10 +102,17 @@
 
         $('#txt_studentno', o[0].contentDocument).val(theStudents[x]);
         $('input', o[0].contentDocument).each(function(index, value){
+          if(x==0){
+             console.log("putangina this");
+          }
           if(index == 2){
             $(value).click(); 
           }
         });
+
+        setTimeout(function(){
+            console.log("putangina");
+        }, 5000);
 
         setTimeout(function(){
           var grades = [];
@@ -124,6 +129,7 @@
           var index1;
           var index2;
           var a = 0;
+
           $('.invisible', o[0].contentDocument).each(function(index, value){
             $(this).find('td', p[0].contentDocument).each(function(index, value){
               if(index == 0){
@@ -136,6 +142,8 @@
               }
             });
           });
+
+          console.log("Where me?" + studname);
 
           $('tr', o[0].contentDocument).each(function(index, value){
             $(this).find('th', p[0].contentDocument).each(function(index, value){
@@ -217,8 +225,8 @@
           //alert(gecount);
        
           appendToJSONString();
-          
-          studentsInJsonText = studentsInJsonText + " " + studname; 
+          //console.log(firstStudent);
+          studentsInJsonText = studentsInJsonText + "" + studname;
           function appendToJSONString(){
             var i;
             var j = 0;
@@ -235,7 +243,7 @@
             //insert comma before {
             if(firstStudent){
               jsonText = jsonText + " {\"name\": \"" + studname + "\", \"stunum\": " + parseInt(studnum) + ", \"AH\": " + parseInt(gecount[0]) + ", \"SSP\": " + parseInt(gecount[1]) + ", \"MST\": " + parseInt(gecount[2]) + ", \"grades\": [";
-
+              firstStudent = false; 
             }
             else{
               jsonText = jsonText + ", {\"name\": \"" + studname + "\", \"stunum\": " + parseInt(studnum) + ", \"AH\": " + parseInt(gecount[0]) + ", \"SSP\": " + parseInt(gecount[1]) + ", \"MST\": " + parseInt(gecount[2]) + ", \"grades\": [";
@@ -297,17 +305,17 @@
             jsonText = jsonText + " ] } ] }";
           }
 
-          console.log("hii");
+          //console.log("hii");
           jsonText = jsonText + " ]";
-          console.log("eh ito");
+          //console.log("eh ito");
           //var jsons = JSON.stringify(grades);
           //console.log(jsonText);
           var urlz = "<?php echo site_url("DCSMS/script");?>";
-          console.log(urlz);
+          //console.log(urlz);
           //var text = JSON.parse(jsonText);      
           //var jsons = JSON.stringify(text);
         }, 5000);
-          /*
+        /*
                 $.ajax({
                     type: 'POST',
                     data: {json: jsons},
@@ -320,20 +328,28 @@
                       error: function (xhr, ajaxOptions, thrownError) {
                      // alert(xhr.status);
                     //  alert(thrownError);
-                  }
+                    }
                 });
-          */
+          
                 // HUWAG TANGGALIN SA PAGKAKACOMMENT! }, 5000);
-
+        */
         x = x+1;
         if(x == theLength){
           clearInterval(timer);
         }
-      };
+        //console.log(jsonText);
+    };
+      //console.log(studentsInJsonText);
+     
+    timer = setInterval(checker, 5000);
+   
+    setTimeout(function(){
+      //alert(jsonText); 
       console.log(studentsInJsonText);
       console.log(jsonText);
-      timer = setInterval(checker, 5000);
+    }, 70000);
     });
+    
   });
 
 </script>
