@@ -24,13 +24,17 @@
 		}
 
 		public function checkSubjectFailures($stunum, $subject){
-			$query = $this->db->query("SELECT COUNT(*) AS total FROM `studentgrades`
+			/*$query = $this->db->query("SELECT COUNT(*) AS total FROM `studentgrades`
 							WHERE StuNum=$stunum
 							AND	StuSubject=\"$subject\"
 							AND Grade > 3;");
-		   $row = $query->row(); 
-
-		   return $row->total;
+			$row = $query->row(); 
+		 	return $row->total;*/
+			$query = $this->db->query("SELECT * FROM `studentgrades`
+							WHERE StuNum=$stunum
+							AND	StuSubject=\"$subject\"
+							AND Grade > 3;");
+			return $query->num_rows();
 		}
 
 		public function insertIgnore(){
