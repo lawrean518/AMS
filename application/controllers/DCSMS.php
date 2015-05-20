@@ -50,13 +50,13 @@ class DCSMS extends CI_Controller {
 			foreach($row['grades'] as $row2){
 				$schoolYear = $row2['schoolYear'];
 				$semNumber = $row2['semNumber'];
-				$failed = $row2['failed'];
-				$passed = $row2['passed'];
+				$failed = $row2['fail'];
+				$passed = $row2['pass'];
 				$this->DCSMS_Model->addStudentGWA($stunum, $schoolYear, $semNumber, $row2['GWA']);
 				foreach($row2['GradesForSem'] as $row3){
 					$this->DCSMS_Model->addStudentGrade($stunum, $row3['subject'], $row3['units'], $row3['grade'], $schoolYear, $semNumber);
 				}
-				$this->addDQs($stunum, $failed, $passed);
+				//$this->addDQs($stunum, $failed, $passed);
 			}
 		}
 		return count($data[$i]['grades']);
