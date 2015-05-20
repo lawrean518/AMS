@@ -23,6 +23,16 @@
 			$this->db->cache_delete_all();
 		}
 
+		public function addDQs($stunum, $DQs){
+			$data = array(
+				'StuNum' => $stunum,
+				'DQDetails' => "$DQs",);
+			$this->db->insert('studentdq', $data);
+			/*$this->db->query("INSERT INTO studentdq
+								(StuNum, DQDetails)
+								VALUES ($stunum, $DQs)";)
+		*/}
+
 		/*public function addStudent($stunum, $stuname, $stusubject, $units, $grades, $schoolyear, $sem, $gwa){
 			return $this->db->query("INSERT INTO studentgrades
 							(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)

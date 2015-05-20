@@ -40,16 +40,6 @@ class DCSMS extends CI_Controller {
 		$k =  0;
 	  // here i would like use foreach
 		$this->load->model('DCSMS_Model');
-		/*for($i =0; $i <= count($data)-1; $i++){
-			$this->DCSMS_Model->addStudentInfo($data[$i]['stunum'], $data[$i]['name']);
-			for($j=0; $j <= count($data[$i]['grades'])-1; $j++){
-				$this->DCSMS_Model->addStudentGWA($data[$i]['stunum'], $data[$i]['grades'][$j]['schoolYear'], $data[$i]['grades'][$j]['semNumber'], $data[$i]['grades'][$j]['GWA']);
-				for($k=0; $k <= count($data[$i]['grades'][$j]['GradesForSem'])-1; $k++){
-					$this->DCSMS_Model->addStudentGrade($data[$i]['stunum'], $data[$i]['grades'][$j]['GradesForSem'][$k]['subject'], $data[$i]['grades'][$j]['GradesForSem'][$k]['units'], $data[$i]['grades'][$j]['GradesForSem'][$k]['grade'], $data[$i]['grades'][$j]['schoolYear'], $data[$i]['grades'][$j]['semNumber']);
-				}
-			}
-		}
-		*/
 		foreach($data as $row){
 			$stunum = $row['stunum'];
 			$stuname = $row['name'];
