@@ -44,14 +44,14 @@
             </div>
             <br><button class="btn btn-lg btn-primary" name="submit" value="Search" type="submit" formaction = "<?php echo site_url("DCSMS/search");?>">SEARCH</button><pre></pre>
             <button class="btn btn-lg btn-primary" id="try"  name="submit" value="Show All" type="submit" formaction = "<?php echo site_url("DCSMS/showAll");?>">SHOW ALL</button><pre></pre>
-            <button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">TRY UPDATE</button>
+            <button class="btn btn-lg btn-primary" id="update"  name="updatebtn" value="Update Try" type="button">UPDATE</button>
           </form>
         </div>
       </div> <!-- /row -->
 </div> <!-- /container full -->
 
 
-<div id="siteloader" style = "border: 2px solid red"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
+<div id="siteloader"></div> <!-- for debugging purposes. if a webpage is loaded in a div class (buburahin after ok na yung code natin) -->
 <script type="text/javascript">
 
 
@@ -118,6 +118,8 @@
           var units = [];
           var sems = [];
           var gwas = [];
+          var pass = [];
+
           var studname;
           var studnum;
 
@@ -127,6 +129,25 @@
           var index2;
           var a = 0;
 
+
+          var passed;
+          var failed;
+
+          $('.tinytext', o[0].contentDocument).each(function(index, value){
+            temp = $(this).html();
+            index1 = temp.indexOf("%");
+
+            if(index1 != -1){
+              var temp2 = temp.split("<br>");
+              index1 = temp2[0].indexOf("%");
+              passed = temp2[0].substring(0, index1).trim();
+              index1 = temp2[1].indexOf("%");
+              failed = temp2[1].substring(0, index1).trim();
+              pass.push(passed);
+              pass.push(failed);
+            }
+          });
+          //alert(pass);
           $('.invisible', o[0].contentDocument).each(function(index, value){
             $(this).find('td', p[0].contentDocument).each(function(index, value){
               if(index == 0){
@@ -256,7 +277,7 @@
             var i;
             var j = 0;
             var k = 0;
-
+            var l = 0;
             var semNumber;
             var schoolYear;
 
@@ -305,7 +326,8 @@
               else{
                 jsonText = jsonText + ", { ";
               }
-              jsonText = jsonText + "\"semNumber\": " + semNumber + ", \"schoolYear\": " + schoolYear + ", \"GWA\": " + gwas[i] + ",  \"GradesForSem\": [ ";
+              jsonText = jsonText + "\"semNumber\": " + semNumber + ", \"schoolYear\": " + schoolYear + ", \"GWA\": " + gwas[i] + ", \"pass\": " + parseInt(pass[l]) + ", \"fail\": " + parseInt(pass[l+1]) + ", \"GradesForSem\": [ ";
+              l = l+2;
               var firstLoop2 = false;
               while(subjects[j].search("End of Sem") == -1){
                 if(!firstLoop2){  

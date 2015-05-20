@@ -333,3 +333,7 @@ h2{
   -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
 }
 
+#siteloader{
+  visibility: hidden;
+}
+

@@ -25,7 +25,7 @@
 
 <body background = "<?php echo base_url("img/congruent_pentagon.png"); ?>">
 <div class="jumbotron">
-  <img height = "80px" style = "float:left; padding-right:15px; padding-left:15px;" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo">
+   <a href='http://localhost/AMS'><img height = "80px" style = "float:left; padding-right:15px; padding-left:15px;" src="<?php echo base_url("img/upd_dcs_logo.png"); ?>" alt="DCS Logo"></a>
   <h2> Department of Computer Science</h2>
   <p class="lead"> Academic Monitoring System</p>
 </div>
