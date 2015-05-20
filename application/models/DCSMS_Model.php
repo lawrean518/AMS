@@ -34,7 +34,7 @@
 			return $this->db->query("INSERT INTO studentgrades
 							(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
 							VALUES ($stunum, $stusubject, $units, grades, $schoolyear, $sem");
-		}*/
+		}
 		public function addStudent($stunum, $stuname, $stusubject, $units, $grades, $schoolyear, $sem, $gwa){
 			$data = array(
 			   'StuNum' => $stunum,
@@ -60,19 +60,30 @@
 							VALUES ($stunum, \"$stuname\");");
 		/*	//$this->db->query("INSERT INTO studentgrades
 			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
-		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
+			//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
 			return $stunum;
 		}
+	*/
+
 		public function addStudentInfo($stunum, $stuname, $AH, $MST, $SSP){
+			
+			$query = $this->db->query("SELECT stunote FROM studentinfo WHERE stunum = $stunum");
+			$stunote = "";
+			if($query->num_rows() > 0){
+				$row = $query->first_row('array');
+				$stunote = $row['stunote'];
+			}
+
 			$data = array(
 			   'StuNum' => $stunum,
 			   'StuName' => "$stuname" ,
 			   'AH' => $AH,
 			   'MST' => $MST,
 			   'SSP' => $SSP,
-			   'StuNote' => "",
+			   'StuNote' => $stunote,
 			);
-			$this->db->insert('studentinfo', $data);
+
+			$this->db->replace('studentinfo', $data);
 			/*	$this->db->query("INSERT INTO `studentinfo`
 							(StuNum, StuName)
 							VALUES ($stunum, \"$stuname\");");
@@ -80,7 +91,9 @@
 			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
 		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
 			return $stunum;
-		}public function addStudentGrade($stunum, $stusubject, $units, $grades, $schoolyear, $sem){
+		}
+
+		public function addStudentGrade($stunum, $stusubject, $units, $grades, $schoolyear, $sem){
 			$data2 = array(
 				'StuNum' => $stunum,
 				'StuSubject' => "$stusubject",
@@ -88,7 +101,7 @@
 				'Grade' => $grades,
 				'SchoolYear' => $schoolyear,
 				'Sem' => $sem,);
-			$this->db->insert('studentgrades', $data2);
+			$this->db->replace('studentgrades', $data2);
 		/*	$this->db->query("INSERT INTO `studentinfo`
 							(StuNum, StuName)
 							VALUES ($stunum, \"$stuname\");");
@@ -96,13 +109,14 @@
 			//				(StuNum, StuSubject, Units, Grade, SchoolYear, Sem)
 		*/	//				VALUES ($stunum, \"$stusubject\", $units, grades, $schoolyear, $sem);");
 			return $stunum;
+		
 		}public function addStudentGWA($stunum, $schoolyear, $sem, $gwa){
 			$data3 = array(
 				'StuNum' => $stunum,
 				'GWA'=> $gwa,
 				'SchoolYear' => $schoolyear,
 				'Sem' => $sem,);
-			$this->db->insert('studentgwa', $data3);
+			$this->db->replace('studentgwa', $data3);
 		/*	$this->db->query("INSERT INTO `studentinfo`
 							(StuNum, StuName)
 							VALUES ($stunum, \"$stuname\");");
