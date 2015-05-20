@@ -1,7 +1,7 @@
 LOGIC:
 if(you failed all of the subjects this semester)
 	output: "PERMANENT DISQUALIFICATION: Failed to pass at least one unit the last semester"
-If(You failed Math 17, 53, 54, or 55&&DQDetails oes not contain :For dismissal: Failed to pass (insert subject here) within two takes")
+If(You failed Math 17, 53, 54, or 55 && DQDetails does not contain "For dismissal: Failed to pass (insert subject here) within two takes")
 	output: "For dismissal: Failed to pass (insert subject here) within two takes"
 if(student failed > 75% of units)
 	output: "For dismissal: Failed to pass at least 25% of units taken"
