@@ -40,16 +40,6 @@ class DCSMS extends CI_Controller {
 		$k =  0;
 	  // here i would like use foreach
 		$this->load->model('DCSMS_Model');
-		/*for($i =0; $i <= count($data)-1; $i++){
-			$this->DCSMS_Model->addStudentInfo($data[$i]['stunum'], $data[$i]['name']);
-			for($j=0; $j <= count($data[$i]['grades'])-1; $j++){
-				$this->DCSMS_Model->addStudentGWA($data[$i]['stunum'], $data[$i]['grades'][$j]['schoolYear'], $data[$i]['grades'][$j]['semNumber'], $data[$i]['grades'][$j]['GWA']);
-				for($k=0; $k <= count($data[$i]['grades'][$j]['GradesForSem'])-1; $k++){
-					$this->DCSMS_Model->addStudentGrade($data[$i]['stunum'], $data[$i]['grades'][$j]['GradesForSem'][$k]['subject'], $data[$i]['grades'][$j]['GradesForSem'][$k]['units'], $data[$i]['grades'][$j]['GradesForSem'][$k]['grade'], $data[$i]['grades'][$j]['schoolYear'], $data[$i]['grades'][$j]['semNumber']);
-				}
-			}
-		}
-		*/
 		foreach($data as $row){
 			$stunum = $row['stunum'];
 			$stuname = $row['name'];
@@ -60,21 +50,54 @@ class DCSMS extends CI_Controller {
 			foreach($row['grades'] as $row2){
 				$schoolYear = $row2['schoolYear'];
 				$semNumber = $row2['semNumber'];
+				$failed = $row2['fail'];
+				$passed = $row2['pass'];
 				$this->DCSMS_Model->addStudentGWA($stunum, $schoolYear, $semNumber, $row2['GWA']);
 				foreach($row2['GradesForSem'] as $row3){
 					$this->DCSMS_Model->addStudentGrade($stunum, $row3['subject'], $row3['units'], $row3['grade'], $schoolYear, $semNumber);
 				}
+				//$this->addDQs($stunum, $failed, $passed);
 			}
-
-			//Dito ung DQs computation ng bawat student
-			//Calling stuff sa models
-			
-
-
 		}
 		return count($data[$i]['grades']);
 	
+		//$this->addDQs(201420142, 60, 40);	
 	} 	
+
+	public function addDQs($student, $failed, $passed){
+		$this->load->model('DCSMS_Model');
+		if($passed==0)
+			$this->DCSMS_Model->addDQs($student, "PERMANENT DISQUALIFICATION: Failed to pass at least one unit the last semester");
+		if($failed >= 75)
+			$this->DCSMS_Model->addDQs($student,  "For dismissal: Failed to pass at least 25% of units taken");
+	/*	if(DQDetails contains "On probation: "&& failed > 50% of units)
+			output: "For dismissal: Failed to lift probation status"
+		if(a student has units < 110 && passed < 24 units for the SY)
+			output: "For dismissal: Failed to pass at least 24 units creditable to the curriculum for the school year"
+		if (student has units < 110 && passed < 50% units for the SY)
+			output: "For dismissal: Failed to pass at least 50% of units taken during the SY"
+	*/	if($failed >= 50 && $failed < 75)
+		 	$this->DCSMS_Model->addDQs($student, "On probation: Failed to obtain final grades of '3' or better in 50% to 75% of academics taken during the semester");
+		if($failed >= 25 && $failed < 50)
+		 	$this->DCSMS_Model->addDQs($student, "Warning: Failed to pass in 25% to less than 50% of units taken this semester");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS11"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 11 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS12"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 12 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS21"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 21 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS32"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 32 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math17"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 17 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math53"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 53 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math54"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 54 within two takes");
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math55"))>=2)
+			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 55 within two takes");
+		
+	}
 	public function individualProfile(){ //passing parameter for individual profile loading view individual profile
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
@@ -86,19 +109,9 @@ class DCSMS extends CI_Controller {
 		$this->showIndividualProfile();
 	}
 	public function showIndividualProfile(){
-		$this->load->model('DCSMS_Model');
 		$this->load->helper('url');
-
-		$StuNum = $this->uri->segment(3);
-		$query1 = $this->DCSMS_Model->getStudent($StuNum);
-		$query2 = $this->DCSMS_Model->getStudentGWA($StuNum);
-		$query3 = $this->DCSMS_Model->getDQs($StuNum);
-		
-		$data['query1'] = $query1;
-		$data['query2'] = $query2;
-		$data['query3'] = $query3;
-		
-		$data['StuNum'] = $StuNum;
+		$this->load->model('DCSMS_Model');
+		$data['StuNum'] = $this->uri->segment(3);
 		$this->load->view('AMSindividualProfile', $data);
 	}
 	public function showIndividualProfile_(){ //showindividual profile
