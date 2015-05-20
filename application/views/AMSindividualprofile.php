@@ -89,7 +89,15 @@
                   if($row['Grade'] == 1 || $row['Grade'] == 2 || $row['Grade'] == 3 || $row['Grade'] == 4 || $row['Grade'] == 5){
                       echo "<td>" . $row['Grade'] . ".0". "</td>"; //echo ung grade
                   }else{
-                  echo "<td>" . $row['Grade'] . "</td>"; //echo ung grade
+                    if($row['Grade'] == 6){
+                      echo "<td> INC </td>"; //echo ung grade
+                    }
+                    else if($row['Grade'] == 7){
+                      echo "<td> DRP </td>"; //echo ung grade
+                    }
+                    else{
+                      echo "<td>" . $row['Grade'] . "</td>"; //echo ung grade
+                    }
                   }
                   echo "</tr>";
               }
@@ -131,7 +139,15 @@
                   if($row['Grade'] == 1 || $row['Grade'] == 2 || $row['Grade'] == 3 || $row['Grade'] == 4 || $row['Grade'] == 5){
                     echo "<td>" . $row['Grade'] . ".0". "</td>"; //echo ung grade
                   }else{
-                    echo "<td>" . $row['Grade'] . "</td>"; //echo ung grade
+                    if($row['Grade'] == 6){
+                      echo "<td> INC </td>"; //echo ung grade
+                    }
+                    else if($row['Grade'] == 7){
+                      echo "<td> DRP </td>"; //echo ung grade
+                    }
+                    else{
+                      echo "<td>" . $row['Grade'] . "</td>"; //echo ung grade
+                    }
                   }
                   
                   echo "</tr>";

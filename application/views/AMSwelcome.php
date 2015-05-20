@@ -215,8 +215,14 @@
                       }
                       else{
                         var index3 = temp.indexOf("&");
-                        if(index3 == -1){
-                          temp = temp.substring(0, index2);
+                        if(index3 == -1){ 
+                          if(isNaN(temp.charAt(index1+1))){
+                            index3 = temp.indexOf(" ", index2+1);
+                            temp = temp.substring(0, index3);
+                          }
+                          else{
+                            temp = temp.substring(0, index2);
+                          }
                         }
                         else{
                           temp = temp.replace("&amp;", "&");
@@ -406,7 +412,7 @@
           url: urlz,
             success: function (meeeh) {
                   console.log("SUCH LIFE");
-                  alert(meeeh);
+                  alert("Database updated.");
               },
             error: function (xhr, ajaxOptions, thrownError) {
            // alert(xhr.status);

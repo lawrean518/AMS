@@ -97,7 +97,7 @@ class DCSMS extends CI_Controller {
 		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math55"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 55 within two takes");
 		
-	}
+	}/*
 	public function individualProfile(){ //passing parameter for individual profile loading view individual profile
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
@@ -107,11 +107,21 @@ class DCSMS extends CI_Controller {
 		$stuNum = $this->uri->segment(3);
 		$this->DCSMS_Model->updateRemarks($stuNum, $remarks);
 		$this->showIndividualProfile();
-	}
+	}*/
 	public function showIndividualProfile(){
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
-		$data['StuNum'] = $this->uri->segment(3);
+
+		$StuNum = $this->uri->segment(3);
+		$query = $this->DCSMS_Model->getStuNameAndNote($StuNum);
+		$query1 = $this->DCSMS_Model->getStudent($StuNum);
+		$query2 = $this->DCSMS_Model->getStudentGWA($StuNum);
+		$query3 = $this->DCSMS_Model->getDQs($StuNum);
+		$data['query'] = $query;
+		$data['query1'] = $query1;
+		$data['query2'] = $query2;
+		$data['query3'] = $query3;
+		$data['StuNum'] = $StuNum;
 		$this->load->view('AMSindividualProfile', $data);
 	}
 	public function showIndividualProfile_(){ //showindividual profile

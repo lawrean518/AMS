@@ -16,6 +16,12 @@
 	    }
 	//query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear
 
+	    public function getStudentGWA($stunum){
+			return $query = $this->db->query("SELECT GWA, SchoolYear, Sem
+			FROM studentgwa 
+			WHERE StuNum LIKE '$stunum'
+			ORDER BY SchoolYear, Sem ASC");
+		}
 	    public function updateRemarks($stunum, $remarks){
 			$this->db->query("UPDATE studentinfo
 							SET stunote = '$remarks'
@@ -152,12 +158,12 @@
 				$tableOfGrades =  $this->db->query("SELECT S.StuSubject, S.Grade
 													FROM studentgrades S
 													WHERE S.StuNum = '$currentStuNum'");
-				$CSSubjects = array("CS11", "CS12", "CS30", "CS32", "CS120", "CS130", "CS131", "CS133", "CS135", "CS140", "CS145", "CS150", "CS153", "CS165", "CS180", "CS191", "CS192", "CS194", "CS195", "CS196", "CS198", "CS199", "CS200"); 
-				$MathSubjects = array("Math17", "Math53", "Math54", "Math55");
-				$PhysicsSubjects = array("Physics71", "Physics72");
-				$AHSubjects = array("AH", "AralingKapampangan10", "AralPil12", "ArtStud1", "ArtStud2", "BC10", "Comm3", "CW10", "Eng1", "Eng10", "Eng11", "LArch", "Eng12", "Eng30", "EL50", "FA28", "FA30", "Fil25", "Fil40", "Film10", "Film12", "Humad1", "J18", "Kom1", "Kom2", "MPs10", "MuD1", "MuL9", "MuL13", "PanPil12", "PanPil17", "PanPil19", "PanPil40", "PanPil50", "SEA30", "Theatre10", "Theatre11", "Theatre12");
-				$SSPSubjects = array("SSP", "LArch", "Anthro10", "Archaeo2", "Arkiyoloji1","Econ11", "Econ31", "Geog1", "Kas1", "Kas2", "Lingg1", "Philo1", "Philo10", "Philo11", "SEA30", "SocSci1", "SocSci2", "SocSci3","Socio10", "CE10");
-				$MSTSubjects = array("MST", "LArch", "Bio1", "Chem1", "EEE10", "EnvSci1", "ES10", "GE1", "Geol1", "Math1", "Math2", "MBB1", "MS1", "NatSci1", "NatSci2", "Physics10", "STS", "FN1", "CE10");
+				$CSSubjects = array("CS 11", "CS 12", "CS 21" , "CS 22", "CS 24", "CS 30", "CS 32", "CS 70", "CS 80", "CS 115", "CS 120", "CS 130", "CS 131", "CS 133", "CS 134", "CS 135", "CS 137", "CS 140", "CS 145", "CS 150", "CS 153", "CS 155", "CS 160", "CS 165", "CS 171", "CS 172", "CS 173", "CS 174", "CS 175", "CS 176", "CS 180", "CS 191", "CS 192", "CS 194", "CS 195", "CS 196", "CS 197", "CS 198", "CS 199", "CS 200", ); 
+				$MathSubjects = array("Math 17", "Math 53", "Math 54", "Math 55");
+				$PhysicsSubjects = array("Physics 71", "Physics 72");
+				$AHSubjects = array("Araling Kapampangan 10", "Aral Pil 12", "Art Stud 1", "Art Stud 2", "BC 10", "Comm 3", "CW 10", "Eng 1", "Eng 10", "Eng 11", "Eng 12", "Eng 30", "EL 50", "FA 28", "FA 30", "Fil 25", "Fil 40", "Film 10", "Film 12", "Humad 1", "J 18", "Kom 1", "Kom 2", "MPs 10", "MuD 1", "MuL 9", "MuL 13", "Pan Pil 12", "Pan Pil 17", "Pan Pil 19", "Pan Pil 40", "Pan Pil 50", "Theatre 10", "Theatre 11", "Theatre 12");
+				$SSPSubjects = array("Anthro 10", "Archaeo 2", "Arkiyoloji 1","Econ 11", "Econ 31", "Geog 1", "Kas 1", "Kas 2", "Lingg 1", "Philo 1", "Philo 10", "Philo 11", "SEA 30", "Soc Sci 1", "Soc Sci 2", "Soc Sci 3","Socio 10");
+				$MSTSubjects = array("L Arch 1", "BIO 1", "Chem 1", "EEE 10", "Env Sci 1", "ES 10", "GE 1", "Geol 1", "Math 1", "Math 2", "MBB 1", "MS 1", "Nat Sci 1", "Nat Sci 2", "Physics 10", "STS", "FN 1", "CE 10");
 				fwrite($theFile, $currentStuNum);
 
 				//traverse for CS Subjects first
