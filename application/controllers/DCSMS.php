@@ -65,6 +65,12 @@ class DCSMS extends CI_Controller {
 					$this->DCSMS_Model->addStudentGrade($stunum, $row3['subject'], $row3['units'], $row3['grade'], $schoolYear, $semNumber);
 				}
 			}
+
+			//Dito ung DQs computation ng bawat student
+			//Calling stuff sa models
+			
+
+
 		}
 		return count($data[$i]['grades']);
 	
