@@ -16,6 +16,13 @@
 	    }
 	//query that returns a table of student A's grades, subjects, semester, schoolyear, ordered by sem and schoolyear
 
+	    public function getStudentGWA($stunum){
+	    	return $query = $this->db->query("SELECT GWA, SchoolYear, Sem
+				FROM studentgwa 		
+				WHERE StuNum LIKE '$stunum'
+                ORDER BY SchoolYear, Sem ASC");
+	    }
+
 	    public function updateRemarks($stunum, $remarks){
 			$this->db->query("UPDATE studentinfo
 							SET stunote = '$remarks'
@@ -287,1560 +294,1560 @@
 
 		}
 
-		public function showAllStudents_sortByAscGWA(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscGWA(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
+// 											(SELECT SI.StuNum, DQTab.DQ
 
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																	FROM studentinfo I JOIN studentdq Q 
-																	ON I.stunum = Q.stunum) 
-											UNION
-											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-											FROM studentinfo I
-											WHERE I.stunum 
-											NOT IN (SELECT Q.stunum 
-													FROM studentdq Q))) AS DQTab
-											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY G.gwa ASC;');
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																	FROM studentinfo I JOIN studentdq Q 
+// 																	ON I.stunum = Q.stunum) 
+// 											UNION
+// 											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 											FROM studentinfo I
+// 											WHERE I.stunum 
+// 											NOT IN (SELECT Q.stunum 
+// 													FROM studentdq Q))) AS DQTab
+// 											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY G.gwa ASC;');
 
-		}
+// 		}
 
-		public function showAllStudents_sortByAscGWAWithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscGWAWithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
+// 											(SELECT SI.StuNum, DQTab.DQ
 
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																	FROM studentinfo I JOIN studentdq Q 
-																	ON I.stunum = Q.stunum) 
-											) AS DQTab
-											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY G.gwa ASC;');
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																	FROM studentinfo I JOIN studentdq Q 
+// 																	ON I.stunum = Q.stunum) 
+// 											) AS DQTab
+// 											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY G.gwa ASC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByAscGWAWithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscGWAWithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
+// 											(SELECT SI.StuNum, DQTab.DQ
 
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
-											FROM studentinfo I
-											WHERE I.stunum 
-											NOT IN (SELECT Q.stunum 
-													FROM studentdq Q))) AS DQTab
-											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY G.gwa ASC;');
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 											FROM studentinfo I
+// 											WHERE I.stunum 
+// 											NOT IN (SELECT Q.stunum 
+// 													FROM studentdq Q))) AS DQTab
+// 											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY G.gwa ASC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByAscLN(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscLN(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																	FROM studentinfo I JOIN studentdq Q 
-																	ON I.stunum = Q.stunum) 
-											UNION
-											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-											FROM studentinfo I
-											WHERE I.stunum 
-											NOT IN (SELECT Q.stunum 
-													FROM studentdq Q))) AS DQTab
-													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																	FROM studentinfo I JOIN studentdq Q 
+// 																	ON I.stunum = Q.stunum) 
+// 											UNION
+// 											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 											FROM studentinfo I
+// 											WHERE I.stunum 
+// 											NOT IN (SELECT Q.stunum 
+// 													FROM studentdq Q))) AS DQTab
+// 													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-										WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-										ORDER BY I.stuname ASC;');
-		}
+// 										WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 										ORDER BY I.stuname ASC;');
+// 		}
 
-		public function showAllStudents_sortByAscLNWithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscLNWithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																	FROM studentinfo I JOIN studentdq Q 
-																	ON I.stunum = Q.stunum) 
-											) AS DQTab
-													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																	FROM studentinfo I JOIN studentdq Q 
+// 																	ON I.stunum = Q.stunum) 
+// 											) AS DQTab
+// 													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-										WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-										ORDER BY I.stuname ASC;');
+// 										WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 										ORDER BY I.stuname ASC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByAscLNWithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscLNWithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
-											FROM studentinfo I
-											WHERE I.stunum 
-											NOT IN (SELECT Q.stunum 
-													FROM studentdq Q))) AS DQTab
-													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 											FROM studentinfo I
+// 											WHERE I.stunum 
+// 											NOT IN (SELECT Q.stunum 
+// 													FROM studentdq Q))) AS DQTab
+// 													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-										WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-										ORDER BY I.stuname ASC;');	
-		}
+// 										WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 										ORDER BY I.stuname ASC;');	
+// 		}
 
-		public function showAllStudents_sortByAscSN(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscSN(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																							FROM studentinfo I JOIN studentdq Q 
-																							ON I.stunum = Q.stunum) 
-																UNION
-																(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-																FROM studentinfo I
-																WHERE I.stunum 
-																NOT IN (SELECT Q.stunum 
-																		FROM studentdq Q))) AS DQTab
-																		WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																							FROM studentinfo I JOIN studentdq Q 
+// 																							ON I.stunum = Q.stunum) 
+// 																UNION
+// 																(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 																FROM studentinfo I
+// 																WHERE I.stunum 
+// 																NOT IN (SELECT Q.stunum 
+// 																		FROM studentdq Q))) AS DQTab
+// 																		WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stunum ASC;');
-		}
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stunum ASC;');
+// 		}
 
-		public function showAllStudents_sortByAscSNWithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscSNWithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																							FROM studentinfo I JOIN studentdq Q 
-																							ON I.stunum = Q.stunum) 
-																) AS DQTab
-																		WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																							FROM studentinfo I JOIN studentdq Q 
+// 																							ON I.stunum = Q.stunum) 
+// 																) AS DQTab
+// 																		WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stunum ASC;');
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stunum ASC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByAscSNWithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByAscSNWithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
-																FROM studentinfo I
-																WHERE I.stunum 
-																NOT IN (SELECT Q.stunum 
-																		FROM studentdq Q))) AS DQTab
-																		WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 																FROM studentinfo I
+// 																WHERE I.stunum 
+// 																NOT IN (SELECT Q.stunum 
+// 																		FROM studentdq Q))) AS DQTab
+// 																		WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stunum ASC;');
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stunum ASC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByDescGWA(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescGWA(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																	(SELECT SI.StuNum, DQTab.DQ
-																	FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																							FROM studentinfo I JOIN studentdq Q 
-																							ON I.stunum = Q.stunum) 	
-												UNION
-												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-												FROM studentinfo I
-												WHERE I.stunum 
-												NOT IN (SELECT Q.stunum 
-														FROM studentdq Q))) AS DQTab
-												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-												ORDER BY G.gwa DESC;');
-		}
+// 																	(SELECT SI.StuNum, DQTab.DQ
+// 																	FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																							FROM studentinfo I JOIN studentdq Q 
+// 																							ON I.stunum = Q.stunum) 	
+// 												UNION
+// 												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 												FROM studentinfo I
+// 												WHERE I.stunum 
+// 												NOT IN (SELECT Q.stunum 
+// 														FROM studentdq Q))) AS DQTab
+// 												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 												ORDER BY G.gwa DESC;');
+// 		}
 
-		public function showAllStudents_sortByDescGWAWithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescGWAWithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																	(SELECT SI.StuNum, DQTab.DQ
-																	FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																							FROM studentinfo I JOIN studentdq Q 
-																							ON I.stunum = Q.stunum) 	
-												) AS DQTab
-												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-												ORDER BY G.gwa DESC;');
+// 																	(SELECT SI.StuNum, DQTab.DQ
+// 																	FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																							FROM studentinfo I JOIN studentdq Q 
+// 																							ON I.stunum = Q.stunum) 	
+// 												) AS DQTab
+// 												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 												ORDER BY G.gwa DESC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByDescGWAWithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescGWAWithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																	(SELECT SI.StuNum, DQTab.DQ
-																	FROM	studentinfo SI, (
-												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-												FROM studentinfo I
-												WHERE I.stunum 
-												NOT IN (SELECT Q.stunum 
-														FROM studentdq Q))) AS DQTab
-												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-												ORDER BY G.gwa DESC;');
+// 																	(SELECT SI.StuNum, DQTab.DQ
+// 																	FROM	studentinfo SI, (
+// 												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 												FROM studentinfo I
+// 												WHERE I.stunum 
+// 												NOT IN (SELECT Q.stunum 
+// 														FROM studentdq Q))) AS DQTab
+// 												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 												ORDER BY G.gwa DESC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByDescLN(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescLN(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																	(SELECT SI.StuNum, DQTab.DQ
+// 																	(SELECT SI.StuNum, DQTab.DQ
 
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-											FROM studentinfo I JOIN studentdq Q 
-											ON I.stunum = Q.stunum) 
-											UNION
-												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-												FROM studentinfo I
-												WHERE I.stunum 
-												NOT IN (SELECT Q.stunum 
-														FROM studentdq Q))) AS DQTab
-														WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stuname DESC;');
-		}
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 											FROM studentinfo I JOIN studentdq Q 
+// 											ON I.stunum = Q.stunum) 
+// 											UNION
+// 												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 												FROM studentinfo I
+// 												WHERE I.stunum 
+// 												NOT IN (SELECT Q.stunum 
+// 														FROM studentdq Q))) AS DQTab
+// 														WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stuname DESC;');
+// 		}
 
-		public function showAllStudents_sortByDescLNWithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescLNWithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																	(SELECT SI.StuNum, DQTab.DQ
+// 																	(SELECT SI.StuNum, DQTab.DQ
 
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-											FROM studentinfo I JOIN studentdq Q 
-											ON I.stunum = Q.stunum) 
-											) AS DQTab
-														WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stuname DESC;');
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 											FROM studentinfo I JOIN studentdq Q 
+// 											ON I.stunum = Q.stunum) 
+// 											) AS DQTab
+// 														WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stuname DESC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByDescLNWithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																					GROUP BY C.StuNum
-	 																					) AS D
-																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescLNWithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																					WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																					GROUP BY C.StuNum
+// 	 																					) AS D
+// 																	WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-																	(SELECT SI.StuNum, DQTab.DQ
+// 																	(SELECT SI.StuNum, DQTab.DQ
 
-											FROM studentinfo SI, (
-												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-												FROM studentinfo I
-												WHERE I.stunum 
-												NOT IN (SELECT Q.stunum 
-														FROM studentdq Q))) AS DQTab
-														WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stuname DESC;');
+// 											FROM studentinfo SI, (
+// 												(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 												FROM studentinfo I
+// 												WHERE I.stunum 
+// 												NOT IN (SELECT Q.stunum 
+// 														FROM studentdq Q))) AS DQTab
+// 														WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stuname DESC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByDescSN(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, 
-																(SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																				FROM `studentgwa` A
-                        				 											GROUP BY A.StuNum) AS B
-      															WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      															GROUP BY C.StuNum
-	 															) AS D
-											WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescSN(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, 
+// 																(SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																				FROM `studentgwa` A
+//                         				 											GROUP BY A.StuNum) AS B
+//       															WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       															GROUP BY C.StuNum
+// 	 															) AS D
+// 											WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																	FROM studentinfo I JOIN studentdq Q 
-																	ON I.stunum = Q.stunum) 
-											UNION
-											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-											FROM studentinfo I
-											WHERE I.stunum 
-											NOT IN (SELECT Q.stunum 
-													FROM studentdq Q))) AS DQTab
-													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																	FROM studentinfo I JOIN studentdq Q 
+// 																	ON I.stunum = Q.stunum) 
+// 											UNION
+// 											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 											FROM studentinfo I
+// 											WHERE I.stunum 
+// 											NOT IN (SELECT Q.stunum 
+// 													FROM studentdq Q))) AS DQTab
+// 													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stunum DESC;');
-		}
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stunum DESC;');
+// 		}
 
-		public function showAllStudents_sortByDescSNWithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, 
-																(SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																				FROM `studentgwa` A
-                        				 											GROUP BY A.StuNum) AS B
-      															WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      															GROUP BY C.StuNum
-	 															) AS D
-											WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescSNWithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, 
+// 																(SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																				FROM `studentgwa` A
+//                         				 											GROUP BY A.StuNum) AS B
+//       															WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       															GROUP BY C.StuNum
+// 	 															) AS D
+// 											WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																	FROM studentinfo I JOIN studentdq Q 
-																	ON I.stunum = Q.stunum) 
-											) AS DQTab
-													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																	FROM studentinfo I JOIN studentdq Q 
+// 																	ON I.stunum = Q.stunum) 
+// 											) AS DQTab
+// 													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stunum DESC;');
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stunum DESC;');
 			
-		}
+// 		}
 
-		public function showAllStudents_sortByDescSNWithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, 
-																(SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																				FROM `studentgwa` A
-                        				 											GROUP BY A.StuNum) AS B
-      															WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      															GROUP BY C.StuNum
-	 															) AS D
-											WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_sortByDescSNWithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, 
+// 																(SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																				FROM `studentgwa` A
+//                         				 											GROUP BY A.StuNum) AS B
+//       															WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       															GROUP BY C.StuNum
+// 	 															) AS D
+// 											WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM studentinfo SI, (
-											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
-											FROM studentinfo I
-											WHERE I.stunum 
-											NOT IN (SELECT Q.stunum 
-													FROM studentdq Q))) AS DQTab
-													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM studentinfo SI, (
+// 											(SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 											FROM studentinfo I
+// 											WHERE I.stunum 
+// 											NOT IN (SELECT Q.stunum 
+// 													FROM studentdq Q))) AS DQTab
+// 													WHERE DQTab.Stunum = SI.StuNum) AS DQTable
 
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
-											ORDER BY I.stunum DESC;');
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum
+// 											ORDER BY I.stunum DESC;');
 
-		}
+// 		}
 		
-		public function showAllStudents_WithDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-												FROM studentinfo I , (	SELECT D.StuNum, gwa
-																		FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																							FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																						FROM `studentgwa` A
-                        				 													GROUP BY A.StuNum) AS B
-      																	WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																	GROUP BY C.StuNum
-	 																	) AS D
-												WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_WithDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 												FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																		FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																							FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																						FROM `studentgwa` A
+//                         				 													GROUP BY A.StuNum) AS B
+//       																	WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																	GROUP BY C.StuNum
+// 	 																	) AS D
+// 												WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
-																		FROM studentinfo I JOIN studentdq Q 
-																		ON I.stunum = Q.stunum) 
-																	) AS DQTab
-											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum;
-											');
-		}
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "with DQ" AS DQ
+// 																		FROM studentinfo I JOIN studentdq Q 
+// 																		ON I.stunum = Q.stunum) 
+// 																	) AS DQTab
+// 											WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 											WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum;
+// 											');
+// 		}
 
-		public function showAllStudents_WithoutDQ(){
-			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (	SELECT D.StuNum, gwa
-																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																										FROM `studentgwa` A
-                        				 																	GROUP BY A.StuNum) AS B
-      																WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																GROUP BY C.StuNum
-	 																) AS D
-												WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 		public function showAllStudents_WithoutDQ(){
+// 			return $query = $this->db->query('SELECT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (	SELECT D.StuNum, gwa
+// 																	FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																						FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																										FROM `studentgwa` A
+//                         				 																	GROUP BY A.StuNum) AS B
+//       																WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																GROUP BY C.StuNum
+// 	 																) AS D
+// 												WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
 
-											(SELECT SI.StuNum, DQTab.DQ
-											FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
-																	FROM studentinfo I
-																	WHERE I.stunum 
-																	NOT IN (SELECT Q.stunum 
-																			FROM studentdq Q))) AS DQTab
-												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
-												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum;');
-		}
-
-
-
-//==========================================================================================================================
+// 											(SELECT SI.StuNum, DQTab.DQ
+// 											FROM	studentinfo SI, ((SELECT I.stunum, I.stuname, "without DQ" AS DQ
+// 																	FROM studentinfo I
+// 																	WHERE I.stunum 
+// 																	NOT IN (SELECT Q.stunum 
+// 																			FROM studentdq Q))) AS DQTab
+// 												WHERE DQTab.Stunum = SI.StuNum) AS DQTable
+// 												WHERE I.stunum = G.stunum AND I.stunum = DQTable.stuNum AND G.stunum = DQTable.stunum;');
+// 		}
 
 
-		public function showSearchQuery($searchString, $searchBy){
-			if($searchBy == "Student Number"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum");
+
+// //==========================================================================================================================
+
+
+// 		public function showSearchQuery($searchString, $searchBy){
+// 			if($searchBy == "Student Number"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 	
 
-		public function showSearchQuery_sortByWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum");
+// 		public function showSearchQuery_sortByWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum");
+// 		public function showSearchQuery_sortByWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByAscGWA($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa ASC");
+// 		public function showSearchQuery_sortByAscGWA($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByAscGWAWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa ASC");
+// 		public function showSearchQuery_sortByAscGWAWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByAscGWAWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa ASC");
+// 		public function showSearchQuery_sortByAscGWAWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByAscLN($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");
+// 		public function showSearchQuery_sortByAscLN($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByAscLNWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");
+// 		public function showSearchQuery_sortByAscLNWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByAscLNWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");
+// 		public function showSearchQuery_sortByAscLNWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
-
-
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByAscSN($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");
+
+
+// 		public function showSearchQuery_sortByAscSN($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByAscSNWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");
+// 		public function showSearchQuery_sortByAscSNWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByAscSNWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");
+// 		public function showSearchQuery_sortByAscSNWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname ASC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname ASC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescGWA($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa DESC");
+// 		public function showSearchQuery_sortByDescGWA($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescGWAWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa DESC");
+// 		public function showSearchQuery_sortByDescGWAWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescGWAWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa DESC");
+// 		public function showSearchQuery_sortByDescGWAWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY G.gwa DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY G.gwa DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescLN($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");
+// 		public function showSearchQuery_sortByDescLN($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescLNWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");
+// 		public function showSearchQuery_sortByDescLNWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByDescLNWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");
+// 		public function showSearchQuery_sortByDescLNWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescSN($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");
+// 		public function showSearchQuery_sortByDescSN($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) 
-																						UNION
-																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q))) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, ((SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) 
+// 																						UNION
+// 																					(SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q))) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
 
-		public function showSearchQuery_sortByDescSNWithDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");
+// 		public function showSearchQuery_sortByDescSNWithDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
-																						FROM studentinfo I JOIN studentdq Q 
-																						ON I.stunum = Q.stunum) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'with DQ' AS DQ
+// 																						FROM studentinfo I JOIN studentdq Q 
+// 																						ON I.stunum = Q.stunum) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 
-		public function showSearchQuery_sortByDescSNWithoutDQ($searchString, $searchBy){
-			if($searchBy == "stuNum"){
-				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM studentgwa A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");
+// 		public function showSearchQuery_sortByDescSNWithoutDQ($searchString, $searchBy){
+// 			if($searchBy == "stuNum"){
+// 				 $query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM studentgwa A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stunum LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");
 				
-			}
-			else{
-				//echo "hello";
-				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
-											FROM studentinfo I , (SELECT D.StuNum, gwa
-																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
-																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
-     																									FROM `studentgwa` A
-                        				 																GROUP BY A.StuNum) AS B
-      																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
-      																				GROUP BY C.StuNum) AS D
-																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
-																(SELECT SI.StuNum, DQTab.DQ
-																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
-																					FROM studentinfo I
-																					WHERE I.stunum 
-																					NOT IN (SELECT Q.stunum 
-																							FROM studentdq Q)) AS DQTab
-																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
-											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
-											ORDER BY I.stuname DESC");	
+// 			}
+// 			else{
+// 				//echo "hello";
+// 				$query = $this->db->query("SELECT DISTINCT I.stunum, I.stuname, G.gwa, AH, SSP, MST, DQTable.DQ, I.stunote
+// 											FROM studentinfo I , (SELECT D.StuNum, gwa
+// 																FROM studentgwa E, (SELECT C.Stunum, MAX(sem) AS Sem, C.SchoolYear
+// 																					FROM studentgwa C, (SELECT A.stunum, MAX(SchoolYear) AS SchoolYear
+//      																									FROM `studentgwa` A
+//                         				 																GROUP BY A.StuNum) AS B
+//       																				WHERE C.StuNum = B.StuNum AND C.SchoolYear = B.SchoolYear
+//       																				GROUP BY C.StuNum) AS D
+// 																WHERE  D.StuNum = E.StuNum AND E.SchoolYear = D.SchoolYear AND E.Sem = D.Sem) AS G,
+// 																(SELECT SI.StuNum, DQTab.DQ
+// 																FROM studentinfo SI, (SELECT I.stunum, I.stuname, 'without DQ' AS DQ
+// 																					FROM studentinfo I
+// 																					WHERE I.stunum 
+// 																					NOT IN (SELECT Q.stunum 
+// 																							FROM studentdq Q)) AS DQTab
+// 																WHERE DQTab.Stunum = SI.StuNum) AS DQTable								
+// 											WHERE I.stunum = G.stunum AND I.stuname LIKE '$searchString%' AND DQTable.stunum = I.stunum
+// 											ORDER BY I.stuname DESC");	
 
-			}
+// 			}
 
-			return $query;
-		}
+// 			return $query;
+// 		}
 			
 	}
 

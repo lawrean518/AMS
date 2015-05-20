@@ -80,9 +80,19 @@ class DCSMS extends CI_Controller {
 		$this->showIndividualProfile();
 	}
 	public function showIndividualProfile(){
-		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
-		$data['StuNum'] = $this->uri->segment(3);
+		$this->load->helper('url');
+
+		$StuNum = $this->uri->segment(3);
+		$query1 = $this->DCSMS_Model->getStudent($StuNum);
+		$query2 = $this->DCSMS_Model->getStudentGWA($StuNum);
+		$query3 = $this->DCSMS_Model->getDQs($StuNum);
+		
+		$data['query1'] = $query1;
+		$data['query2'] = $query2;
+		$data['query3'] = $query3;
+		
+		$data['StuNum'] = $StuNum;
 		$this->load->view('AMSindividualProfile', $data);
 	}
 	public function showIndividualProfile_(){ //showindividual profile
