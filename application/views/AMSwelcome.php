@@ -85,8 +85,6 @@
       x = 0;
       // alert(theStudents);
       // alert(theLength);
-      alert("GUMANA");
-
       // HUWAG TANGGALIN SA PAGKAKACOMMENT! var studarr = ['201261188', '201265955', '201238409'];
 
       var jsonText = "[" ; 
@@ -108,6 +106,10 @@
             $(value).click(); 
           }
         });
+        console.log(x);
+      /*  setTimeout(function(){
+            console.log("putangina");
+        }, 5000);*/
 
         setTimeout(function(){
           var grades = [];
@@ -124,6 +126,7 @@
           var index1;
           var index2;
           var a = 0;
+
           $('.invisible', o[0].contentDocument).each(function(index, value){
             $(this).find('td', p[0].contentDocument).each(function(index, value){
               if(index == 0){
@@ -136,7 +139,8 @@
               }
             });
           });
-
+        if(studname){
+          console.log("Went here :(" + studname);
           $('tr', o[0].contentDocument).each(function(index, value){
             $(this).find('th', p[0].contentDocument).each(function(index, value){
               if(index == 0){
@@ -155,7 +159,21 @@
               if(index == 5){
                 temp = $(this).html().trim();
                 if(temp.charAt(0) != ""){
-                  grades.push(temp);
+                  if(temp.indexOf("(") != -1){
+                    index1 = temp.indexOf("(");
+                    index2 = temp.indexOf(")");
+                    temp = temp.substring(index1+1, index2-1);
+                    grades.push(temp);
+                  }
+                  else if(temp.search("INC") != -1){
+                    grades.push(6);
+                  }
+                  else if(temp.search("DRP") != -1){
+                    grades.push(7)
+                  }
+                  else{
+                    grades.push(temp);
+                  }
                 }
               }
             });
@@ -169,10 +187,27 @@
                   if(temp.search("strong") == -1){
                     index1 = temp.indexOf(" ");
                     index2 = temp.indexOf(" ", index1+1);
-                    temp = temp.substring(0, index2);
-                    if(temp.charAt(0) != ""){
-                      subjects.push(temp);
+                    console.log(index1 + "putagina " + studname + " " + temp);
+                    if(index1 != -1){
+                      if(index2 == -1){
+                        temp = temp.substring(0, index1);
+                      }
+                      else{
+                        var index3 = temp.indexOf("&");
+                        if(index3 == -1){
+                          temp = temp.substring(0, index2);
+                        }
+                        else{
+                          temp = temp.replace("&amp;", "&");
+                          index2 = temp.indexOf(" ", index3+2);
+                          temp = temp.substring(0, index2);
+                        }
+                      }
+                      if(temp.charAt(0) != ""){
+                        subjects.push(temp);
+                      }
                     }
+
                   }
                   else{
                     index1 = temp.indexOf(">");
@@ -198,9 +233,7 @@
             $(this).find('td', p[0].contentDocument).each(function(index, value){
               if(index == 4){
                 temp = $(this).html();
-                temp = temp.replace("("
-
-                  , "");
+                temp = temp.replace("(", "");
                 temp = temp.replace(")", "");
                 units.push(temp);
               }
@@ -217,8 +250,8 @@
           //alert(gecount);
        
           appendToJSONString();
-          
-          studentsInJsonText = studentsInJsonText + " " + studname; 
+          //console.log(firstStudent);
+          studentsInJsonText = studentsInJsonText + "" + studname;
           function appendToJSONString(){
             var i;
             var j = 0;
@@ -235,7 +268,7 @@
             //insert comma before {
             if(firstStudent){
               jsonText = jsonText + " {\"name\": \"" + studname + "\", \"stunum\": " + parseInt(studnum) + ", \"AH\": " + parseInt(gecount[0]) + ", \"SSP\": " + parseInt(gecount[1]) + ", \"MST\": " + parseInt(gecount[2]) + ", \"grades\": [";
-
+              firstStudent = false; 
             }
             else{
               jsonText = jsonText + ", {\"name\": \"" + studname + "\", \"stunum\": " + parseInt(studnum) + ", \"AH\": " + parseInt(gecount[0]) + ", \"SSP\": " + parseInt(gecount[1]) + ", \"MST\": " + parseInt(gecount[2]) + ", \"grades\": [";
@@ -297,17 +330,18 @@
             jsonText = jsonText + " ] } ] }";
           }
 
-          console.log("hii");
-          jsonText = jsonText + " ]";
-          console.log("eh ito");
+          //console.log("hii");
+          
+          //console.log("eh ito");
           //var jsons = JSON.stringify(grades);
           //console.log(jsonText);
-          var urlz = "<?php echo site_url("DCSMS/script");?>";
-          console.log(urlz);
+        
+          //console.log(urlz);
           //var text = JSON.parse(jsonText);      
           //var jsons = JSON.stringify(text);
+        }
         }, 5000);
-          /*
+        /*
                 $.ajax({
                     type: 'POST',
                     data: {json: jsons},
@@ -320,20 +354,46 @@
                       error: function (xhr, ajaxOptions, thrownError) {
                      // alert(xhr.status);
                     //  alert(thrownError);
-                  }
+                    }
                 });
-          */
+          
                 // HUWAG TANGGALIN SA PAGKAKACOMMENT! }, 5000);
-
+        */
         x = x+1;
         if(x == theLength){
           clearInterval(timer);
         }
-      };
+        //console.log(jsonText);
+    };
+      //console.log(studentsInJsonText);
+     
+    timer = setInterval(checker, 5000);
+   
+    setTimeout(function(){
+      //alert(jsonText); 
+      jsonText = jsonText + " ]";
       console.log(studentsInJsonText);
       console.log(jsonText);
-      timer = setInterval(checker, 5000);
+      var text = JSON.parse(jsonText);      
+      var jsons = JSON.stringify(text);
+      var urlz = "<?php echo site_url("DCSMS/script");?>";
+      $.ajax({
+          type: 'POST',
+          data: {json: jsons},
+          dataType: 'html',
+          url: urlz,
+            success: function (meeeh) {
+                  console.log("SUCH LIFE");
+                  alert(meeeh);
+              },
+            error: function (xhr, ajaxOptions, thrownError) {
+           // alert(xhr.status);
+          //  alert(thrownError);
+          }
+      });
+    }, 53000);
     });
+    
   });
 
 </script>

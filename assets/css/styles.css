@@ -81,7 +81,6 @@ img { border: 0; max-width: 100%; }
 #keywords {
   margin: 0 auto;
   font-size: 1.2em;
-  margin-bottom: 15px;
 }
 
 #keywords thead {
@@ -319,3 +318,18 @@ h2{
 .gwa{
   font-style: italic;
 }
+
+.dq{
+  border-radius: 25px;
+}
+
+#wrap{
+  display: block;
+  width: 1290px;
+  background: #80CC80;
+  border-radius: 25px;
+  margin: auto;
+  padding: 20px 15px;
+  -webkit-box-shadow: 1px 1px 1px -1px rgba(0,0,0,0.35);
+}
+
