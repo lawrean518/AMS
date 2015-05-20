@@ -184,6 +184,7 @@
 						}
 					}
 				}
+
 				//traverse for SSP Subjects
 				foreach($tableOfGrades->result_array() AS $rowGrades){	
 					$counter = 0;
@@ -197,7 +198,8 @@
 							$counter++;
 						}
 					}
-				}		
+				}	
+
 				//traverse for MST Subjects
 				foreach($tableOfGrades->result_array() AS $rowGrades){						
 					$counter = 0;
@@ -212,6 +214,7 @@
 						}
 					}
 				}
+				
 				//traverse for OTHERS
 				foreach($tableOfGrades->result_array() AS $rowGrades){
 					$counter = 0;
