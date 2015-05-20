@@ -1,60 +1,31 @@
-201200000,CS11 - 2,CS12 - 2,CS135 - 5,CS140 - 2,CS150 - 2.25,CS165 - 5,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 5,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 5
-201200134,CS11 - 2,CS12 - 1.5,CS135 - 1,CS140 - 2.25,CS150 - 2.25,CS165 - 1,CS191 - 1,CS21 - 1.75,CS30 - 1.75,CS32 - 1.75,Math17 - 2,Math53 - 1.5,Math54 - 1.75,Math55 - 2.25,Physics71 - 2.25,Physics72 - 1,AH - 2,AH - 1.5,AH - 1.75,AH - 2.25,AH - 1,SSP - 2,SSP - 1.5,MST - 2,MST - 1.5,MST - 2.25,Stat130 - 1.25
-201201023,CS11 - 1,CS12 - 1,CS135 - 2,CS140 - 1,CS150 - 1,CS165 - 2,CS191 - 1.5,CS21 - 1,CS30 - 1,CS32 - 1,Math17 - 1,Math53 - 1,Math54 - 1,Math55 - 1,Physics71 - 1,Physics72 - 2.75,AH - 1,AH - 1,AH - 1,AH - 1,AH - 1,SSP - 1,SSP - 1,MST - 1,MST - 1,MST - 1,Stat130 - 1.75
+201200134,CS11 - 2,CS12 - 2,CS135 - 1,CS140 - 2,CS150 - 2.25,CS165 - 1,CS191 - 1,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 1,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.25
+201201023,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
 201208704,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 2,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 2
 201209072,CS11 - 2,CS12 - 2,CS135 - 1,CS140 - 2,CS150 - 2.25,CS165 - 1.75,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 5,Math53 - 5,Math53 - 2.5,Math54 - 2,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5
 201209172,CS11 - 2,CS12 - 2,CS135 - 5,CS140 - 2,CS150 - 2.25,CS165 - 5,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 5,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 5
-201211111,CS11 - 2,CS12 - 2,CS135 - 1,CS140 - 2,CS150 - 2.25,CS165 - 2.75,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
 201211234,CS11 - 2,CS12 - 2,CS130 - 2,CS140 - 2,CS21 - 2,CS30 - 1.5,CS32 - 5,CS32 - 5,CS32 - 2,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.25,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,SSP - 1.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
-201212121,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
-201222222,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 1,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 5,Math55 - 5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5
-201233333,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 1,CS191 - 1,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 1,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.25
 201241434,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
-201244444,CS11 - 2,CS12 - 2,CS130 - 2,CS140 - 2,CS21 - 2,CS30 - 1.5,CS32 - 5,CS32 - 5,CS32 - 2,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.25,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,SSP - 1.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
 201255555,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 1,CS191 - 1,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 1,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.25
 201256321,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 1,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 5,Math55 - 5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5
-201266666,CS11 - 2,CS12 - 2,CS135 - 1,CS140 - 2,CS150 - 2.25,CS165 - 1.75,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 5,Math53 - 5,Math53 - 2.5,Math54 - 2,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5
-201277777,CS11 - 2,CS12 - 2,CS135 - 2,CS140 - 2,CS150 - 2.25,CS165 - 2,CS191 - 2,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 2
+201261188,CS 11 - 1,CS 12 - 1.75,CS 135 - 2,CS 140 - 1,CS 150 - 1.5,CS 165 - 2,CS 191 - 1.75,CS 21 - 1.25,CS 30 - 3,CS 32 - 2,Archaeo 2 - 1.25,Comm 3 - 1.25,CWTS 1 - 1.25,CWTS 2 - 1.75,Eng 1 - 1.75,Eng 10 - 1.5,Eng 11 - 2,Fil 40 - 1,Geog 1 - 1.5,Kas 1 - 1.5,Kas 2 - 1.5,Math 17 - 1.5,Math 53 - 2.75,Math 54 - 1.5,Math 55 - 1.5,PE 2 - 1.25,PE 2 - 1.5,PE 2 - 1.5,Physics 10 - 1.25,Physics 71 - 1.75,Physics 72 - 1.25,Stat 130 - 2
 201278980,CS11 - 2,CS12 - 2,CS135 - 1,CS140 - 2,CS150 - 2.25,CS165 - 2.75,CS191 - 1.5,CS21 - 2,CS30 - 1.5,CS32 - 4,Math17 - 2,Math53 - 2.5,Math54 - 2,Math55 - 2.5,Physics71 - 3,Physics72 - 2.75,AH - 1,AH - 3,AH - 1,AH - 2.5,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5,MST - 1.5,Stat130 - 1.75
-201288888,CS11 - 1,CS12 - 1,CS135 - 2,CS140 - 1,CS150 - 1,CS165 - 2,CS191 - 1.5,CS21 - 1,CS30 - 1,CS32 - 1,Math17 - 1,Math53 - 1,Math54 - 1,Math55 - 1,Physics71 - 1,Physics72 - 2.75,AH - 1,AH - 1,AH - 1,AH - 1,AH - 1,SSP - 1,SSP - 1,MST - 1,MST - 1,MST - 1,Stat130 - 1.75
-201299999,CS11 - 2,CS12 - 1.5,CS135 - 1,CS140 - 2.25,CS150 - 2.25,CS165 - 1,CS191 - 1,CS21 - 1.75,CS30 - 1.75,CS32 - 1.75,Math17 - 2,Math53 - 1.5,Math54 - 1.75,Math55 - 2.25,Physics71 - 2.25,Physics72 - 1,AH - 2,AH - 1.5,AH - 1.75,AH - 2.25,AH - 1,SSP - 2,SSP - 1.5,MST - 2,MST - 1.5,MST - 2.25,Stat130 - 1.25
-201300114,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 2.75,Math17 - 2,Math53 - 2.5,Math54 - 2,AH - 1,AH - 3,AH - 1.5,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
-201300518,CS11 - 2,CS12 - 5,CS12 - 5,Math17 - 2,Math53 - 2.5,Math54 - 3,AH - 1,AH - 3,AH - 3,SSP - 1.5,SSP - 2.5,SSP - 3,MST - 4,MST - 1.5,MST - 3
-201300818,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 3,Math17 - 2,Math53 - 2.5,Math53 - 2,AH - 1,AH - 3,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
-201301022,CS11 - 5,CS11 - 5,CS11 - 1.5,Math17 - 2,Math53 - 2.5,Math54 - 1.5,AH - 1,AH - 3,AH - 1.5,SSP - 1.5,SSP - 2.5,SSP - 1.5,MST - 4,MST - 1.5,SSP1 - 1.5
-201301114,CS11 - 2,CS12 - 2,CS21 - 5,CS30 - 5,CS32 - 5,Math17 - 2,Math53 - 2.5,Math54 - 2,AH - 1,AH - 3,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
-201302111,CS11 - 2,CS12 - 2,CS21 - 1,CS30 - 5,CS32 - 5,Math17 - 2,Math53 - 2.5,Math54 - 5,AH - 1,AH - 3,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201302934,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 2.75,Math17 - 2,Math53 - 2.5,Math54 - 2,AH - 1,AH - 3,AH - 1.5,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
-201309876,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 2,Math17 - 2,Math53 - 2.5,Math54 - 2,AH - 1,AH - 3,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201312345,CS11 - 2,CS12 - 2,CS21 - 2.25,CS30 - 2.25,CS32 - 2.25,Math17 - 2,Math53 - 2.5,Math54 - 2.25,AH - 1,AH - 3,AH - 2.25,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
-201321111,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 3,Math17 - 5,Math17 - 5,Math53 - 2,AH - 1,AH - 3,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201323456,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 2,Math17 - 2,Math53 - 2.5,Math54 - 2,AH - 1,AH - 3,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201329667,CS11 - 2,CS12 - 2,Math17 - 2,Math53 - 2.5,AH - 1,AH - 3,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201330031,CS11 - 2,CS12 - 2,CS21 - 2,CS30 - 1.5,CS32 - 3,Math17 - 5,Math17 - 5,Math53 - 2,AH - 1,AH - 3,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201334829,CS11 - 2,CS12 - 2,CS21 - 5,CS30 - 5,CS32 - 5,Math17 - 2,Math53 - 2.5,Math54 - 2,AH - 1,AH - 3,AH - 2,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
-201345655,CS11 - 2,CS12 - 2,CS21 - 1,CS30 - 1,CS32 - 1,Math17 - 2,Math53 - 2.5,Math54 - 1.25,AH - 1,AH - 3,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201347612,CS11 - 2,CS12 - 2,CS21 - 1,CS30 - 5,CS32 - 5,Math17 - 2,Math53 - 2.5,Math54 - 5,AH - 1,AH - 3,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201361034,CS11 - 5,CS11 - 5,CS11 - 1.5,Math17 - 2,Math53 - 2.5,Math54 - 1.5,AH - 1,AH - 3,AH - 1.5,SSP - 1.5,SSP - 2.5,SSP - 1.5,MST - 4,MST - 1.5,SSP1 - 1.5
 201365955,CS11 - 2,CS12 - 2,CS21 - 1,CS30 - 1,CS32 - 1,Math17 - 2,Math53 - 2.5,Math54 - 1.25,AH - 1,AH - 3,AH - 1,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201374771,CS11 - 2,CS12 - 5,CS12 - 5,Math17 - 2,Math53 - 2.5,Math54 - 3,AH - 1,AH - 3,AH - 3,SSP - 1.5,SSP - 2.5,SSP - 3,MST - 4,MST - 1.5,MST - 3
-201398765,CS11 - 2,CS12 - 2,CS21 - 2.25,CS30 - 2.25,CS32 - 2.25,Math17 - 2,Math53 - 2.5,Math54 - 2.25,AH - 1,AH - 3,AH - 2.25,SSP - 1.5,SSP - 2.5,MST - 4,MST - 1.5
 201406331,CS11 - 5,Math17 - 2,AH - 5,SSP - 1.5,MST - 5
 201406341,CS11 - 1.5,Math17 - 2.25,AH - 3,SSP - 1.5,MST - 3
-201406456,CS11 - 2,Math17 - 2,AH - 2,SSP - 2,MST - 2
 201410517,CS11 - 2,Math17 - 2,AH - 3,SSP - 1.5,MST - 3
-201419899,CS11 - 2.5,Math17 - 2.5,AH - 2.5,SSP - 2.5,MST - 2.5
-201420142,CS11 - 2.25,Math17 - 1,AH - 5,SSP - 5,MST - 5
-201423232,CS11 - 2,Math17 - 2,AH - 3,SSP - 1.5,MST - 3
 201427462,CS11 - 2.25,Math17 - 1,AH - 5,SSP - 5,MST - 5
-201432323,CS11 - 2.25,Math17 - 2.25,AH - 2.25,SSP - 2.25,MST - 2.25
-201433456,CS11 - 3,Math17 - 3,AH - 3,SSP - 3,MST - 3
 201434316,CS11 - 5,Math17 - 5,AH - 1,SSP - 1.5,MST - 5
 201438975,CS11 - 2.25,Math17 - 2.25,AH - 2.25,SSP - 2.25,MST - 2.25
 201453656,CS11 - 2,Math17 - 2,AH - 2,SSP - 2,MST - 2
-201456565,CS11 - 5,Math17 - 2,AH - 5,SSP - 1.5,MST - 5
 201456743,CS11 - 2.5,Math17 - 2.5,AH - 2.5,SSP - 2.5,MST - 2.5
 201464979,CS11 - 3,Math17 - 3,AH - 3,SSP - 3,MST - 3
-201465656,CS11 - 1.5,Math17 - 2.25,AH - 3,SSP - 1.5,MST - 3
 201467812,CS11 - 2,Math17 - 2,AH - 2,SSP - 2,MST - 2
-201478787,CS11 - 2,Math17 - 2,AH - 2,SSP - 2,MST - 2
-201487878,CS11 - 5,Math17 - 5,AH - 1,SSP - 1.5,MST - 5

@@ -74,9 +74,9 @@
                     <th class="sorter-false"><span>AH</span></th>
                     <th class="sorter-false"><span>MST</span></th>
                     <th class="sorter-false"><span>SSP</span></th>
-                    <th class="sorter-false"><span>Delinquency
+                    <th class="sorter-false">Delinquency<br>
                     <button type="button" class="btn btn-sm btn-success" id="w">w/</button>
-                    <button type="button" class="btn btn-sm btn-success" id="wo">w/o</button></span></th>
+                    <button type="button" class="btn btn-sm btn-success" id="wo">w/o</button></th>
                     <th class="sorter-false"><span>Remarks</span></th>
                     </tr>
                     </thead>
@@ -105,9 +105,9 @@
                     <th class="sorter-false"><span>AH</span></th>
                     <th class="sorter-false"><span>MST</span></th>
                     <th class="sorter-false"><span>SSP</span></th>
-                    <th class="sorter-false"><span>Delinquency
+                    <th class="sorter-false">Delinquency<br>
                     <button type="button" class="btn btn-sm btn-success" id="w">w/</button>
-                    <button type="button" class="btn btn-sm btn-success" id="wo">w/o</button></span></th>
+                    <button type="button" class="btn btn-sm btn-success" id="wo">w/o</button></th>
                     <th class="sorter-false"><span>Remarks</span></th>
                     </tr>
                     </thead>

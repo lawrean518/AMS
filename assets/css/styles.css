@@ -311,3 +311,11 @@ h2{
 .row{
   padding-top: 10px;
 }
+
+.gwaText{
+  font-weight: bold;
+}
+
+.gwa{
+  font-style: italic;
+}
