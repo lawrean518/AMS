@@ -97,17 +97,7 @@ class DCSMS extends CI_Controller {
 		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math55"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 55 within two takes");
 		
-	}/*
-	public function individualProfile(){ //passing parameter for individual profile loading view individual profile
-		$this->load->helper('url');
-		$this->load->model('DCSMS_Model');
-		$this->load->view('AMSindividualprofile');
-
-		$remarks = $this->input->post('myRemark');
-		$stuNum = $this->uri->segment(3);
-		$this->DCSMS_Model->updateRemarks($stuNum, $remarks);
-		$this->showIndividualProfile();
-	}*/
+	}
 	public function showIndividualProfile(){
 		$this->load->helper('url');
 		$this->load->model('DCSMS_Model');
@@ -147,10 +137,6 @@ class DCSMS extends CI_Controller {
 		$this->load->view('AMShome', $data);
 	//$this->home();
 	}
-	//PLAN
-	//Pagkapindot ng buttons sa welcome page, load default page
-	//On welcome page, pagkapindot ng update and ng export, hindi magbabago ung look nung page
-	//Tables on that page, sortable, use jQuery for this
-	//On click of student numbers, show their individual profile
+	
 }
 

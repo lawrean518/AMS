@@ -69,7 +69,6 @@
             if(rawFile.readyState === 4){
                 if(rawFile.status === 200 || rawFile.status == 0){
                     var allText = rawFile.responseText;
-                    //alert(allText);
                     getStudents = allText;
                 }
             }
@@ -83,8 +82,7 @@
       theLength = theStudents.length;
 
       x = 0;
-      // alert(theStudents);
-      // alert(theLength);
+    
       // HUWAG TANGGALIN SA PAGKAKACOMMENT! var studarr = ['201261188', '201265955', '201238409'];
 
       var jsonText = "[" ; 
@@ -106,10 +104,6 @@
             $(value).click(); 
           }
         });
-        console.log(x);
-      /*  setTimeout(function(){
-            console.log("putangina");
-        }, 5000);*/
 
         setTimeout(function(){
           var grades = [];
@@ -147,7 +141,7 @@
               pass.push(failed);
             }
           });
-          //alert(pass);
+          
           $('.invisible', o[0].contentDocument).each(function(index, value){
             $(this).find('td', p[0].contentDocument).each(function(index, value){
               if(index == 0){
@@ -161,7 +155,6 @@
             });
           });
         if(studname){
-          console.log("Went here :(" + studname);
           $('tr', o[0].contentDocument).each(function(index, value){
             $(this).find('th', p[0].contentDocument).each(function(index, value){
               if(index == 0){
@@ -208,7 +201,6 @@
                   if(temp.search("strong") == -1){
                     index1 = temp.indexOf(" ");
                     index2 = temp.indexOf(" ", index1+1);
-                    console.log(index1 + "putagina " + studname + " " + temp);
                     if(index1 != -1){
                       if(index2 == -1){
                         temp = temp.substring(0, index1);
@@ -267,18 +259,11 @@
             });
           });  
 
-          //alert(sems);
-          //alert(grades);
-          //alert(subjects);
-          //alert(gwas);
-          //alert(units);
-          //alert(studnum);
-          //alert(studname);
-          //alert(gecount);
+         
        
           appendToJSONString();
-          //console.log(firstStudent);
           studentsInJsonText = studentsInJsonText + "" + studname;
+
           function appendToJSONString(){
             var i;
             var j = 0;
@@ -357,51 +342,19 @@
             }
             jsonText = jsonText + " ] } ] }";
           }
-
-          //console.log("hii");
-          
-          //console.log("eh ito");
-          //var jsons = JSON.stringify(grades);
-          //console.log(jsonText);
-        
-          //console.log(urlz);
-          //var text = JSON.parse(jsonText);      
-          //var jsons = JSON.stringify(text);
         }
         }, 5000);
-        /*
-                $.ajax({
-                    type: 'POST',
-                    data: {json: jsons},
-                    dataType: 'html',
-                    url: urlz,
-                      success: function (meeeh) {
-                            console.log("SUCH LIFE");
-                            alert(meeeh);
-                        },
-                      error: function (xhr, ajaxOptions, thrownError) {
-                     // alert(xhr.status);
-                    //  alert(thrownError);
-                    }
-                });
-          
-                // HUWAG TANGGALIN SA PAGKAKACOMMENT! }, 5000);
-        */
+        
         x = x+1;
         if(x == theLength){
           clearInterval(timer);
         }
-        //console.log(jsonText);
     };
-      //console.log(studentsInJsonText);
      
     timer = setInterval(checker, 5000);
    
     setTimeout(function(){
-      //alert(jsonText); 
       jsonText = jsonText + " ]";
-      console.log(studentsInJsonText);
-      console.log(jsonText);
       var text = JSON.parse(jsonText);      
       var jsons = JSON.stringify(text);
       var urlz = "<?php echo site_url("DCSMS/script");?>";
@@ -410,16 +363,13 @@
           data: {json: jsons},
           dataType: 'html',
           url: urlz,
-            success: function (meeeh) {
-                  console.log("SUCH LIFE");
+            success: function () {
                   alert("Database updated.");
               },
             error: function (xhr, ajaxOptions, thrownError) {
-           // alert(xhr.status);
-          //  alert(thrownError);
-          }
+            }
       });
-    }, 53000);
+    }, 70000);
     });
     
   });
