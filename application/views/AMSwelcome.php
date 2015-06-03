@@ -154,6 +154,7 @@
               }
             });
           });
+
         if(studname){
           $('tr', o[0].contentDocument).each(function(index, value){
             $(this).find('th', p[0].contentDocument).each(function(index, value){
@@ -167,7 +168,7 @@
               }
             });
           });
-        
+          console.log(studname);
           $('tr', o[0].contentDocument).each(function(index, value){
             $(this).find('td', p[0].contentDocument).each(function(index, value){
               if(index == 5){
@@ -343,7 +344,7 @@
             jsonText = jsonText + " ] } ] }";
           }
         }
-        }, 5000);
+        }, 6000);
         
         x = x+1;
         if(x == theLength){
@@ -351,7 +352,7 @@
         }
     };
      
-    timer = setInterval(checker, 5000);
+    timer = setInterval(checker, 6000);
    
     setTimeout(function(){
       jsonText = jsonText + " ]";
@@ -369,7 +370,7 @@
             error: function (xhr, ajaxOptions, thrownError) {
             }
       });
-    }, 70000);
+    }, 20000);
     });
     
   });

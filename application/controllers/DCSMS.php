@@ -56,7 +56,7 @@ class DCSMS extends CI_Controller {
 				foreach($row2['GradesForSem'] as $row3){
 					$this->DCSMS_Model->addStudentGrade($stunum, $row3['subject'], $row3['units'], $row3['grade'], $schoolYear, $semNumber);
 				}
-				//$this->addDQs($stunum, $failed, $passed);
+				$this->addDQs($stunum, $failed, $passed);
 			}
 		}
 		return count($data[$i]['grades']);
@@ -80,21 +80,21 @@ class DCSMS extends CI_Controller {
 		 	$this->DCSMS_Model->addDQs($student, "On probation: Failed to obtain final grades of '3' or better in 50% to 75% of academics taken during the semester");
 		if($failed >= 25 && $failed < 50)
 		 	$this->DCSMS_Model->addDQs($student, "Warning: Failed to pass in 25% to less than 50% of units taken this semester");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS11"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS 11"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 11 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS12"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS 12"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 12 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS21"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS 21"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 21 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS32"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "CS 32"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass CS 32 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math17"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math 17"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 17 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math53"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math 53"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 53 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math54"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math 54"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 54 within two takes");
-		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math55"))>=2)
+		if(($this->DCSMS_Model->checkSubjectFailures($student, "Math 55"))>=2)
 			$this->DCSMS_Model->addDQs($student, "For dismissal: Failed to pass Math 55 within two takes");
 		
 	}
